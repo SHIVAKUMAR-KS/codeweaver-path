@@ -24,6 +24,7 @@ import VerticalBinaryRain from './VerticalBinaryRain';
 import ScrollStack, { ScrollStackItem } from './ui/ScrollStack';
 import AnimatedStarButton from '@/components/ui/animated-star-button';
 import workspaceImage from '/workspace.svg';
+import Footer from './Footer';
 
 const slugs = [
   'typescript',
@@ -701,7 +702,8 @@ const LandingPage = () => {
             </div>
             {/* MorphingText in bottom-left - Fix positioning */}
             <motion.div
-              className="absolute z-20 hidden w-full px-4 left-1/2 bottom-0 transform -translate-x-1/2 lg:block max-w-7xl"
+              className="absolute z-20 hidden w-full px-4 center-1/2 up-3 transform -translate-x-1/2 lg:block max-w-7xl
+"
               initial={{ opacity: 0, scale: 0.3, z: -100 }}
               whileInView={{ opacity: 1, scale: 1, z: 0 }}
               transition={{ duration: 1.2, ease: 'easeOut' }}
@@ -715,6 +717,7 @@ const LandingPage = () => {
           </motion.div>
         </div>
       </section>
+      <Footer/>
     </div>
   );
 };
