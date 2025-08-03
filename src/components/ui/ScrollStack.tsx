@@ -1,106 +1,197 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
+import { useRef, useCallback, useEffect } from 'react';
+import Lenis from 'lenis';
+import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { cn } from '@/lib/utils';
 
+// Noise component for the glitter effect
+const Noise = () => (
+  <svg
+    className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.05] mix-blend-overlay"
+    viewBox="0 0 200 200"
+  >
+    <filter id="noise">
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.65"
+        numOctaves="3"
+        stitchTiles="stitch"
+      />
+    </filter>
+    <rect width="100%" height="100%" filter="url(#noise)" />
+  </svg>
+);
+
+// Register ScrollTrigger plugin
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-interface ScrollStackProps {
-  children: React.ReactNode;
-  itemDistance?: number;
-  className?: string;
-}
+export const ScrollStackItem = ({ children, itemClassName = '' }) => {
+  // Check if this is a header card (no styling) based on className
+  const isHeaderCard = itemClassName.includes('bg-transparent');
 
-interface ScrollStackItemProps {
-  children: React.ReactNode;
-  itemClassName?: string;
-}
-
-export const ScrollStackItem: React.FC<ScrollStackItemProps> = ({ 
-  children, 
-  itemClassName 
-}) => {
   return (
-    <div className={cn(
-      "scroll-stack-card w-full p-8 bg-card border border-border rounded-3xl shadow-lg",
-      itemClassName
-    )}>
-      {children}
+    <div
+      className={`scroll-stack-card relative w-full h-80 my-8 ${!isHeaderCard ? 'rounded-[40px] overflow-hidden lg:overflow-visible' : ''} box-border origin-top will-change-transform ${itemClassName}`.trim()}
+      style={{
+        backfaceVisibility: 'hidden',
+        transformStyle: 'preserve-3d',
+      }}
+    >
+      {!isHeaderCard ? (
+        <div
+          className="relative h-full [background-image:radial-gradient(88%_100%_at_top,rgba(255,255,255,0.5),rgba(255,255,255,0))] sm:mx-0 sm:rounded-[40px]"
+          style={{
+            boxShadow:
+              '0 10px 32px rgba(34, 42, 53, 0.12), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.05), 0 4px 6px rgba(34, 42, 53, 0.08), 0 24px 108px rgba(47, 48, 55, 0.10)',
+          }}
+        >
+          <div className="h-full px-4 py-8 sm:px-10">{children}</div>
+        </div>
+      ) : (
+        <div className="h-full">{children}</div>
+      )}
     </div>
   );
 };
 
-const ScrollStack: React.FC<ScrollStackProps> = ({ 
-  children, 
-  itemDistance = 200,
-  className 
-}) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+const ScrollStack = ({ children, className = '', itemDistance = 1000 }) => {
+  const containerRef = useRef(null);
+  const cardsRef = useRef([]);
+  const lenisRef = useRef(null);
+  const animationFrameRef = useRef(null);
+  const scrollTriggersRef = useRef([]);
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
+  // Setup GSAP ScrollTrigger for card stacking
+  const setupScrollTriggers = useCallback(() => {
+    if (typeof window === 'undefined' || !containerRef.current) return;
 
     const container = containerRef.current;
-    if (!container) return;
+    const cards = Array.from(container.querySelectorAll('.scroll-stack-card'));
+    cardsRef.current = cards;
 
-    const cards = container.querySelectorAll('.scroll-stack-card');
-    
-    cards.forEach((card, index) => {
-      if (index === 0) return; // Skip first card (header)
+    // Clear any existing scroll triggers
+    scrollTriggersRef.current.forEach(trigger => trigger.kill());
+    scrollTriggersRef.current = [];
 
-      gsap.set(card, {
-        y: itemDistance,
-        scale: 0.9,
-        opacity: 0.8
-      });
-
-      ScrollTrigger.create({
-        trigger: card,
-        start: "top 80%",
-        end: "bottom 20%",
-        scrub: 1,
-        animation: gsap.to(card, {
-          y: 0,
-          scale: 1,
-          opacity: 1,
-          ease: "none"
-        })
-      });
-
-      // Stack effect for previous cards
-      ScrollTrigger.create({
-        trigger: card,
-        start: "top 50%",
-        end: "bottom top",
-        scrub: 1,
-        onUpdate: (self) => {
-          const progress = self.progress;
-          const prevCards = Array.from(cards).slice(0, index);
-          
-          prevCards.forEach((prevCard, prevIndex) => {
-            const offset = (index - prevIndex) * 20;
-            gsap.set(prevCard, {
-              y: -progress * offset,
-              scale: 1 - (progress * 0.05 * (index - prevIndex))
-            });
-          });
-        }
-      });
+    // Create a timeline for stacking cards
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: 'center center',
+        end: `+=${cards.length * itemDistance + 1000}`,
+        pin: true,
+        scrub: 0.5,
+        anticipatePin: 1, // Smoother pinning
+      },
     });
 
+    scrollTriggersRef.current.push(timeline.scrollTrigger);
+
+    // Set initial state for all cards
+    cards.forEach((card, i) => {
+      gsap.set(card as gsap.TweenTarget, {
+        position: 'absolute',
+        top: '50%',
+        left: 0,
+        right: 0,
+        y: i === 0 ? '-50%' : '100%',
+        zIndex: i + 1,
+        opacity: i === 0 ? 1 : 0,
+      });
+
+      // Find 3D model in card and increase its z-index
+      const model = (card as Element).querySelector('.w-32.h-32') as HTMLElement;
+      if (model) {
+        model.style.zIndex = '100';
+      }
+    });
+
+    // First card is already visible in the middle
+
+    // Make first card more visible with responsive positioning
+    timeline.to(
+      cards[0] as gsap.TweenTarget,
+      {
+        y: () => {
+          // Set different y values based on screen width
+          if (window.innerWidth < 340) return '-60%'; // mobile
+          if (window.innerWidth < 440) return '-60%';
+          if (window.innerWidth < 650) return '-70%'; // mobile
+          if (window.innerWidth < 770) return '-90%'; // tablet/medium
+          return '-95%'; // desktop
+        },
+        ease: 'power2.inOut',
+      },
+      0
+    );
+
+    // Sequential stacking - each card waits for previous to finish
+    for (let i = 1; i < cards.length; i++) {
+      const yPosition = -40 + i * 10;
+
+      timeline.to(
+        cards[i] as gsap.TweenTarget,
+        {
+          y: `${yPosition}%`,
+          opacity: 1,
+          ease: 'power2.inOut',
+          duration: 1,
+        },
+        i * 1
+      );
+    }
+
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      scrollTriggersRef.current.forEach(trigger => trigger.kill());
+      scrollTriggersRef.current = [];
     };
   }, [itemDistance]);
 
+  // Setup Lenis smooth scrolling
+  const setupLenis = useCallback(() => {
+    if (typeof window === 'undefined') return;
+
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 2,
+      infinite: false,
+      wheelMultiplier: 1,
+      lerp: 0.1,
+    });
+
+    const raf = time => {
+      lenis.raf(time);
+      animationFrameRef.current = requestAnimationFrame(raf);
+    };
+
+    animationFrameRef.current = requestAnimationFrame(raf);
+    lenisRef.current = lenis;
+
+    return lenis;
+  }, []);
+
+  // Initialize everything
+  useEffect(() => {
+    setupLenis();
+    setupScrollTriggers();
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+      if (lenisRef.current) {
+        lenisRef.current.destroy();
+      }
+      scrollTriggersRef.current.forEach(trigger => trigger.kill());
+    };
+  }, [setupLenis, setupScrollTriggers]);
+
   return (
-    <div 
-      ref={containerRef}
-      className={cn("space-y-8", className)}
-    >
-      {children}
+    <div className={`relative w-full ${className}`.trim()} ref={containerRef}>
+      <div className="px-4 md:px-20">{children}</div>
     </div>
   );
 };

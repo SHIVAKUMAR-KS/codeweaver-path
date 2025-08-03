@@ -1,67 +1,112 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
-const VerticalBinaryRain: React.FC = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+const GOLD = '#FFD700';
+const NUM_COLUMNS = 20;
+const NUMBERS_PER_COLUMN = 12;
+
+// Create a deterministic pattern for initial server-side rendering
+const initialBinaries = Array.from({ length: NUM_COLUMNS }, (_, colIdx) =>
+  Array.from({ length: NUMBERS_PER_COLUMN }, (_, numIdx) =>
+    // Use a deterministic pattern based on position
+    (colIdx + numIdx) % 2 === 0 ? '1' : '0'
+  )
+);
+
+// Generate random binaries for client-side only
+function generateRandomBinaries() {
+  return Array.from({ length: NUM_COLUMNS }, () =>
+    Array.from({ length: NUMBERS_PER_COLUMN }, () =>
+      Math.random() > 0.5 ? '1' : '0'
+    )
+  );
+}
+
+const VerticalBinaryRain = () => {
+  // Start with deterministic pattern for SSR
+  const [binaries, setBinaries] = useState(initialBinaries);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    // Only run on client-side to avoid hydration mismatch
+    const timer = setTimeout(() => setVisible(true), 2000);
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    // Update to random binaries only on client-side after initial render
+    if (typeof window !== 'undefined') {
+      setBinaries(generateRandomBinaries());
+    }
 
-    // Set canvas size
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    // Binary rain configuration
-    const columns = Math.floor(canvas.width / 20);
-    const drops: number[] = Array(columns).fill(0);
-    const binary = '01';
-
-    const draw = () => {
-      // Semi-transparent black background for trailing effect
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Green text
-      ctx.fillStyle = 'rgba(64, 255, 170, 0.3)';
-      ctx.font = '12px monospace';
-
-      drops.forEach((y, index) => {
-        const text = binary[Math.floor(Math.random() * binary.length)];
-        const x = index * 20;
-
-        ctx.fillText(text, x, y);
-
-        // Reset drop to top randomly
-        if (y > canvas.height && Math.random() > 0.975) {
-          drops[index] = 0;
-        }
-
-        drops[index] += 10;
-      });
-    };
-
-    const interval = setInterval(draw, 50);
-
-    return () => {
-      clearInterval(interval);
-      window.removeEventListener('resize', resizeCanvas);
-    };
+    return () => clearTimeout(timer);
   }, []);
 
+  // Only animate drops from top to middle of viewport
+  const dropHeight = '100vh';
+
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0 opacity-20"
-      style={{ background: 'transparent' }}
-    />
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: visible ? 1 : 0 }}
+      transition={{ duration: 1.2, ease: 'easeInOut' }}
+      style={{
+        position: 'absolute',
+        top: -100,
+        left: 0,
+        width: '100%',
+        height: dropHeight,
+        pointerEvents: 'none',
+        zIndex: 40,
+        display: 'flex',
+      }}
+    >
+      {Array.from({ length: NUM_COLUMNS }).map((_, colIdx) => {
+        const left = `${((colIdx + 1) / (NUM_COLUMNS + 1)) * 100}%`;
+        return (
+          <div
+            key={colIdx}
+            style={{
+              position: 'absolute',
+              left,
+              transform: 'translateX(-50%)',
+              width: '2vw',
+              height: dropHeight,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            {Array.from({ length: NUMBERS_PER_COLUMN }).map((_, numIdx) => {
+              // Randomize delay and duration for each drop
+              const delay = numIdx * 0.2 + Math.random() * 1;
+              const duration = 2 + Math.random() * 1.5;
+              return (
+                <motion.span
+                  key={numIdx}
+                  initial={{ y: -40, opacity: 1 }}
+                  animate={{ y: dropHeight, opacity: 0 }}
+                  transition={{
+                    duration,
+                    delay,
+                    repeat: Infinity,
+                    repeatType: 'loop',
+                    ease: 'linear',
+                  }}
+                  style={{
+                    color: GOLD,
+                    fontWeight: 'bold',
+                    fontSize: '1.1rem',
+                    marginBottom: '0.1rem',
+                    textShadow: '0 0 8px #FFD70088',
+                    userSelect: 'none',
+                  }}
+                >
+                  {binaries[colIdx][numIdx]}
+                </motion.span>
+              );
+            })}
+          </div>
+        );
+      })}
+    </motion.div>
   );
 };
 
