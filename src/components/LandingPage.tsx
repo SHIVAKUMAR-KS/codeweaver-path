@@ -25,6 +25,7 @@ import ScrollStack, { ScrollStackItem } from './ui/ScrollStack';
 import AnimatedStarButton from '@/components/ui/animated-star-button';
 import workspaceImage from '/workspace.svg';
 import Footer from './Footer';
+import Navbar from './Navbar';
 
 const slugs = [
   'typescript',
@@ -179,6 +180,9 @@ const LandingPage = () => {
       {/* Vertical Binary Rain Animation */}
       <div className="hidden md:block">
         <VerticalBinaryRain />
+      </div>
+      <div>
+        <Navbar />
       </div>
       {/* Smooth Cursor - only show in hero section on large screens */}
       {showCursor && (
