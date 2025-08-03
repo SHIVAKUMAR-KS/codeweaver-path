@@ -14,6 +14,7 @@ import GradientText from './GradientText';
 import { useTheme } from '@/components/ui/theme-provider';
 import CircularText from './CircularText';
 import { MorphingText } from '@/components/magicui/morphing-text';
+import Footer from '@/components/Footer';
 import { SparklesText } from '@/components/magicui/sparkles-text';
 import { InteractiveHoverButton } from '@/components/magicui/interactive-hover-button';
 import { HoverBorderGradient } from '@/components/ui/hover-border-gradient';
@@ -701,7 +702,7 @@ const LandingPage = () => {
             </div>
             {/* MorphingText in bottom-left - Fix positioning */}
             <motion.div
-              className="absolute z-20 hidden w-full px-4 left-1/2 bottom-0 transform -translate-x-1/2 lg:block max-w-7xl"
+              className="absolute z-20 hidden w-full px-4 left-1/2 bottom-0 transform -translate-x-1/2 lg:block max-w-7xl text-center"
               initial={{ opacity: 0, scale: 0.3, z: -100 }}
               whileInView={{ opacity: 1, scale: 1, z: 0 }}
               transition={{ duration: 1.2, ease: 'easeOut' }}
@@ -715,6 +716,7 @@ const LandingPage = () => {
           </motion.div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };
