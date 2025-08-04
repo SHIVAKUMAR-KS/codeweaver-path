@@ -69,7 +69,8 @@ const LandingPage = () => {
    // --- Carousel Logic for Mobile/Tablet Advanced Features ---
   const [featureIdx, setFeatureIdx] = useState(0);
   const featureCards = [
-    <div className="rounded-xl shadow-xl p-5 bg-gradient-to-bl from-indigo-900 via-purple-800 to-indigo-700 text-white min-h-[340px] flex flex-col justify-between">
+      <div className="rounded-xl shadow-xl p-5 bg-gradient-to-bl from-indigo-900 via-purple-800 to-indigo-700 text-white min-h-[550px] flex flex-col justify-between border-4" style={{ borderColor: '#9b4de7' }}>
+
       <div>
         <h2 className="font-bruno text-xl font-semibold mb-2">AI Film Making</h2>
         <p className="text-sm leading-relaxed">
@@ -90,7 +91,7 @@ const LandingPage = () => {
         </AnimatedStarButton>
       </div>
     </div>,
-    <div className="rounded-xl shadow-xl p-5 bg-gradient-to-br from-emerald-900 via-emerald-700 to-teal-800 text-white min-h-[340px] flex flex-col justify-between">
+    <div className="rounded-xl shadow-xl p-5 bg-gradient-to-br from-emerald-900 via-emerald-700 to-teal-800 text-white min-h-[550px] flex flex-col justify-between border-4" style={{ borderColor: '#9b4de7' }}>
       <div>
         <h2 className="font-bruno text-xl font-semibold mb-2">Report Gen-AI</h2>
         <p className="text-sm leading-relaxed">
@@ -111,7 +112,7 @@ const LandingPage = () => {
         </AnimatedStarButton>
       </div>
     </div>,
-    <div className="rounded-xl shadow-xl p-5 bg-gradient-to-br from-[#1a1a1a] via-[#6e40c9] via-[#ff8c00] to-[#ff206e] text-white min-h-[340px] flex flex-col justify-between">
+    <div className="rounded-xl shadow-xl p-5 bg-gradient-to-br from-[#1a1a1a] via-[#6e40c9] via-[#ff8c00] to-[#ff206e] text-white min-h-[550px] flex flex-col justify-between border-4" style={{ borderColor: '#9b4de7' }}>
       <div>
         <h2 className="font-bruno text-xl font-semibold mb-2">Alpha CTR</h2>
         <p className="text-sm leading-relaxed">
@@ -132,7 +133,7 @@ const LandingPage = () => {
         </AnimatedStarButton>
       </div>
     </div>,
-    <div className="rounded-xl shadow-xl p-5 bg-gradient-to-br from-orange-600 to-red-700 text-white min-h-[340px] flex flex-col justify-between">
+    <div className="rounded-xl shadow-xl p-5 bg-gradient-to-br from-orange-600 to-red-700 text-white min-h-[550px] flex flex-col justify-between border-4"style={{ borderColor: '#9b4de7' }}>
       <div>
         <h2 className="font-bruno text-xl font-semibold mb-2">Learn, Share, and Grow Together</h2>
         <p className="text-sm leading-relaxed">
@@ -153,7 +154,7 @@ const LandingPage = () => {
         </AnimatedStarButton>
       </div>
     </div>,
-    <div className="rounded-xl shadow-xl p-5 bg-gradient-to-br from-violet-600 via-purple-600 to-blue-600 text-white min-h-[340px] flex flex-col justify-between">
+    <div className="rounded-xl shadow-xl p-5 bg-gradient-to-br from-violet-600 via-purple-600 to-blue-600 text-white min-h-[550px] flex flex-col justify-between border-4" style={{ borderColor: '#9b4de7' }}>
       <div>
         <h2 className="font-bruno text-xl font-semibold mb-2">AI Singing Voice Synthesis.</h2>
         <p className="text-sm leading-relaxed">
@@ -161,7 +162,7 @@ const LandingPage = () => {
         </p>
       </div>
     </div>,
-    <div className="rounded-xl shadow-xl p-5 bg-gradient-to-br from-black via-black to-black text-white min-h-[340px] flex flex-col justify-between">
+    <div className="rounded-xl shadow-xl p-5 bg-gradient-to-br from-black via-black to-black text-white min-h-[550px] flex flex-col justify-between border-4" style={{ borderColor: '#9b4de7' }}>
       <div>
         <h2 className="font-bruno text-xl font-semibold mb-2">AI Interview Assistant</h2>
         <p className="text-sm leading-relaxed">
