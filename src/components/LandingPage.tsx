@@ -23,7 +23,6 @@ import SplineModel from '@/components/SplineModel';
 import VerticalBinaryRain from './VerticalBinaryRain';
 import ScrollStack, { ScrollStackItem } from './ui/ScrollStack';
 import AnimatedStarButton from '@/components/ui/animated-star-button';
-// import aifilm from '../../public/aifilm.png';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import logo1 from '../../public/logo1.png'
@@ -67,35 +66,172 @@ const LandingPage = () => {
   const [showCursor, setShowCursor] = useState(false);
   const { authUser } = useAuthStore();
   const { theme } = useTheme();
+   // --- Carousel Logic for Mobile/Tablet Advanced Features ---
+  const [featureIdx, setFeatureIdx] = useState(0);
+  const featureCards = [
+    <div className="rounded-xl shadow-xl p-5 bg-gradient-to-bl from-indigo-900 via-purple-800 to-indigo-700 text-white min-h-[340px] flex flex-col justify-between">
+      <div>
+        <h2 className="font-bruno text-xl font-semibold mb-2">AI Film Making</h2>
+        <p className="text-sm leading-relaxed">
+          Create stunning cinematic videos and compelling ads effortlessly with AI-powered filmmaking and dubbing. Generate professional-grade visuals, automate editing, add realistic voiceovers in multiple languages, and bring your creative vision to life faster than ever.
+        </p>
+      </div>
+      <div className="mt-6">
+        <AnimatedStarButton
+          onClick={() => handleNavigation('/problems')}
+          bgColor="bg-indigo-300"
+          textColor="text-indigo-900"
+          borderColor="border-indigo-300"
+          hoverTextColor="hover:text-indigo-300"
+          hoverShadow="hover:shadow-[0_0_25px_rgba(99,102,241,0.5)]"
+          borderRadius="rounded-full"
+        >
+          Try Workspace
+        </AnimatedStarButton>
+      </div>
+    </div>,
+    <div className="rounded-xl shadow-xl p-5 bg-gradient-to-br from-emerald-900 via-emerald-700 to-teal-800 text-white min-h-[340px] flex flex-col justify-between">
+      <div>
+        <h2 className="font-bruno text-xl font-semibold mb-2">Report Gen-AI</h2>
+        <p className="text-sm leading-relaxed">
+          Generate insightful, data-driven reports effortlessly with AI tailored to your specific data stack. Whether you're working with spreadsheets, databases, cloud warehouses, or BI tools, uncover key trends, visualize metrics, and deliver actionable insights in seconds.
+        </p>
+      </div>
+      <div className="mt-6">
+        <AnimatedStarButton
+          onClick={() => handleNavigation(authUser ? `/profile/${authUser.id}` : '/auth/login')}
+          bgColor="bg-emerald-300"
+          textColor="text-emerald-900"
+          borderColor="border-emerald-300"
+          hoverTextColor="hover:text-emerald-300"
+          hoverShadow="hover:shadow-[0_0_25px_rgba(16,185,129,0.5)]"
+          borderRadius="rounded-md"
+        >
+          View Dashboard
+        </AnimatedStarButton>
+      </div>
+    </div>,
+    <div className="rounded-xl shadow-xl p-5 bg-gradient-to-br from-[#1a1a1a] via-[#6e40c9] via-[#ff8c00] to-[#ff206e] text-white min-h-[340px] flex flex-col justify-between">
+      <div>
+        <h2 className="font-bruno text-xl font-semibold mb-2">Alpha CTR</h2>
+        <p className="text-sm leading-relaxed">
+          Produce engaging short-form videos at scale with AI-driven editing, smart captions, and high-converting thumbnails optimized for maximum Alpha CTR. Analyze audience behavior, auto-generate visuals, and craft scroll-stopping content.
+        </p>
+      </div>
+      <div className="mt-6">
+        <AnimatedStarButton
+          onClick={() => handleNavigation(authUser ? `/profile/${authUser.id}` : '/auth/login')}
+          bgColor="bg-emerald-300"
+          textColor="text-emerald-900"
+          borderColor="border-emerald-300"
+          hoverTextColor="hover:text-emerald-300"
+          hoverShadow="hover:shadow-[0_0_25px_rgba(16,185,129,0.5)]"
+          borderRadius="rounded-md"
+        >
+          Try Workshop
+        </AnimatedStarButton>
+      </div>
+    </div>,
+    <div className="rounded-xl shadow-xl p-5 bg-gradient-to-br from-orange-600 to-red-700 text-white min-h-[340px] flex flex-col justify-between">
+      <div>
+        <h2 className="font-bruno text-xl font-semibold mb-2">Learn, Share, and Grow Together</h2>
+        <p className="text-sm leading-relaxed">
+          Join a vibrant global community of coders inside Sklassics-ai Platform. Engage in real-time discussions, exchange ideas, learn from others, and grow as a developer.
+        </p>
+      </div>
+      <div className="mt-6">
+        <AnimatedStarButton
+          onClick={() => handleNavigation('/community')}
+          bgColor="bg-orange-300"
+          textColor="text-orange-900"
+          borderColor="border-orange-300"
+          hoverTextColor="hover:text-orange-300"
+          hoverShadow="hover:shadow-[0_0_25px_rgba(249,115,22,0.5)]"
+          borderRadius="rounded-xl"
+        >
+          Browse Sheets
+        </AnimatedStarButton>
+      </div>
+    </div>,
+    <div className="rounded-xl shadow-xl p-5 bg-gradient-to-br from-violet-600 via-purple-600 to-blue-600 text-white min-h-[340px] flex flex-col justify-between">
+      <div>
+        <h2 className="font-bruno text-xl font-semibold mb-2">AI Singing Voice Synthesis.</h2>
+        <p className="text-sm leading-relaxed">
+          Create personalized, studio-quality songs using advanced AI singing voice synthesis. Craft unique tracks with AI-generated lyrics, custom melodies, and realistic vocals in your own style, mood, or language.
+        </p>
+      </div>
+    </div>,
+    <div className="rounded-xl shadow-xl p-5 bg-gradient-to-br from-black via-black to-black text-white min-h-[340px] flex flex-col justify-between">
+      <div>
+        <h2 className="font-bruno text-xl font-semibold mb-2">AI Interview Assistant</h2>
+        <p className="text-sm leading-relaxed">
+          Experience realistic Mock interviews & Assessments with AI-powered feedback and comprehensive performance analysis.
+        </p>
+      </div>
+      <div className="mt-6 flex items-center justify-between">
+        <AnimatedStarButton
+          onClick={() => handleNavigation('/interview')}
+          bgColor="bg-gray-300"
+          textColor="text-gray-900"
+          borderColor="border-gray-300"
+          hoverTextColor="hover:text-gray-300"
+          hoverShadow="hover:shadow-[0_0_25px_rgba(107,114,128,0.5)]"
+          borderRadius="rounded-sm"
+        >
+          Start Interview
+        </AnimatedStarButton>
+        <div className="ml-3 flex-none w-16 h-14 flex items-center">
+          <SplineModel />
+        </div>
+      </div>
+    </div>,
+  ];
 
-  // Setup GSAP for header and cards sequence
+
+
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    const interval = setInterval(() => {
+      setFeatureIdx(idx => (idx + 1) % featureCards.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [featureCards.length]);
 
-    // Register ScrollTrigger
-    gsap.registerPlugin(ScrollTrigger);
+  // const handleNavigation = (path: string) => {
+  //   // Replace with router or navigation as needed
+  //   window.location.href = path;
+  // };
 
-    // Force a small delay to ensure DOM is fully ready
-    setTimeout(() => {
-      // Find the header card (first ScrollStackItem)
-      const headerCard = document.querySelector('.scroll-stack-card');
-      if (headerCard) {
-        // Add a class to identify it
-        headerCard.classList.add('header-card');
 
-        // Add custom styles to make it look less like a card
-        gsap.set(headerCard, {
-          height: 'auto',
-          marginBottom: '60px',
-          marginTop: '20px',
-        });
-      }
-    }, 100);
 
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
-  }, []);
+  // // Setup GSAP for header and cards sequence
+  // useEffect(() => {
+  //   if (typeof window === 'undefined') return;
+
+  //   // Register ScrollTrigger
+  //   gsap.registerPlugin(ScrollTrigger);
+
+  //   // Force a small delay to ensure DOM is fully ready
+  //   setTimeout(() => {
+  //     // Find the header card (first ScrollStackItem)
+  //     const headerCard = document.querySelector('.scroll-stack-card');
+  //     if (headerCard) {
+  //       // Add a class to identify it
+  //       headerCard.classList.add('header-card');
+
+  //       // Add custom styles to make it look less like a card
+  //       gsap.set(headerCard, {
+  //         height: 'auto',
+  //         marginBottom: '60px',
+  //         marginTop: '20px',
+  //       });
+  //     }
+  //   }, 100);
+
+  //   return () => {
+  //     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+  //   };
+  // }, []);
 
   const companyLogos = [
     {
@@ -148,6 +284,26 @@ const LandingPage = () => {
     },
     
   ];
+  // GSAP effect for header and cards
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger);
+    setTimeout(() => {
+      const headerCard = document.querySelector('.scroll-stack-card');
+      if (headerCard) {
+        headerCard.classList.add('header-card');
+        gsap.set(headerCard, {
+          height: 'auto',
+          marginBottom: '60px',
+          marginTop: '20px',
+        });
+      }
+    }, 100);
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
 
   const handleNavigation = (path: string) => {
     console.log(`Navigate to: ${path}`);
@@ -416,7 +572,7 @@ const LandingPage = () => {
       {/* Advanced Features Section with ScrollStack */}
       <section className="w-full px-4 py-6 bg-gradient-to-br from-background via-background to-accent/5">
         {/* ScrollStack Features Section */}
-        <section className="w-full px-4 -mt-2">
+        <section className="w-full px-4 -mt-2 hidden lg:block">
           <div className="mx-auto max-w-7xl">
             <ScrollStack itemDistance={300} className="min-h-[40vh]">
               <ScrollStackItem itemClassName="bg-transparent shadow-none border-none">
@@ -628,6 +784,52 @@ const LandingPage = () => {
             </ScrollStack>
           </div>
         </section>
+        <section className="block lg:hidden w-full px-1 max-w-lg mx-auto">
+          {/* Card carousel header */}
+          <div className="text-center mb-6">
+            <div className="flex items-center justify-center mb-4">
+              <div className="relative w-full max-w-[60px] h-px bg-gradient-to-r from-transparent via-[#f5ac01]/30 to-[#f5ac01]"></div>
+              <div className="inline-flex items-center px-2 py-0.5 mx-2 rounded-full bg-[#f5b210]/10 text-[#f5ac01] text-xs font-bold">Our Features</div>
+              <div className="relative w-full max-w-[60px] h-px bg-gradient-to-l from-transparent via-[#f5ac01]/30 to-[#f5ac01]"></div>
+            </div>
+            <h2 className="mb-2 text-2xl font-bold font-akashi tracking-wide">
+              Engineered for Excellence
+            </h2>
+            <p className="font-bruno text-sm max-w-xs mx-auto leading-normal text-[#f5ac01]">
+              Ace Every Interview with Confidence. Conduct seamless, automated interviews which save time and ensure quality.
+            </p>
+          </div>
+          {/* The carousel card */}
+          <div className="relative w-full">
+            {featureCards[featureIdx]}
+            {/* Next/Prev controls */}
+            <div className="flex items-center justify-center gap-6 mt-8">
+              <button
+                aria-label="Previous"
+                className="rounded-full bg-gray-700/80 hover:bg-gray-400 text-white w-10 h-10 flex items-center justify-center shadow"
+                onClick={() => setFeatureIdx(idx => idx === 0 ? featureCards.length - 1 : idx - 1)}
+              >
+                {/* Left chevron SVG */}
+                <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6" /></svg>
+              </button>
+              <button
+                aria-label="Next"
+                className="rounded-full bg-gray-700/80 hover:bg-gray-400 text-white w-10 h-10 flex items-center justify-center shadow"
+                onClick={() => setFeatureIdx(idx => (idx + 1) % featureCards.length)}
+              >
+                {/* Right chevron SVG */}
+                <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 6l6 6-6 6" /></svg>
+              </button>
+            </div>
+            {/* Dots */}
+            <div className="flex items-center justify-center mt-4 gap-1">
+              {featureCards.map((_, idx) => (
+                <span key={idx} className={`inline-block w-2 h-2 rounded-full transition ${featureIdx === idx ? 'bg-[#f5ac01]' : 'bg-gray-400'}`}></span>
+              ))}
+            </div>
+          </div>
+        </section>
+
       </section>
 
       {/* Why Choose Sklassics-ai Section - Improve overflow handling for VelocityScroll */}

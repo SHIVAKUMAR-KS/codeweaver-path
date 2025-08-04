@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
         {/* Left: Logo + About */}
         <div className="col-span-1 flex flex-col gap-3">
           <div className="flex items-center space-x-2">
-            <img src={logo} alt="DSATrek Logo" className="w-8 h-8" />
+            {/* <img src={logo} alt="DSATrek Logo" className="w-8 h-8" /> */}
             <span className="text-xl font-semibold text-amber-400">Sklassics-Ai</span>
           </div>
           <p className="text-sm text-neutral-400 mt-2">
