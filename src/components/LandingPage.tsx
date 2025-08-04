@@ -919,7 +919,7 @@ const LandingPage = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <p className="mb-8 text-lg text-muted-foreground">
+            <p className="mb-8 text-2xl text-muted-foreground font-bold">
               Trusted by developers at top companies worldwide
             </p>
 
