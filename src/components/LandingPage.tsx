@@ -651,7 +651,7 @@ const LandingPage = () => {
       <section className="w-full px-4  bg-gradient-to-br from-background via-background to-accent/5 ">
         {/* ScrollStack Features Section */}
         <section className="w-full px-4 -mt-2 hidden lg:block">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-7xl font-bruno font-bold">
             <ScrollStack itemDistance={300} className="min-h-[40vh]">
               <ScrollStackItem itemClassName="bg-transparent shadow-none border-none">
                 <div className="text-center">
@@ -659,9 +659,10 @@ const LandingPage = () => {
                     <div className="relative w-full max-w-[200px] h-px bg-gradient-to-r from-transparent via-[#f5ac01]/30 to-[#f5ac01]">
                       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-[#f5ac01] rotate-45 rounded-sm"></div>
                     </div>
-                    <div className="inline-flex items-center px-2 py-1 mx-2 rounded-full bg-[#f5b210]/10 text-[#f5ac01] text-sm font-bold">
+                    <div className="inline-flex items-center px-2 py-1 mx-2 rounded-full bg-[#f5b210]/10 text-[#f5ac01] text-lg font-bold whitespace-nowrap">
                       Our Features
                     </div>
+
                     <div className="relative w-full max-w-[200px] h-px bg-gradient-to-l from-transparent via-[#f5ac01]/30 to-[#f5ac01]">
                       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-[#f5ac01] rotate-45 rounded-sm"></div>
                     </div>
@@ -920,9 +921,25 @@ const LandingPage = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <p className="mt-20 mb-8 text-2xl text-muted-foreground font-bold">
+            {/* <p className="mt-20 mb-8 text-2xl text-muted-foreground font-bold  ">
               Trusted by developers at top companies worldwide
-            </p>
+            </p> */}
+            <div className="text-center font-bruno text-2xl mb-8 mt-20 text-xl">
+                  <div className="flex items-center justify-center mb-6">
+                    <div className="relative w-full max-w-[200px] h-px bg-gradient-to-r from-transparent via-[#f5ac01]/30 to-[#f5ac01]">
+                      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-[#f5ac01] rotate-45 rounded-sm"></div>
+                    </div>
+                    <div className="inline-flex items-center px-2 py-1 mx-2 rounded-full bg-[#f5b210]/10 text-[#f5ac01] text-sm md:text-lg lg:text-xl font-bold whitespace-nowrap">
+                      Trusted by developers at top companies worldwide
+                    </div>
+
+
+                    <div className="relative w-full max-w-[200px] h-px bg-gradient-to-l from-transparent via-[#f5ac01]/30 to-[#f5ac01]">
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-[#f5ac01] rotate-45 rounded-sm"></div>
+                    </div>
+                  </div>
+                  
+            </div>
 
             {/* Enhanced VelocityScroll with Company Logos */}
             <div className="relative w-full overflow-hidden">

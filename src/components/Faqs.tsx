@@ -62,10 +62,25 @@ const FAQ: React.FC = () => {
       </div>
 
       {/* FAQ Content */}
-      <div className="relative z-10 w-full max-w-2xl px-2">
-        <h2 className="text-3xl font-bold text-white mb-10 text-center ">
+      <div className="relative z-10 w-full max-w-2xl ">
+        {/* <h2 className="text-3xl font-bold text-white mb-10 text-center ">
           Frequently asked questions
-        </h2>
+        </h2> */}
+        <div className="text-3xl font-bold  text-center font-bruno  mb-10 ">
+                  <div className="flex items-center justify-center mb-6">
+                    <div className="relative w-full max-w-[200px] h-px bg-gradient-to-r from-transparent via-[#f5ac01]/30 to-[#f5ac01]">
+                      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-[#f5ac01] rotate-45 rounded-sm"></div>
+                    </div>
+                    <div className="inline-flex items-center px-2  mx-2 rounded-full bg-[#f5b210]/10 text-[#f5ac01] text-lg font-bold whitespace-nowrap">
+                      Frequently asked questions
+                    </div>
+
+                    <div className="relative w-full max-w-[200px] h-px bg-gradient-to-l from-transparent via-[#f5ac01]/30 to-[#f5ac01]">
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-[#f5ac01] rotate-45 rounded-sm"></div>
+                    </div>
+                  </div>
+                  
+            </div>
         <div className="w-full bg-transparent">
           {faqData.map((item, idx) => (
             <div key={idx} className="border-b border-gray-700">
