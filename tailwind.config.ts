@@ -88,6 +88,12 @@ export default {
 					from: { height: '0' },
 					to: { height: 'var(--radix-accordion-content-height)' }
 				},
+				shuffle: {
+					'0%, 100%': { transform: 'translateX(0)' },
+					'25%': { transform: 'translateX(-5px)' },
+					'50%': { transform: 'translateX(5px)' },
+					'75%': { transform: 'translateX(-5px)' },
+				},
 				'accordion-up': {
 					from: { height: 'var(--radix-accordion-content-height)' },
 					to: { height: '0' }
@@ -142,7 +148,8 @@ export default {
 				'morphing': 'morphing 8s ease-in-out infinite',
 				'sparkle': 'sparkle 1.5s ease-in-out infinite',
 				// ✅ Add spin animation here
-				spin: 'spin 20s linear infinite'
+				spin: 'spin 20s linear infinite',
+				shuffle: 'shuffle 2s ease-in-out infinite',
 			}
 		}
 	},

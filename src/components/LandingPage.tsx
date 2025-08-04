@@ -69,28 +69,50 @@ const LandingPage = () => {
    // --- Carousel Logic for Mobile/Tablet Advanced Features ---
   const [featureIdx, setFeatureIdx] = useState(0);
   const featureCards = [
-      <div className="rounded-xl shadow-xl p-5 bg-gradient-to-bl from-indigo-900 via-purple-800 to-indigo-700 text-white min-h-[550px] flex flex-col justify-between border-4" style={{ borderColor: '#9b4de7' }}>
 
-      <div>
-        <h2 className="font-bruno text-xl font-semibold mb-2">AI Film Making</h2>
-        <p className="text-sm leading-relaxed">
-          Create stunning cinematic videos and compelling ads effortlessly with AI-powered filmmaking and dubbing. Generate professional-grade visuals, automate editing, add realistic voiceovers in multiple languages, and bring your creative vision to life faster than ever.
-        </p>
-      </div>
-      <div className="mt-6">
-        <AnimatedStarButton
-          onClick={() => handleNavigation('/problems')}
-          bgColor="bg-indigo-300"
-          textColor="text-indigo-900"
-          borderColor="border-indigo-300"
-          hoverTextColor="hover:text-indigo-300"
-          hoverShadow="hover:shadow-[0_0_25px_rgba(99,102,241,0.5)]"
-          borderRadius="rounded-full"
-        >
-          Try Workspace
-        </AnimatedStarButton>
-      </div>
-    </div>,
+  <div className="rounded-xl shadow-xl p-5 bg-gradient-to-bl from-indigo-900 via-purple-800 to-indigo-700 text-white min-h-[550px] flex flex-col justify-between border-4" style={{ borderColor: '#9b4de7' }}>
+  <div>
+    <h2 className="font-bruno text-xl font-semibold mb-2">AI Film Making</h2>
+    <p className="text-sm leading-relaxed">
+      Create stunning cinematic videos and compelling ads effortlessly with AI-powered filmmaking and dubbing. Generate professional-grade visuals, automate editing, add realistic voiceovers in multiple languages, and bring your creative vision to life faster than ever.
+    </p>
+
+    {/* Enhanced image animation */}
+    <div className="relative mt-4 group overflow-hidden rounded-lg">
+  <img
+    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHDzuXVSI_gzdtJIsBfqMn4JU7gHQnSXLKCg&s"
+    alt="AI filmmaking"
+    className="w-full object-cover rounded-lg 
+      transition-transform duration-700 ease-in-out 
+      group-hover:scale-105
+      animate-shuffle"
+  />
+  
+  {/* Optional glow overlay */}
+  <div className="absolute inset-0 bg-white/10 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg pointer-events-none"></div>
+</div>
+
+
+  </div>
+
+  <div className="mt-6">
+    <AnimatedStarButton
+      onClick={() => handleNavigation('/problems')}
+      bgColor="bg-indigo-300"
+      textColor="text-indigo-900"
+      borderColor="border-indigo-300"
+      hoverTextColor="hover:text-indigo-300"
+      hoverShadow="hover:shadow-[0_0_25px_rgba(99,102,241,0.5)]"
+      borderRadius="rounded-full"
+    >
+      Try Workspace
+    </AnimatedStarButton>
+  </div>
+</div>
+
+
+  
+,
     <div className="rounded-xl shadow-xl p-5 bg-gradient-to-br from-emerald-900 via-emerald-700 to-teal-800 text-white min-h-[550px] flex flex-col justify-between border-4" style={{ borderColor: '#9b4de7' }}>
       <div>
         <h2 className="font-bruno text-xl font-semibold mb-2">Report Gen-AI</h2>
