@@ -48,9 +48,9 @@ const FAQ: React.FC = () => {
   };
 
   return (
-    <div className="relative bg-[#181E29] py-16 px-4 flex flex-col items-center min-h-[80vh] overflow-hidden">
+    <div className="relative  bg-[#181E29] py-16  flex flex-col items-center min-h-[80vh] overflow-hidden px-8">
       {/* SVG full background grid */}
-      <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
+      <div className="absolute inset-0 w-full h-full z-0 pointer-events-none pw-4">
         <svg width="100%" height="100%">
           <defs>
             <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -62,8 +62,8 @@ const FAQ: React.FC = () => {
       </div>
 
       {/* FAQ Content */}
-      <div className="relative z-10 w-full max-w-2xl">
-        <h2 className="text-3xl font-bold text-white mb-10 text-center">
+      <div className="relative z-10 w-full max-w-2xl px-2">
+        <h2 className="text-3xl font-bold text-white mb-10 text-center ">
           Frequently asked questions
         </h2>
         <div className="w-full bg-transparent">

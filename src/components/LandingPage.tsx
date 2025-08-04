@@ -648,7 +648,7 @@ const LandingPage = () => {
       </section>
 
       {/* Advanced Features Section with ScrollStack */}
-      <section className="w-full px-4 py-6 bg-gradient-to-br from-background via-background to-accent/5">
+      <section className="w-full px-4  bg-gradient-to-br from-background via-background to-accent/5 ">
         {/* ScrollStack Features Section */}
         <section className="w-full px-4 -mt-2 hidden lg:block">
           <div className="mx-auto max-w-7xl">
@@ -911,7 +911,7 @@ const LandingPage = () => {
       </section>
 
       {/* Why Choose Sklassics-ai Section - Improve overflow handling for VelocityScroll */}
-      <section className="w-full px-4 py-32  overflow-hidden bg-gradient-to-br from-background via-background to-accent/5">
+      <section className="w-full px-4 py-32 mt-16 overflow-hidden bg-gradient-to-br from-background via-background to-accent/5">
         <div className="mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -920,7 +920,7 @@ const LandingPage = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <p className="mb-8 text-2xl text-muted-foreground font-bold">
+            <p className="mt-20 mb-8 text-2xl text-muted-foreground font-bold">
               Trusted by developers at top companies worldwide
             </p>
 

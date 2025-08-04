@@ -132,7 +132,7 @@ const Footer: React.FC = () => {
       {/* Bottom bar */}
       <div className="border-t border-neutral-800">
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
-          <span>© 2025 Sklasscis-Ai. All rights reserved.</span>
+          <span>© 2025 Sklassics-AI. All rights reserved.</span>
           {/* <SocialDock /> */}
           <div className="flex items-center gap-4">
             <Link to="/privacy" className="hover:text-amber-300 transition">Privacy Policy</Link>
