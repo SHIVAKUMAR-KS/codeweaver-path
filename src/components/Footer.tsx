@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
         <div className="col-span-1 flex flex-col gap-3">
           <div className="flex items-center space-x-2">
             {/* <img src={logo} alt="DSATrek Logo" className="w-8 h-8" /> */}
-            <span className="text-xl font-semibold text-amber-400">Sklassics-Ai</span>
+            <span className="text-xl font-semibold text-amber-400">Sklassics-AI</span>
           </div>
           <p className="text-sm text-neutral-400 mt-2">
             Empower Your Future with AI
@@ -81,7 +81,7 @@ const Footer: React.FC = () => {
               onClick={handleMapClick}
               className="hover:underline text-left"
             >
-              Rajiv Enclave, RangaReddy, Telnagana, India 501510
+              Rajiv Enclave, RangaReddy, Telangana, India 501510
             </button>
           </div>
         </div>
