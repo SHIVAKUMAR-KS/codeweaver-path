@@ -27,6 +27,7 @@ import AnimatedStarButton from '@/components/ui/animated-star-button';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import logo1 from '../../public/logo1.png'
+import Faqs from './Faqs';
 
 const slugs = [
   'typescript',
@@ -700,6 +701,7 @@ const LandingPage = () => {
           </motion.div>
         </div>
       </section>
+      <Faqs />
       <Footer />
     </div>
   );
