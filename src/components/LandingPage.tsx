@@ -912,7 +912,7 @@ const LandingPage = () => {
       </section>
 
       {/* Why Choose Sklassics-ai Section - Improve overflow handling for VelocityScroll */}
-      <section className="w-full px-4 py-16 sm:py-32 mt-8 sm:mt-16 overflow-hidden bg-gradient-to-br from-background via-background to-accent/5">
+      <section className="w-full px-4 sm:py-32 sm:mt-16   bg-gradient-to-br from-background via-background to-accent/5 ">
         <div className="mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -929,9 +929,16 @@ const LandingPage = () => {
                     <div className="relative w-full max-w-[200px] h-px bg-gradient-to-r from-transparent via-[#f5ac01]/30 to-[#f5ac01]">
                       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-[#f5ac01] rotate-45 rounded-sm"></div>
                     </div>
-                    <div className="inline-flex items-center px-2 py-1 mx-2 rounded-full bg-[#f5b210]/10 text-[#f5ac01] text-sm md:text-lg lg:text-xl font-bold whitespace-nowrap">
-                      Trusted by developers at top companies worldwide
-                    </div>
+                    <div className="inline-flex items-center px-2 py-1 mx-2 rounded-full bg-[#f5b210]/10 text-[#f5ac01] text-sm md:text-lg lg:text-xl font-bold">
+  {/* <!-- For mobile, show only "Trusted by" --> */}
+  <span className="block sm:inline md:hidden">Trusted by</span>
+
+  {/* <!-- For desktop and larger, show the full sentence --> */}
+  <span className="hidden md:inline">Trusted by developers at top companies worldwide</span>
+</div>
+
+
+
 
 
                     <div className="relative w-full max-w-[200px] h-px bg-gradient-to-l from-transparent via-[#f5ac01]/30 to-[#f5ac01]">
@@ -942,45 +949,45 @@ const LandingPage = () => {
             </div>
 
             {/* Enhanced VelocityScroll with Company Logos */}
-            <div className="relative w-full overflow-hidden">
-              <VelocityScroll
-                defaultVelocity={2}
-                numRows={2}
-                className="py-8"
-                rowClassName="py-6"
-                delay={0.5}
-              >
-                {[
-                  ...companyLogos,
-                  ...companyLogos,
-                  ...companyLogos,
-                  ...companyLogos,
-                ].map((company, index) => (
-                  <div
-                    key={`logo-${company.name}-${index}`}
-                    className="inline-flex items-center justify-center mr-20"
-                  >
-                    <img
-                      src={company.src}
-                      alt={company.name}
-                      width={company.width}
-                      height={company.height}
-                      className="transition-opacity duration-300 opacity-80 hover:opacity-100"
-                      style={{
-                        width: `${company.width}px`,
-                        height: `${company.height}px`,
-                        objectFit: 'contain',
-                      }}
-                      loading="lazy"
-                    />
-                  </div>
-                ))}
-              </VelocityScroll>
-
-              {/* Enhanced gradient overlays for smoother edges */}
-              <div className="absolute inset-y-0 left-0 z-10 w-32 pointer-events-none md:w-40 bg-gradient-to-r from-background via-background/80 to-transparent"></div>
-              <div className="absolute inset-y-0 right-0 z-10 w-32 pointer-events-none md:w-40 bg-gradient-to-l from-background via-background/80 to-transparent"></div>
+            {/* Logo scroller */}
+      <div className="relative w-full overflow-x-auto py-2">
+        <VelocityScroll
+          defaultVelocity={2}
+          numRows={2}
+          className="py-8"
+          rowClassName="py-6"
+          delay={0.5}
+        >
+          {[
+            ...companyLogos,
+            ...companyLogos,
+            ...companyLogos,
+            ...companyLogos,
+          ].map((company, index) => (
+            <div
+              key={`logo-${company.name}-${index}`}
+              className="inline-flex items-center justify-center mr-10 sm:mr-20"
+            >
+              <img
+                src={company.src}
+                alt={company.name}
+                width={company.width}
+                height={company.height}
+                className="transition-opacity duration-300 opacity-80 hover:opacity-100 w-20 sm:w-28 md:w-32 object-contain"
+                style={{
+                  maxWidth: "8rem",
+                  height: "auto",
+                }}
+                loading="lazy"
+              />
             </div>
+          ))}
+        </VelocityScroll>
+
+        {/* Gradient overlays */}
+        <div className="absolute inset-y-0 left-0 z-10 w-16 sm:w-32 pointer-events-none bg-gradient-to-r from-background via-background/80 to-transparent"></div>
+        <div className="absolute inset-y-0 right-0 z-10 w-16 sm:w-32 pointer-events-none bg-gradient-to-l from-background via-background/80 to-transparent"></div>
+      </div>
             {/* MorphingText in bottom-left - Fix positioning */}
             <motion.div
               className="absolute z-20 hidden w-full px-4 center-1/2 mt-0 transform -translate-x-1/2 lg:block max-w-7xl
