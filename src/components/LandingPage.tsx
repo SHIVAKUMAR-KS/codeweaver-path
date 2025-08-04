@@ -71,29 +71,28 @@ const LandingPage = () => {
   const featureCards = [
 
   <div className="rounded-xl shadow-xl p-5 bg-gradient-to-bl from-indigo-900 via-purple-800 to-indigo-700 text-white min-h-[550px] flex flex-col justify-between border-4" style={{ borderColor: '#9b4de7' }}>
-  <div>
-    <h2 className="font-bruno text-xl font-semibold mb-2">AI Film Making</h2>
-    <p className="text-sm leading-relaxed">
-      Create stunning cinematic videos and compelling ads effortlessly with AI-powered filmmaking and dubbing. Generate professional-grade visuals, automate editing, add realistic voiceovers in multiple languages, and bring your creative vision to life faster than ever.
-    </p>
+      <div>
+        <h2 className="font-bruno text-xl font-semibold mb-2">AI Film Making</h2>
+        <p className="text-sm leading-relaxed">
+          Create stunning cinematic videos and compelling ads effortlessly with AI-powered filmmaking and dubbing. Generate professional-grade visuals, automate editing, add realistic voiceovers in multiple languages, and bring your creative vision to life faster than ever.
+        </p>
 
-    {/* Enhanced image animation */}
-    <div className="relative mt-4 group overflow-hidden rounded-lg">
-  <img
-    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHDzuXVSI_gzdtJIsBfqMn4JU7gHQnSXLKCg&s"
-    alt="AI filmmaking"
-    className="w-full object-cover rounded-lg 
-      transition-transform duration-700 ease-in-out 
-      group-hover:scale-105
-      animate-shuffle"
-  />
-  
-  {/* Optional glow overlay */}
-  <div className="absolute inset-0 bg-white/10 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg pointer-events-none"></div>
-</div>
+        {/* Enhanced image animation */}
+        <div className="relative mt-4 group overflow-hidden rounded-lg">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHDzuXVSI_gzdtJIsBfqMn4JU7gHQnSXLKCg&s"
+            alt="AI filmmaking"
+            className="w-full object-cover rounded-lg 
+              transition-transform duration-700 ease-in-out 
+              group-hover:rotate-3 group-hover:scale-105 
+              animate-slow-rotate"
+          />
+      
+          {/* Optional overlay effect */}
+          <div className="absolute inset-0 bg-white/10 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg pointer-events-none"></div>
+        </div>
 
-
-  </div>
+      </div>
 
   <div className="mt-6">
     <AnimatedStarButton
@@ -119,6 +118,20 @@ const LandingPage = () => {
         <p className="text-sm leading-relaxed">
           Generate insightful, data-driven reports effortlessly with AI tailored to your specific data stack. Whether you're working with spreadsheets, databases, cloud warehouses, or BI tools, uncover key trends, visualize metrics, and deliver actionable insights in seconds.
         </p>
+        {/* Enhanced image animation */}
+        <div className="relative mt-4 group overflow-hidden rounded-lg">
+          <img
+            src="https://www.ttnews.com/sites/default/files/2023-09/iTECH-Dysart-1200.jpg"
+            alt="AI filmmaking"
+            className="w-full object-cover rounded-lg 
+              transition-transform duration-700 ease-in-out 
+              group-hover:rotate-3 group-hover:scale-105 
+              animate-slow-rotate"
+          />
+      
+          {/* Optional overlay effect */}
+          <div className="absolute inset-0 bg-white/10 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg pointer-events-none"></div>
+        </div>
       </div>
       <div className="mt-6">
         <AnimatedStarButton
@@ -140,6 +153,20 @@ const LandingPage = () => {
         <p className="text-sm leading-relaxed">
           Produce engaging short-form videos at scale with AI-driven editing, smart captions, and high-converting thumbnails optimized for maximum Alpha CTR. Analyze audience behavior, auto-generate visuals, and craft scroll-stopping content.
         </p>
+        {/* Enhanced image animation */}
+        <div className="relative mt-4 group overflow-hidden rounded-lg">
+          <img
+            src="https://images.unsplash.com/photo-1666597107756-ef489e9f1f09?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXJ0aWZpY2lhbHxlbnwwfHwwfHx8MA%3D%3D"
+            alt="AI filmmaking"
+            className="w-full object-cover rounded-lg 
+              transition-transform duration-700 ease-in-out 
+              group-hover:rotate-3 group-hover:scale-105 
+              animate-slow-rotate"
+          />
+      
+          {/* Optional overlay effect */}
+          <div className="absolute inset-0 bg-white/10 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg pointer-events-none"></div>
+        </div>
       </div>
       <div className="mt-6">
         <AnimatedStarButton
@@ -161,6 +188,20 @@ const LandingPage = () => {
         <p className="text-sm leading-relaxed">
           Join a vibrant global community of coders inside Sklassics-ai Platform. Engage in real-time discussions, exchange ideas, learn from others, and grow as a developer.
         </p>
+        {/* Enhanced image animation */}
+        <div className="relative mt-4 group overflow-hidden rounded-lg">
+          <img
+            src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bGVhcm5pbmd8ZW58MHx8MHx8fDA%3D"
+            alt="AI filmmaking"
+            className="w-full object-cover rounded-lg 
+              transition-transform duration-700 ease-in-out 
+              group-hover:rotate-3 group-hover:scale-105 
+              animate-slow-rotate"
+          />
+      
+          {/* Optional overlay effect */}
+          <div className="absolute inset-0 bg-white/10 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg pointer-events-none"></div>
+        </div>
       </div>
       <div className="mt-6">
         <AnimatedStarButton
@@ -182,6 +223,19 @@ const LandingPage = () => {
         <p className="text-sm leading-relaxed">
           Create personalized, studio-quality songs using advanced AI singing voice synthesis. Craft unique tracks with AI-generated lyrics, custom melodies, and realistic vocals in your own style, mood, or language.
         </p>
+        {/* Enhanced image animation */}
+        <div className="relative mt-4 group overflow-hidden rounded-lg">
+          <img
+            src="https://images.unsplash.com/photo-1724185773486-0b39642e607e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDgyMDR8MHwxfHNlYXJjaHwxfHxzaW5naW5nJTIwdm9pY2UlMjBzeW50aGVzaXMlMkMlMjBhdWRpbyUyMHNpZ25hbCUyMHByb2Nlc3NpbmclMkMlMjBtdXNpYyUyMHRlY2hub2xvZ3klMkMlMjB2b2ljZSUyMHN5bnRoZXNpc3xlbnwwfDB8fHwxNzUwMTkxOTI4fDA&ixlib=rb-4.1.0&q=80&w=500&?utm_source=numberanalytics&utm_medium=referral"
+            className="w-full object-cover rounded-lg 
+              transition-transform duration-700 ease-in-out 
+              group-hover:rotate-3 group-hover:scale-105 
+              animate-slow-rotate"
+          />
+      
+          {/* Optional overlay effect */}
+          <div className="absolute inset-0 bg-white/10 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg pointer-events-none"></div>
+        </div>
       </div>
     </div>,
     <div className="rounded-xl shadow-xl p-5 bg-gradient-to-br from-black via-black to-black text-white min-h-[550px] flex flex-col justify-between border-4" style={{ borderColor: '#9b4de7' }}>
