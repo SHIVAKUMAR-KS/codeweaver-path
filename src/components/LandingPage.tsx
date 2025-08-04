@@ -921,10 +921,10 @@ const LandingPage = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <p className="mt-20 mb-8 text-2xl text-muted-foreground font-bold  ">
+            {/* <p className="mt-20 mb-8 text-2xl text-muted-foreground font-bold  ">
               Trusted by developers at top companies worldwide
-            </p>
-            {/* <div className="text-center font-bruno text-2xl mb-8 mt-20 text-xl">
+            </p> */}
+            <div className="text-center font-bruno text-2xl mb-8 mt-20 text-xl">
                   <div className="flex items-center justify-center mb-6">
                     <div className="relative w-full max-w-[200px] h-px bg-gradient-to-r from-transparent via-[#f5ac01]/30 to-[#f5ac01]">
                       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-[#f5ac01] rotate-45 rounded-sm"></div>
@@ -939,7 +939,7 @@ const LandingPage = () => {
                     </div>
                   </div>
                   
-            </div> */}
+            </div>
 
             {/* Enhanced VelocityScroll with Company Logos */}
             <div className="relative w-full overflow-hidden">
