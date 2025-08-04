@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
           <h4 className="text-lg font-semibold mb-3">Feedback</h4>
           {/* Example: replace this button with your FeedbackForm if needed */}
           <a
-            href="https://forms.gle/Jvta7unWR5Q4ZhQS6"
+            href="" // Replace with your feedback form URL
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block px-4 py-2 bg-amber-400 text-neutral-900 rounded font-medium hover:bg-amber-300 transition"
