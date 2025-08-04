@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
+import logo from "../../public/logo1.png"
 
 // Define the quick link structure
 interface QuickLink {
@@ -38,11 +39,11 @@ const Footer: React.FC = () => {
         {/* Left: Logo + About */}
         <div className="col-span-1 flex flex-col gap-3">
           <div className="flex items-center space-x-2">
-            <img src={logoUrl} alt="DSATrek Logo" className="w-8 h-8" />
-            <span className="text-xl font-semibold text-amber-400">DSATrek</span>
+            <img src={logo} alt="DSATrek Logo" className="w-8 h-8" />
+            <span className="text-xl font-semibold text-amber-400">Sklassics-Ai</span>
           </div>
           <p className="text-sm text-neutral-400 mt-2">
-            Master coding interviews with our comprehensive platform. Practice problems, take AI-powered mock interviews, and track your progress to success.
+            Empower Your Future with AI
           </p>
         </div>
         {/* Contact + Product Hunt */}
@@ -64,13 +65,13 @@ const Footer: React.FC = () => {
           <div className="flex items-center gap-2 text-sm text-neutral-400">
             <Mail className="w-4 h-4 text-amber-400" />
             <a href="mailto:wagh1.2.3.002@gmail.com" className="hover:underline">
-              wagh1.2.3.002@gmail.com
+              Email: Sklassics@aiplatform.com
             </a>
           </div>
           <div className="flex items-center gap-2 text-sm text-neutral-400">
             <Phone className="w-4 h-4 text-amber-400" />
-            <a href="tel:+919326126931" className="hover:underline">
-              +91 9326126931
+            <a href="tel:+91 9392732341" className="hover:underline">
+              +91 9392732341
             </a>
           </div>
           <div className="flex items-center gap-2 text-sm text-neutral-400">
@@ -80,7 +81,7 @@ const Footer: React.FC = () => {
               onClick={handleMapClick}
               className="hover:underline text-left"
             >
-              New Panvel East, Maharashtra, India 410206
+              Rajiv Enclave, RangaReddy, Telnagana, India 501510
             </button>
           </div>
         </div>
@@ -131,7 +132,7 @@ const Footer: React.FC = () => {
       {/* Bottom bar */}
       <div className="border-t border-neutral-800">
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
-          <span>© 2025 DSATrek. All rights reserved.</span>
+          <span>© 2025 Sklasscis-Ai. All rights reserved.</span>
           {/* <SocialDock /> */}
           <div className="flex items-center gap-4">
             <Link to="/privacy" className="hover:text-amber-300 transition">Privacy Policy</Link>
