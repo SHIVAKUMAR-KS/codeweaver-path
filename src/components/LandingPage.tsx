@@ -23,9 +23,10 @@ import SplineModel from '@/components/SplineModel';
 import VerticalBinaryRain from './VerticalBinaryRain';
 import ScrollStack, { ScrollStackItem } from './ui/ScrollStack';
 import AnimatedStarButton from '@/components/ui/animated-star-button';
-import workspaceImage from '/workspace.svg';
+// import aifilm from '../../public/aifilm.png';
 import Footer from './Footer';
 import Navbar from './Navbar';
+import logo1 from '../../public/logo1.png'
 
 const slugs = [
   'typescript',
@@ -54,7 +55,7 @@ const images = slugs.map(
   slug =>
     `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${slug}/${slug}-original.svg`
 );
-const morphWords = ['Dominate', 'DSA', 'with', 'DSATrek'];
+const morphWords = ['Dominate', 'Interview', 'with', 'Sklassics-ai'];
 
 // Register ScrollTrigger plugin
 if (typeof window !== 'undefined') {
@@ -97,77 +98,54 @@ const LandingPage = () => {
 
   const companyLogos = [
     {
-      name: 'Google',
-      src: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg',
+      name: 'sklassics.com',
+      src: logo1,
       width: 120,
       height: 40,
     },
     {
-      name: 'Meta',
-      src: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png',
+      name: 'sklassicstech.com',
+      src: logo1,
       width: 100,
       height: 36,
     },
     {
-      name: 'Microsoft',
-      src: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
+      name: 'sklassicsacademy.com',
+      src: logo1,
       width: 140,
       height: 32,
     },
     {
-      name: 'Amazon',
-      src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png',
+      name: 'sklassics-lms.com',
+      src: logo1,
       width: 110,
       height: 36,
     },
     {
-      name: 'Apple',
-      src: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg',
+      name: 'sklassics-ai.com',
+      src: logo1,
       width: 40,
       height: 48,
     },
     {
-      name: 'Netflix',
-      src: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
+      name: 'sklassicstutor.com',
+      src: logo1,
       width: 130,
       height: 32,
     },
     {
-      name: 'Accenture',
-      src: 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg',
+      name: 'sklassics-quiz.com',
+      src: logo1,
       width: 140,
       height: 38,
     },
     {
-      name: 'Cisco',
-      src: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg',
+      name: 'hanumancars.com',
+      src: logo1,
       width: 120,
       height: 42,
     },
-    {
-      name: 'Spotify',
-      src: 'https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg',
-      width: 48,
-      height: 48,
-    },
-    {
-      name: 'PayPal',
-      src: 'https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg',
-      width: 120,
-      height: 32,
-    },
-    {
-      name: 'Oracle',
-      src: 'https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg',
-      width: 110,
-      height: 28,
-    },
-    {
-      name: 'NVIDIA',
-      src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Nvidia_logo.svg/512px-Nvidia_logo.svg.png',
-      width: 120,
-      height: 62,
-    },
+    
   ];
 
   const handleNavigation = (path: string) => {
@@ -198,9 +176,9 @@ const LandingPage = () => {
         onMouseLeave={() => setShowCursor(false)}
       >
         {/* CircularText in top-right */}
-        <div className="absolute z-20 hidden top-8 right-8 lg:block">
+        <div className="absolute z-20 hidden top-20 right-14 lg:block">
           <CircularText
-            text="Code → Learn → Excel → Conquer → "
+            text="Attempt → Adapt → Advance → Ace → "
             onHover="speedUp"
             spinDuration={20}
             className="custom-class"
@@ -257,12 +235,13 @@ const LandingPage = () => {
                   className="my-6"
                 >
                   <SparklesText
-                    colors={{ first: '#4079ff', second: '#40ffaa' }}
+                    colors={{ first: '#D600FF', second: '#FF0055' }} // magenta to reddish-pink
                     className="text-5xl font-bold md:text-8xl font-akashi"
                   >
-                    TREK FROM BASICS TO BRILLIANCE
+                    Empower Your Future with AI
                   </SparklesText>
                 </motion.div>
+
 
                 {/* Main Headline */}
                 <motion.div
@@ -275,11 +254,7 @@ const LandingPage = () => {
                     <>
                       {/* Only text, no outer div, on <lg screens */}
                       <span className="block max-w-2xl text-xl leading-relaxed lg:hidden md:text-2xl">
-                        Breathe in the wild air of DSA. Let every step take you
-                        deeper into the rhythm of problem solving. Your next
-                        adventure starts here with AI-powered interviews,
-                        curated DSA challenges, and progress tracking to guide
-                        your journey to success.
+                        Revolutionize your workflow with cutting-edge AI technology.Take your interview preparation to the next level. Our AI-powered mock interview platform simulates real-world interview scenarios, giving you the chance to practice and refine your responses.
                       </span>
                       <span className="hidden lg:block">
                         <GradientText
@@ -294,21 +269,13 @@ const LandingPage = () => {
                           showBorder={false}
                           className="max-w-2xl text-xl leading-relaxed md:text-2xl"
                         >
-                          Breathe in the wild air of DSA. Let every step take
-                          you deeper into the rhythm of problem solving. Your
-                          next adventure starts here with AI-powered interviews,
-                          curated DSA challenges, and progress tracking to guide
-                          your journey to success.
+                          Revolutionize your workflow with cutting-edge AI technology.Take your interview preparation to the next level. Our AI-powered mock interview platform simulates real-world interview scenarios, giving you the chance to practice and refine your responses.
                         </GradientText>
                       </span>
                     </>
                   ) : (
                     <ShinyText
-                      text="Breathe in the wild air of DSA. Let every step
-                          take you deeper into the rhythm of problem solving.
-                          Your next adventure starts here with AI-powered interviews,
-                          curated DSA challenges, and progress tracking to guide
-                          your journey to success."
+                      text="Revolutionize your workflow with cutting-edge AI technology.Take your interview preparation to the next level. Our AI-powered mock interview platform simulates real-world interview scenarios, giving you the chance to practice and refine your responses."
                       disabled={false}
                       speed={3}
                       className="max-w-2xl text-xl leading-relaxed md:text-2xl text-muted-foreground"
@@ -316,121 +283,129 @@ const LandingPage = () => {
                   )}
                 </motion.div>
 
-                {/* CTA Buttons */}
                 <motion.div
-                  className="flex flex-col gap-4 sm:flex-row  lg:gap-4 lg:max-w-2xl"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                >
-                  {!authUser ? (
-                    <>
-                      {/* Show ShinyButton on md and below, InteractiveHoverButton on lg+ */}
-                      <span className="lg:hidden">
-                        <button
-                          className="relative inline-block p-px text-xs font-semibold leading-6 text-white no-underline rounded-full shadow-2xl cursor-pointer bg-slate-800 group shadow-zinc-900"
-                          onClick={() => handleNavigation('/auth/register')}
-                        >
-                          <span className="absolute inset-0 overflow-hidden rounded-full">
-                            <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                          </span>
-                          <div className="relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-0.5 px-4 ring-1 ring-white/10 ">
-                            Start Your Journey
-                            <svg
-                              fill="none"
-                              height="16"
-                              viewBox="0 0 24 24"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M10.75 8.75L14.25 12L10.75 15.25"
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="1.5"
-                              />
-                            </svg>
-                          </div>
-                          <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40" />
-                        </button>
-                      </span>
-                      <div className="hidden lg:block lg:h-12">
-                        <InteractiveHoverButton
-                          onClick={() => handleNavigation('/auth/register')}
-                          className="h-full"
-                        >
-                          <span className="flex items-center justify-center gap-2 h-full">
-                            Start Your Journey
-                          </span>
-                        </InteractiveHoverButton>
-                      </div>
-                      <div className="lg:h-12">
-                        <HoverBorderGradient
-                          containerClassName="rounded-full h-full"
-                          className="flex items-center justify-center text-lg bg-background text-primary h-full"
-                          onClick={() => handleNavigation('/problems')}
-                        >
-                          <Play className="w-5 h-5 mr-2" />
-                          Explore Problems
-                        </HoverBorderGradient>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      {/* Show ShinyButton on md and below, InteractiveHoverButton on lg+ */}
-                      <span className="block lg:hidden">
-                        <button
-                          className="relative inline-block p-px text-xs font-semibold leading-6 text-white no-underline rounded-full shadow-2xl cursor-pointer bg-slate-800 group shadow-zinc-900"
-                          onClick={() => handleNavigation('/problems')}
-                        >
-                          <span className="absolute inset-0 overflow-hidden rounded-full">
-                            <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                          </span>
-                          <div className="relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-0.5 px-4 ring-1 ring-white/10 ">
-                            Continue Learning
-                            <svg
-                              fill="none"
-                              height="16"
-                              viewBox="0 0 24 24"
-                              width="16"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M10.75 8.75L14.25 12L10.75 15.25"
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="1.5"
-                              />
-                            </svg>
-                          </div>
-                          <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40" />
-                        </button>
-                      </span>
-                      <div className="hidden lg:block lg:h-12">
-                        <InteractiveHoverButton
-                          onClick={() => handleNavigation('/problems')}
-                          className="h-full"
-                        >
-                          <span className="flex items-center justify-center gap-2 h-full">
-                            Continue Learning
-                          </span>
-                        </InteractiveHoverButton>
-                      </div>
-                      <div className="lg:h-12">
-                        <HoverBorderGradient
-                          containerClassName="rounded-full h-full"
-                          className="flex items-center justify-center text-lg bg-background text-primary h-full"
-                          onClick={() => handleNavigation('/interview')}
-                        >
-                          <Mic className="w-5 h-5 mr-2" />
-                          AI Interview Prep
-                        </HoverBorderGradient>
-                      </div>
-                    </>
-                  )}
-                </motion.div>
+                className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start lg:max-w-2xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+  {!authUser ? (
+    <>
+      {/* Mobile-first shiny button */}
+      <span className="block lg:hidden w-full sm:w-auto">
+        <button
+          className="relative inline-block w-full sm:w-auto p-px text-sm font-semibold leading-6 text-white rounded-full shadow-2xl cursor-pointer bg-slate-800 group shadow-zinc-900"
+          onClick={() => handleNavigation('/auth/register')}
+        >
+          <span className="absolute inset-0 overflow-hidden rounded-full">
+            <span className="absolute inset-0 rounded-full bg-[radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          </span>
+          <div className="relative z-10 flex items-center justify-center gap-2 rounded-full bg-zinc-950 py-2 px-6 ring-1 ring-white/10">
+            Start Your Journey
+            <svg
+              fill="none"
+              height="16"
+              viewBox="0 0 24 24"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.75 8.75L14.25 12L10.75 15.25"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+              />
+            </svg>
+          </div>
+          <span className="absolute bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40" />
+        </button>
+      </span>
+
+      {/* Desktop interactive hover button */}
+      <div className="hidden lg:block lg:h-12 mt-4">
+        <InteractiveHoverButton
+          onClick={() => handleNavigation('/auth/register')}
+          className="h-full"
+        >
+          <span className="flex items-center justify-center gap-2 h-full">
+            Start Your Journey
+          </span>
+        </InteractiveHoverButton>
+      </div>
+
+      {/* Common button (Explore Problems) */}
+      <div className="lg:h-12 w-full sm:w-auto mt-4">
+        <HoverBorderGradient
+          containerClassName="rounded-full h-full"
+          className="flex items-center justify-center text-base bg-background text-primary h-full w-full sm:w-auto px-5 py-2"
+          onClick={() => handleNavigation('/problems')}
+        >
+          <Play className="w-5 h-5 mr-2" />
+          Book Demo
+        </HoverBorderGradient>
+      </div>
+    </>
+  ) : (
+    <>
+      {/* Mobile CTA */}
+      <span className="block lg:hidden w-full sm:w-auto">
+        <button
+          className="relative inline-block w-full sm:w-auto p-px text-sm font-semibold leading-6 text-white rounded-full shadow-2xl cursor-pointer bg-slate-800 group shadow-zinc-900"
+          onClick={() => handleNavigation('/problems')}
+        >
+          <span className="absolute inset-0 overflow-hidden rounded-full">
+            <span className="absolute inset-0 rounded-full bg-[radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          </span>
+          <div className="relative z-10 flex items-center justify-center gap-2 rounded-full bg-zinc-950 py-2 px-6 ring-1 ring-white/10">
+            Continue Learning
+            <svg
+              fill="none"
+              height="16"
+              viewBox="0 0 24 24"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.75 8.75L14.25 12L10.75 15.25"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+              />
+            </svg>
+          </div>
+          <span className="absolute bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40" />
+        </button>
+      </span>
+
+      {/* Desktop CTA */}
+      <div className="hidden lg:block lg:h-12">
+        <InteractiveHoverButton
+          onClick={() => handleNavigation('/problems')}
+          className="h-full"
+        >
+          <span className="flex items-center justify-center gap-2 h-full">
+            Continue Learning
+          </span>
+        </InteractiveHoverButton>
+      </div>
+
+      {/* AI Interview CTA */}
+      <div className="lg:h-12 w-full sm:w-auto">
+        <HoverBorderGradient
+          containerClassName="rounded-full h-full"
+          className="flex items-center justify-center text-base bg-background text-primary h-full w-full sm:w-auto px-5 py-2"
+          onClick={() => handleNavigation('/interview')}
+        >
+          <Mic className="w-5 h-5 mr-2" />
+          AI Interview Prep
+        </HoverBorderGradient>
+      </div>
+    </>
+  )}
+</motion.div>
+
               </div>
             </div>
           </div>
@@ -450,7 +425,7 @@ const LandingPage = () => {
                       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-[#f5ac01] rotate-45 rounded-sm"></div>
                     </div>
                     <div className="inline-flex items-center px-2 py-1 mx-2 rounded-full bg-[#f5b210]/10 text-[#f5ac01] text-sm font-bold">
-                      Features
+                      Our Features
                     </div>
                     <div className="relative w-full max-w-[200px] h-px bg-gradient-to-l from-transparent via-[#f5ac01]/30 to-[#f5ac01]">
                       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-[#f5ac01] rotate-45 rounded-sm"></div>
@@ -464,9 +439,7 @@ const LandingPage = () => {
                   <p
                     className="font-bruno text-xl max-w-3xl mx-auto leading-relaxed text-[#f5ac01]"
                   >
-                    Our comprehensive platform provides all the tools,
-                    resources, and support you need to master coding interviews
-                    and advance your career
+                    Ace Every Interview with Confidence Conduct seamless, automated interviews which save time and ensure quality.
                   </p>
                 </div>
               </ScrollStackItem>
@@ -475,14 +448,10 @@ const LandingPage = () => {
                   <h2
                     className="font-bruno text-left text-balance text-xl md:text-2xl lg:text-3xl font-semibold tracking-[-0.015em] text-white"
                   >
-                    Ultimate AI Coding Workspace
+                    AI Film Making
                   </h2>
                   <p className="mt-4 text-left text-base/6 text-neutral-200">
-                    All-in-one AI-powered workspace by DSATrek for solving
-                    coding problems with syntax highlighting, intelligent
-                    auto-completion, and real-time testing. Practice, code,
-                    test, and submit all in one seamless environment designed to
-                    accelerate your coding journey!
+                    Create stunning cinematic videos and compelling ads effortlessly with AI-powered filmmaking and dubbing. Harness the latest advancements in artificial intelligence to generate professional-grade visuals, automate editing, add realistic voiceovers in multiple languages, and bring your creative vision to life faster than ever.
                   </p>
                   <div className="mt-6">
                     <AnimatedStarButton
@@ -500,11 +469,11 @@ const LandingPage = () => {
                 </div>
                 {/* Coding Workspace Icon */}
                 <div className="absolute right-[2vw] top-1/2 -translate-y-1/2 w-[30vw] h-[30vw] hover:w-[35vw] hover:h-[35vw] xl:w-[25vw] xl:h-[25vw] xl:hover:w-[30vw] xl:hover:h-[30vw] transition-all duration-300 hidden lg:flex items-center justify-center z-50">
-                  <img
+                  {/* <img
                     src={workspaceImage}
                     alt="Coding Workspace"
                     className="w-full h-full"
-                  />
+                  /> */}
                 </div>
               </ScrollStackItem>
 
@@ -513,12 +482,10 @@ const LandingPage = () => {
                   <h2
                     className="font-bruno text-left text-balance text-xl md:text-2xl lg:text-3xl font-semibold tracking-[-0.015em] text-white"
                   >
-                    Track Your Coding Journey with Advanced Analytics
+                    Report Gen-AI
                   </h2>
                   <p className="mt-4 text-left text-base/6 text-neutral-200">
-                    Comprehensive dashboard with detailed insights, performance
-                    metrics, streak tracking, and personalized recommendations
-                    to accelerate your growth.
+                    Generate insightful, data-driven reports effortlessly with AI tailored to your specific data stack. Whether you're working with spreadsheets, databases, cloud warehouses, or business intelligence tools, AI-powered report generation helps you uncover key trends, visualize metrics, and deliver actionable insights in seconds.
                   </p>
                   <div className="mt-6">
                     <AnimatedStarButton
@@ -539,22 +506,37 @@ const LandingPage = () => {
                   </div>
                 </div>
               </ScrollStackItem>
-
               <ScrollStackItem itemClassName="bg-gradient-to-br from-[#1a1a1a] via-[#6e40c9] via-[#ff8c00] to-[#ff206e]">
-                <div className="flex items-center justify-center h-full w-full">
-                  <IconCloud images={images} />
-                </div>
-                <div className="absolute bottom-10 left-10">
+                <div className="max-w-lg">
                   <h2
-                    className="font-bruno text-left text-balance text-2xl font-semibold tracking-[-0.015em] text-white"
+                    className="font-bruno text-left text-balance text-xl md:text-2xl lg:text-3xl font-semibold tracking-[-0.015em] text-white"
                   >
-                    Multi-Language Support
+                    Alpha CTR
                   </h2>
-                  <p className="mt-2 text-left text-sm text-neutral-200">
-                    Practice in your preferred programming language
+                  <p className="mt-4 text-left text-base/6 text-neutral-200">
+                    Produce engaging short-form videos at scale with AI-driven editing, smart captions, and high-converting thumbnails optimized for maximum Alpha CTR. Leverage AI to analyze audience behavior, auto-generate attention-grabbing visuals, and craft content that stops the scroll. 
                   </p>
+                  <div className="mt-6">
+                    <AnimatedStarButton
+                      onClick={() =>
+                        handleNavigation(
+                          authUser ? `/profile/${authUser.id}` : '/auth/login'
+                        )
+                      }
+                      bgColor="bg-emerald-300"
+                      textColor="text-emerald-900"
+                      borderColor="border-emerald-300"
+                      hoverTextColor="hover:text-emerald-300"
+                      hoverShadow="hover:shadow-[0_0_25px_rgba(16,185,129,0.5)]"
+                      borderRadius="rounded-md"
+                    >
+                      Try Workshop
+                    </AnimatedStarButton>
+                  </div>
                 </div>
               </ScrollStackItem>
+
+              
 
               <ScrollStackItem itemClassName="bg-gradient-to-br from-orange-600 to-red-700">
                 <div className="max-w-lg">
@@ -564,7 +546,7 @@ const LandingPage = () => {
                     Learn, Share, and Grow Together
                   </h2>
                   <p className="mt-4 text-left text-base/6 text-neutral-200">
-                    Join a vibrant global community of coders inside DSATrek.
+                    Join a vibrant global community of coders inside Sklassics-ai Platform.
                     Engage in real-time discussions, exchange ideas, ask
                     questions. Learn from others, share your insights, and grow
                     as a developer together.
@@ -584,36 +566,33 @@ const LandingPage = () => {
                   </div>
                 </div>
               </ScrollStackItem>
-
               <ScrollStackItem itemClassName="bg-gradient-to-br from-violet-600 via-purple-600 to-blue-600">
                 <div className="max-w-lg">
                   <h2
                     className="font-bruno text-left text-balance text-2xl md:text-3xl lg:text-4xl font-semibold tracking-[-0.015em] text-white"
                   >
-                    Real-time Collaborative Workspace
+                    AI Singing Voice Synthesis.
                   </h2>
                   <p className="mt-4 text-left text-base/6 text-neutral-200">
-                    Code together in real-time with our Liveblocks-powered
-                    collaborative workspace. Share your screen, edit code
-                    simultaneously, and learn from peers in an interactive
-                    environment designed for modern developers.
+                    Create personalized, studio-quality songs using advanced AI singing voice synthesis. Craft unique tracks with AI-generated lyrics, custom melodies, and realistic vocals that match your chosen style, mood, or language. Whether you're a music producer, content creator, or just looking to surprise someone with a custom tune, this technology brings your musical ideas to life—no vocal training or recording equipment needed.
                   </p>
                   <div className="mt-6">
-                    <AnimatedStarButton
-                      onClick={() => handleNavigation('/problems')}
-                      bgColor="bg-purple-300"
-                      textColor="text-purple-900"
-                      borderColor="border-purple-300"
-                      hoverTextColor="hover:text-purple-300"
-                      hoverShadow="hover:shadow-[0_0_25px_rgba(168,85,247,0.5)]"
-                      borderRadius="rounded-2xl"
-                      className="group"
+                    {/* <AnimatedStarButton
+                      onClick={() => handleNavigation('/community')}
+                      bgColor="bg-orange-300"
+                      textColor="text-orange-900"
+                      borderColor="border-orange-300"
+                      hoverTextColor="hover:text-orange-300"
+                      hoverShadow="hover:shadow-[0_0_25px_rgba(249,115,22,0.5)]"
+                      borderRadius="rounded-xl"
                     >
-                      Try Collaborative Workspace
-                    </AnimatedStarButton>
+                      Browse Sheets
+                    </AnimatedStarButton> */}
                   </div>
                 </div>
               </ScrollStackItem>
+
+              
 
               <ScrollStackItem itemClassName="bg-gradient-to-br from-black via-black to-black">
                 <div className="max-w-lg">
@@ -623,7 +602,7 @@ const LandingPage = () => {
                     AI Interview Assistant
                   </h2>
                   <p className="mt-4 text-left text-base/6 text-neutral-200">
-                    Experience realistic coding interviews with AI-powered
+                    Experience realistic Mock interviews & Assessments with AI-powered
                     feedback and comprehensive performance analysis.
                   </p>
                   <div className="mt-6">
@@ -650,7 +629,7 @@ const LandingPage = () => {
         </section>
       </section>
 
-      {/* Why Choose DSATrek Section - Improve overflow handling for VelocityScroll */}
+      {/* Why Choose Sklassics-ai Section - Improve overflow handling for VelocityScroll */}
       <section className="w-full px-4 py-32 mt-40 overflow-hidden bg-gradient-to-br from-background via-background to-accent/5">
         <div className="mx-auto max-w-7xl">
           <motion.div
@@ -721,7 +700,7 @@ const LandingPage = () => {
           </motion.div>
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

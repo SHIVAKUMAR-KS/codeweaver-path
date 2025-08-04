@@ -11,14 +11,14 @@ interface CircularTextProps {
 const CircularText: React.FC<CircularTextProps> = ({
   text,
   onHover = 'speedUp',
-  spinDuration = 20,
+  spinDuration = 40,
   className
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const getAnimationDuration = () => {
     if (!isHovered) return `${spinDuration}s`;
-    
+
     switch (onHover) {
       case 'speedUp':
         return `${spinDuration / 2}s`;
@@ -40,26 +40,27 @@ const CircularText: React.FC<CircularTextProps> = ({
 
   return (
     <div
-      className={cn("relative w-32 h-32", className)}
+      className={cn('relative w-[200px] h-[200px]', className)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <svg
         className="w-full h-full"
-        viewBox="0 0 100 100"
+        viewBox="0 0 150 150"
         style={{
           animation: `spin ${getAnimationDuration()} linear infinite`,
-          animationDirection: getAnimationDirection()
+          animationDirection: getAnimationDirection(),
+          transformOrigin: 'center center'
         }}
       >
         <defs>
           <path
             id="circle-path"
-            d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
+            d="M 75, 75 m -60, 0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0"
           />
         </defs>
-        <text className="text-xs fill-current text-brand-primary font-medium">
-          <textPath href="#circle-path">
+        <text className="text-[20px] fill-white text-brand-warning font-bold">
+          <textPath href="#circle-path" startOffset="0%">
             {text}
           </textPath>
         </text>

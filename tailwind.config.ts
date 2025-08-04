@@ -62,7 +62,6 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Brand colors for DSATrek
 				brand: {
 					primary: 'hsl(var(--brand-primary))',
 					secondary: 'hsl(var(--brand-secondary))',
@@ -86,52 +85,28 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
 				},
 				'gradient-shift': {
-					'0%, 100%': {
-						'background-position': '0% 50%'
-					},
-					'50%': {
-						'background-position': '100% 50%'
-					}
+					'0%, 100%': { 'background-position': '0% 50%' },
+					'50%': { 'background-position': '100% 50%' }
 				},
 				'float': {
-					'0%, 100%': {
-						transform: 'translateY(0px)'
-					},
-					'50%': {
-						transform: 'translateY(-20px)'
-					}
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-20px)' }
 				},
 				'pulse-glow': {
-					'0%, 100%': {
-						opacity: '1'
-					},
-					'50%': {
-						opacity: '0.5'
-					}
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.5' }
 				},
 				'shimmer': {
-					'0%': {
-						transform: 'translateX(-100%)'
-					},
-					'100%': {
-						transform: 'translateX(100%)'
-					}
+					'0%': { transform: 'translateX(-100%)' },
+					'100%': { transform: 'translateX(100%)' }
 				},
 				'morphing': {
 					'0%, 100%': {
@@ -150,6 +125,11 @@ export default {
 						opacity: '1',
 						transform: 'scale(1)'
 					}
+				},
+				// ✅ Add spin keyframes here
+				spin: {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
 				}
 			},
 			animation: {
@@ -160,7 +140,9 @@ export default {
 				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
 				'shimmer': 'shimmer 2s linear infinite',
 				'morphing': 'morphing 8s ease-in-out infinite',
-				'sparkle': 'sparkle 1.5s ease-in-out infinite'
+				'sparkle': 'sparkle 1.5s ease-in-out infinite',
+				// ✅ Add spin animation here
+				spin: 'spin 20s linear infinite'
 			}
 		}
 	},
