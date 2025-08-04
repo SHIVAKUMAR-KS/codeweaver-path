@@ -28,8 +28,14 @@ export const HoverBorderGradient: React.FC<HoverBorderGradientProps> = ({
         style={{
           background: 'conic-gradient(from 0deg, #4079ff, #40ffaa, #8b5cf6, #4079ff)',
         }}
-        animate={{ rotate: isHovered ? 360 : 0 }}
-        transition={{ duration: 2, ease: "linear", repeat: isHovered ? Infinity : 0 }}
+        animate={{
+          rotate: isHovered ? 360 : 0
+        }}
+        transition={{
+          duration: 2,
+          ease: "linear",
+          repeat: 0, // No repeat; only rotate once
+        }}
       />
       
       <button

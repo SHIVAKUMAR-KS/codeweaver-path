@@ -570,15 +570,16 @@ const LandingPage = () => {
 
       {/* Common button (Explore Problems) */}
       <div className="lg:h-12 w-full sm:w-auto mt-4">
-        <HoverBorderGradient
-          containerClassName="rounded-full h-full"
-          className="flex items-center justify-center text-base bg-background text-primary h-full w-full sm:w-auto px-5 py-2"
-          onClick={() => handleNavigation('/problems')}
-        >
-          <Play className="w-5 h-5 mr-2" />
-          Book Demo
-        </HoverBorderGradient>
-      </div>
+  <HoverBorderGradient
+    containerClassName="rounded-full h-full"
+    className="flex items-center justify-center text-base bg-background text-primary h-full w-full sm:w-auto px-5 py-2"
+    onClick={() => handleNavigation('/problems')}
+  >
+    <Play className="w-5 h-5 mr-2" />
+    Book Demo
+  </HoverBorderGradient>
+</div>
+
     </>
   ) : (
     <>
@@ -910,7 +911,7 @@ const LandingPage = () => {
       </section>
 
       {/* Why Choose Sklassics-ai Section - Improve overflow handling for VelocityScroll */}
-      <section className="w-full px-4 py-32 mt-40 overflow-hidden bg-gradient-to-br from-background via-background to-accent/5">
+      <section className="w-full px-4 py-30  overflow-hidden bg-gradient-to-br from-background via-background to-accent/5">
         <div className="mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
