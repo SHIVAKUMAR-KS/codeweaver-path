@@ -526,7 +526,7 @@ const LandingPage = () => {
   {!authUser ? (
     <>
       {/* Mobile-first shiny button */}
-      <span className="block lg:hidden w-full sm:w-auto">
+      <span className="block lg:hidden w-full sm:w-auto py-8">
         <button
           className="relative inline-block w-full sm:w-auto p-px text-sm font-semibold leading-6 text-white rounded-full shadow-2xl cursor-pointer bg-slate-800 group shadow-zinc-900"
           onClick={() => handleNavigation('/auth/register')}
