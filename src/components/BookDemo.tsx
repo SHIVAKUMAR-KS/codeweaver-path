@@ -74,7 +74,7 @@ const BookDemo: React.FC = () => {
             Schedule a personalized walk-through and discover how our AI Interview platform can streamline hiring, provide instant feedback, and boost your candidate experience.
           </p>
         </div>
-        <div className="book-demo-formwrap">
+        <div className="book-demo-formwrap ml-2 max-h-[calc(100vh-64px)] overflow-y-auto">
           {submitted ? (
             <div className="book-demo-success">
               <h2>Thank you!</h2>
