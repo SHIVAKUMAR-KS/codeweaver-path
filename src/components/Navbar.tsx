@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="DSATrek Logo" className="w-26 h-12 mt-2" />
+          <img src={logo} alt="Skassics" className="w-26 h-12 mt-2" />
              {/* <span className="text-2xl text-amber-400 font-semibold tracking-tight group-hover:text-white transition">
             AI-Interview
           </span> */}
