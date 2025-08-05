@@ -393,7 +393,7 @@ const LandingPage = () => {
       <div className="hidden md:block">
         <VerticalBinaryRain />
       </div>
-      <div>
+      <div className='fixed top-0 left-0 w-full z-50'>
         <Navbar />
       </div>
       {/* Smooth Cursor - only show in hero section on large screens */}
