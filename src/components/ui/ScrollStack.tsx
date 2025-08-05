@@ -148,6 +148,127 @@ const ScrollStack = ({ children, className = '', itemDistance = 1000 }) => {
     };
   }, [itemDistance]);
 
+  // its updated code for scroll triggers for cards stacking
+//   const setupScrollTriggers = useCallback(() => {
+//   if (typeof window === 'undefined' || !containerRef.current) return;
+
+//   const isDesktop = window.innerWidth >= 1024;
+//   const container = containerRef.current;
+//   const cards = Array.from(container.querySelectorAll('.scroll-stack-card'));
+//   cardsRef.current = cards;
+
+//   scrollTriggersRef.current.forEach(trigger => trigger.kill());
+//   scrollTriggersRef.current = [];
+
+//   const timeline = gsap.timeline({
+//     scrollTrigger: {
+//       trigger: container,
+//       start: 'center center',
+//       end: `+=${cards.length * itemDistance + 1000}`,
+//       pin: true,
+//       scrub: 0.5,
+//       anticipatePin: 1,
+//     },
+//   });
+
+//   scrollTriggersRef.current.push(timeline.scrollTrigger);
+
+//   if (isDesktop) {
+//     // Desktop: Full overlap, only one card visible at a time
+//     cards.forEach((card, i) => {
+//       gsap.set(card as gsap.TweenTarget, {
+//         position: 'absolute',
+//         top: '50%',
+//         left: 0,
+//         right: 0,
+//         y: '100%',
+//         zIndex: cards.length - i,
+//         opacity: 0,
+//       });
+
+//       const model = (card as Element).querySelector('.w-32.h-32') as HTMLElement;
+//       if (model) {
+//         model.style.zIndex = '100';
+//       }
+//     });
+
+//     for (let i = 0; i < cards.length; i++) {
+//       const card = cards[i];
+//       const prevCard = cards[i - 1];
+
+//       if (prevCard) {
+//         // Fade out previous card
+//         timeline.to(prevCard as gsap.TweenTarget, {
+//           opacity: 0,
+//           duration: 0.3,
+//           ease: 'power2.out',
+//         }, i);
+//       }
+
+//       // Fade in current card
+//       timeline.to(card as gsap.TweenTarget, {
+//         y: '-50%',
+//         opacity: 1,
+//         duration: 0.5,
+//         ease: 'power2.inOut',
+//       }, i);
+//     }
+//   } else {
+//     // Mobile: Keep original stacked effect
+//     cards.forEach((card, i) => {
+//       gsap.set(card as gsap.TweenTarget, {
+//         position: 'absolute',
+//         top: '50%',
+//         left: 0,
+//         right: 0,
+//         y: i === 0 ? '-50%' : '100%',
+//         zIndex: cards.length - i,
+//         opacity: i === 0 ? 1 : 0,
+//       });
+
+//       const model = (card as Element).querySelector('.w-32.h-32') as HTMLElement;
+//       if (model) {
+//         model.style.zIndex = '100';
+//       }
+//     });
+
+//     timeline.to(
+//       cards[0] as gsap.TweenTarget,
+//       {
+//         y: () => {
+//           if (window.innerWidth < 340) return '-60%';
+//           if (window.innerWidth < 440) return '-60%';
+//           if (window.innerWidth < 650) return '-70%';
+//           if (window.innerWidth < 770) return '-90%';
+//           return '-95%';
+//         },
+//         ease: 'power2.inOut',
+//       },
+//       0
+//     );
+
+//     for (let i = 1; i < cards.length; i++) {
+//       const yPosition = -40 + i * 10;
+
+//       timeline.to(
+//         cards[i] as gsap.TweenTarget,
+//         {
+//           y: `${yPosition}%`,
+//           opacity: 1,
+//           ease: 'power2.inOut',
+//           duration: 1,
+//         },
+//         i * 1
+//       );
+//     }
+//   }
+
+//   return () => {
+//     scrollTriggersRef.current.forEach(trigger => trigger.kill());
+//     scrollTriggersRef.current = [];
+//   };
+// }, [itemDistance]);
+
   // Setup Lenis smooth scrolling
   const setupLenis = useCallback(() => {
     if (typeof window === 'undefined') return;
