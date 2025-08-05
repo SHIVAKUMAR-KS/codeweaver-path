@@ -12,20 +12,41 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: 1,
+    title: "Panel Interview",
+    excerpt: "What Is a Panel Interview? Advantages, Challenges, and Best Practices",
+    content:
+      "Discover what a panel interview is, its benefits, challenges, and best practices to streamline hiring and ensure fair evaluation.",
+  },
+  {
+    id: 2,
+    title: "Interview Scorecard",
+    excerpt: "The Ultimate Guide to Interview Scorecards (With Free Template)",
+    content:
+      "Learn how interview scorecards improve hiring by ensuring fair, consistent, and data-driven candidate evaluations. Free template!",
+  },
+  {
+    id: 3,
+    title: "Recruitment ROI",
+    excerpt: "How to Measure and Improve Your Recruitment ROI",
+    content:
+      "Learn how to measure and improve recruitment ROI with key metrics, calculation methods, and strategies for better hiring results.",
+  },
+  {
+    id: 4,
     title: "AI Interview Prep: Transforming How You Succeed",
     excerpt: "See how AI-driven interview platforms make prep smarter and faster than ever.",
     content:
       "AI interview tools offer practice sessions with realistic feedback, tailored to your target role. With instant analytics on your speaking, coding, and problem-solving, you’ll turn weaknesses into strengths. Top platforms even generate custom questions and adaptive interview flows based on the companies you target. Level up your preparation and walk into interviews more confident than ever.",
   },
   {
-    id: 2,
+    id: 5,
     title: "How AI Analyzes Your Interview: What Recruiters See",
     excerpt: "Curious what data recruiters really look at? Here’s how AI platforms read you.",
     content:
       "Modern AI interview platforms assess everything from your communication clarity to technical skills. They use video and audio analysis to score your professionalism, business acumen, and body language. Recruiters can review highlights and data-driven recommendations, making the process more objective and efficient for both sides.",
   },
   {
-    id: 3,
+    id: 6,
     title: "Get Personalized Feedback with AI Assistants",
     excerpt: "Ready to perfect your answers? AI mock interviews break down your every response.",
     content:
