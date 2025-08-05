@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 
 const WEB3FORMS_URL = "https://api.web3forms.com/submit";
 const ACCESS_KEY = "4eaa7b0e-cc5c-4695-9274-79b54a4075cb";
@@ -309,7 +310,7 @@ const BookDemo: React.FC = () => {
     }
   }
 `}</style>
-
+    <Footer/>
     </div>
   );
 };
