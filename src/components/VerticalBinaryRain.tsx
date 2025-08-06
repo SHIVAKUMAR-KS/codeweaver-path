@@ -93,7 +93,7 @@ const VerticalBinaryRain = () => {
                   style={{
                     color: GOLD,
                     fontWeight: 'bold',
-                    fontSize: '1.1rem',
+                    fontSize: '0.5rem',
                     marginBottom: '0.1rem',
                     textShadow: '0 0 8px #FFD70088',
                     userSelect: 'none',

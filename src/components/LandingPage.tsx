@@ -432,11 +432,11 @@ const LandingPage = () => {
                   transition={{ duration: 0.5 }}
                   className="inline-flex items-center gap-2 px-4 py-2 border rounded-full border-blue-500/20 backdrop-blur-sm"
                 >
-                  <Sparkles className="w-4 h-4 text-yellow-500 animate-pulse" />
+                  <Sparkles className="w-4 h-4 text-white-500 animate-pulse" />
                   {theme === 'light' ? (
                     <GradientText
                       colors={[
-                        '#40ffaa',
+                        '#ff4079',
                         '#4079ff',
                         '#40ffaa',
                         '#4079ff',
@@ -469,10 +469,10 @@ const LandingPage = () => {
                   className="my-6"
                 >
                   <SparklesText
-                    colors={{ first: '#D600FF', second: '#FF0055' }} // magenta to reddish-pink
+                    colors={{ first: '#FFFFFF', second: '#808080' }} // magenta to reddish-pink
                     className="text-5xl font-bold md:text-8xl font-akashi"
                   >
-                    Empower Your Future with AI
+                    Empower Your Future With AI
                   </SparklesText>
                 </motion.div>
 
@@ -484,37 +484,10 @@ const LandingPage = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  {theme === 'light' ? (
-                    <>
-                      {/* Only text, no outer div, on <lg screens */}
-                      <span className="block max-w-2xl text-xl leading-relaxed lg:hidden md:text-2xl">
-                        Revolutionize your workflow with cutting-edge AI technology.Take your interview preparation to the next level. Our AI-powered mock interview platform simulates real-world interview scenarios, giving you the chance to practice and refine your responses.
-                      </span>
-                      <span className="hidden lg:block">
-                        <GradientText
-                          colors={[
-                            '#40ffaa',
-                            '#4079ff',
-                            '#40ffaa',
-                            '#4079ff',
-                            '#40ffaa',
-                          ]}
-                          animationSpeed={3}
-                          showBorder={false}
-                          className="max-w-2xl text-xl leading-relaxed md:text-2xl"
-                        >
-                          Revolutionize your workflow with cutting-edge AI technology.Take your interview preparation to the next level. Our AI-powered mock interview platform simulates real-world interview scenarios, giving you the chance to practice and refine your responses.
-                        </GradientText>
-                      </span>
-                    </>
-                  ) : (
-                    <ShinyText
-                      text="Revolutionize your workflow with cutting-edge AI technology.Take your interview preparation to the next level. Our AI-powered mock interview platform simulates real-world interview scenarios, giving you the chance to practice and refine your responses."
-                      disabled={false}
-                      speed={3}
-                      className="max-w-2xl text-xl leading-relaxed md:text-2xl text-muted-foreground"
-                    />
-                  )}
+                    <span className="block max-w-2xl text-xl leading-relaxed text-gray-500 md:text-2xl">
+                      Revolutionize your workflow with cutting-edge AI technology. Take your interview preparation to the next level. Our AI-powered mock interview platform simulates real-world interview scenarios, giving you the chance to practice and refine your responses.
+                    </span>
+
                 </motion.div>
 
                 <motion.div
