@@ -484,7 +484,7 @@ const LandingPage = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <span className="block max-w-2xl text-xl leading-relaxed text-gray-500 md:text-2xl">
+                    <span className="block max-w-2xl text-xl leading-relaxed text-yellow-500 md:text-2xl">
                       Revolutionize your workflow with cutting-edge AI technology. Take your interview preparation to the next level. Our AI-powered mock interview platform simulates real-world interview scenarios, giving you the chance to practice and refine your responses.
                     </span>
 
