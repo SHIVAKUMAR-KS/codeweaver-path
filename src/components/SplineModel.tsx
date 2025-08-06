@@ -1,57 +1,28 @@
-'use client';
+import React from 'react';
+import { motion } from 'framer-motion';
 
-import Spline from '@splinetool/react-spline';
-import { useState, useEffect, useRef } from 'react';
-
-export default function SplineModel() {
-  const [shouldLoad, setShouldLoad] = useState(false);
-  const [isLargeScreen, setIsLargeScreen] = useState(false);
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsLargeScreen(window.innerWidth >= 1024); // lg breakpoint
-    };
-
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
-
-  useEffect(() => {
-    if (!isLargeScreen) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldLoad(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [isLargeScreen]);
-
+const SplineModel: React.FC = () => {
   return (
-    <div ref={containerRef} className="relative h-180 flex-shrink-0">
-      {shouldLoad && isLargeScreen && (
-        <Spline
-          scene="https://prod.spline.design/2gD1BKUgJa9zGb13/scene.splinecode"
-          style={{
-            width: '100%',
-            height: '100%',
-            transform: 'scale(1.2) translate(5%, -5%)',
-            background: 'transparent',
-          }}
-        />
-      )}
-    </div>
+    <motion.div
+      className="w-32 h-32 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-full flex items-center justify-center"
+      animate={{ 
+        rotateY: [0, 360],
+        scale: [1, 1.1, 1]
+      }}
+      transition={{ 
+        rotateY: { duration: 4, repeat: Infinity, ease: "linear" },
+        scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+      }}
+    >
+      <motion.div
+        className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center"
+        animate={{ rotate: [0, -360] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+      >
+        <div className="w-8 h-8 bg-white/40 rounded-full" />
+      </motion.div>
+    </motion.div>
   );
-}
+};
+
+export default SplineModel;
