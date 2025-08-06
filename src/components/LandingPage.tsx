@@ -623,7 +623,7 @@ const LandingPage = () => {
       {/* Advanced Features Section with ScrollStack */}
       <section className="w-full px-4  bg-gradient-to-br from-background via-background to-accent/5 ">
         {/* ScrollStack Features Section */}
-        <section className="w-full px-4 -mt-2 hidden lg:block">
+        <section className="w-full px-4 mt-8 lg:mt-4 hidden lg:block">
           <div className="mx-auto max-w-7xl font-bruno font-bold">
             <ScrollStack itemDistance={300} className="min-h-[40vh]">
               <ScrollStackItem itemClassName="bg-transparent shadow-none border-none">
@@ -652,6 +652,7 @@ const LandingPage = () => {
                   </p>
                 </div>
               </ScrollStackItem>
+
               <ScrollStackItem itemClassName="bg-gradient-to-br from-indigo-900 via-purple-800 to-indigo-700">
                 <div className="max-w-lg">
                   <h2
@@ -715,6 +716,7 @@ const LandingPage = () => {
                   </div>
                 </div>
               </ScrollStackItem>
+
               <ScrollStackItem itemClassName="bg-gradient-to-br from-[#1a1a1a] via-[#6e40c9] via-[#ff8c00] to-[#ff206e]">
                 <div className="max-w-lg">
                   <h2
@@ -744,9 +746,7 @@ const LandingPage = () => {
                   </div>
                 </div>
               </ScrollStackItem>
-
               
-
               <ScrollStackItem itemClassName="bg-gradient-to-br from-orange-600 to-red-700">
                 <div className="max-w-lg">
                   <h2
@@ -800,9 +800,7 @@ const LandingPage = () => {
                   </div>
                 </div>
               </ScrollStackItem>
-
               
-
               <ScrollStackItem itemClassName="bg-gradient-to-br from-black via-black to-black">
                 <div className="max-w-lg">
                   <h2

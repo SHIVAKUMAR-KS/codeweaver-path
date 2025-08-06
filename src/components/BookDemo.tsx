@@ -4,6 +4,7 @@ import Footer from "./Footer";
 
 const WEB3FORMS_URL = "https://api.web3forms.com/submit";
 const ACCESS_KEY = "4eaa7b0e-cc5c-4695-9274-79b54a4075cb";
+import { InteractiveHoverButton } from "./magicui/interactive-hover-button";
 
 const initialForm = {
   name: "",
@@ -161,9 +162,19 @@ const BookDemo: React.FC = () => {
 
               {error && <div className="book-demo-error">{error}</div>}
 
-              <button type="submit" disabled={loading}>
+              {/* <button type="submit" disabled={loading}>
                 {loading ? "Booking..." : "Book Demo"}
-              </button>
+              </button> */}
+              <InteractiveHoverButton
+                  className={`h-full bg-gradient-to-r from-orange-500 to-pink-500 text-white ${
+                    loading ? 'pointer-events-none opacity-50' : ''
+                  }`}
+                >
+                  <span className="flex items-center justify-center gap-2 h-full">
+                    {loading ? "Booking..." : "Book Demo"}
+                  </span>
+                </InteractiveHoverButton>
+
             </form>
           )}
         </div>

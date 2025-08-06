@@ -1,0 +1,175 @@
+<ScrollStackItem itemClassName="bg-transparent shadow-none border-none">
+                <div className="text-center">
+                  <div className="flex items-center justify-center mb-6">
+                    <div className="relative w-full max-w-[200px] h-px bg-gradient-to-r from-transparent via-[#f5ac01]/30 to-[#f5ac01]">
+                      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-[#f5ac01] rotate-45 rounded-sm"></div>
+                    </div>
+                    <div className="inline-flex items-center px-2 py-1 mx-2 rounded-full bg-[#f5b210]/10 text-[#f5ac01] text-lg font-bold whitespace-nowrap">
+                      Our Features
+                    </div>
+
+                    <div className="relative w-full max-w-[200px] h-px bg-gradient-to-l from-transparent via-[#f5ac01]/30 to-[#f5ac01]">
+                      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-[#f5ac01] rotate-45 rounded-sm"></div>
+                    </div>
+                  </div>
+                  <h2
+                    className="mb-6 text-4xl font-bold md:text-6xl font-akashi"
+                  >
+                    Engineered for Excellence
+                  </h2>
+                  <p
+                    className="font-bruno text-xl max-w-3xl mx-auto leading-relaxed text-[#f5ac01]"
+                  >
+                    Ace Every Interview with Confidence Conduct seamless, automated interviews which save time and ensure quality.
+                  </p>
+                </div>
+              </ScrollStackItem>
+
+              <ScrollStackItem itemClassName="bg-gradient-to-br from-indigo-900 via-purple-800 to-indigo-700">
+                <div className="max-w-lg">
+                  <h2
+                    className="font-bruno text-left text-balance text-xl md:text-2xl lg:text-3xl font-semibold tracking-[-0.015em] text-white"
+                  >
+                    AI Film Making
+                  </h2>
+                  <p className="mt-4 text-left text-base/6 text-neutral-200">
+                    Create stunning cinematic videos and compelling ads effortlessly with AI-powered filmmaking and dubbing. Harness the latest advancements in artificial intelligence to generate professional-grade visuals, automate editing, add realistic voiceovers in multiple languages, and bring your creative vision to life faster than ever.
+                  </p>
+                  <div className="mt-6">
+                    <AnimatedStarButton
+                      onClick={() => handleNavigation('/problems')}
+                      bgColor="bg-indigo-300"
+                      textColor="text-indigo-900"
+                      borderColor="border-indigo-300"
+                      hoverTextColor="hover:text-indigo-300"
+                      hoverShadow="hover:shadow-[0_0_25px_rgba(99,102,241,0.5)]"
+                      borderRadius="rounded-full"
+                    >
+                      Try Workspace
+                    </AnimatedStarButton>
+                  </div>
+                </div>
+                {/* Coding Workspace Icon */}
+                <div className="absolute right-[2vw] top-1/2 -translate-y-1/2 w-[30vw] h-[30vw] hover:w-[35vw] hover:h-[35vw] xl:w-[25vw] xl:h-[25vw] xl:hover:w-[30vw] xl:hover:h-[30vw] transition-all duration-300 hidden lg:flex items-center justify-center z-50">
+                  {/* <img
+                    src={workspaceImage}
+                    alt="Coding Workspace"
+                    className="w-full h-full"
+                  /> */}
+                </div>
+              </ScrollStackItem>
+
+              <ScrollStackItem itemClassName="bg-gradient-to-br from-emerald-900 via-emerald-700 to-teal-800">
+                <div className="max-w-lg">
+                  <h2
+                    className="font-bruno text-left text-balance text-xl md:text-2xl lg:text-3xl font-semibold tracking-[-0.015em] text-white"
+                  >
+                    Report Gen-AI
+                  </h2>
+                  <p className="mt-4 text-left text-base/6 text-neutral-200">
+                    Generate insightful, data-driven reports effortlessly with AI tailored to your specific data stack. Whether you're working with spreadsheets, databases, cloud warehouses, or business intelligence tools, AI-powered report generation helps you uncover key trends, visualize metrics, and deliver actionable insights in seconds.
+                  </p>
+                  <div className="mt-6">
+                    <AnimatedStarButton
+                      onClick={() =>
+                        handleNavigation(
+                          authUser ? `/profile/${authUser.id}` : '/auth/login'
+                        )
+                      }
+                      bgColor="bg-emerald-300"
+                      textColor="text-emerald-900"
+                      borderColor="border-emerald-300"
+                      hoverTextColor="hover:text-emerald-300"
+                      hoverShadow="hover:shadow-[0_0_25px_rgba(16,185,129,0.5)]"
+                      borderRadius="rounded-md"
+                    >
+                      View Dashboard
+                    </AnimatedStarButton>
+                  </div>
+                </div>
+              </ScrollStackItem>
+
+              <ScrollStackItem itemClassName="bg-gradient-to-br from-[#1a1a1a] via-[#6e40c9] via-[#ff8c00] to-[#ff206e]">
+                <div className="max-w-lg">
+                  <h2
+                    className="font-bruno text-left text-balance text-xl md:text-2xl lg:text-3xl font-semibold tracking-[-0.015em] text-white"
+                  >
+                    Alpha CTR
+                  </h2>
+                  <p className="mt-4 text-left text-base/6 text-neutral-200">
+                    Produce engaging short-form videos at scale with AI-driven editing, smart captions, and high-converting thumbnails optimized for maximum Alpha CTR. Leverage AI to analyze audience behavior, auto-generate attention-grabbing visuals, and craft content that stops the scroll. 
+                  </p>
+                  <div className="mt-6">
+                    <AnimatedStarButton
+                      onClick={() =>
+                        handleNavigation(
+                          authUser ? `/profile/${authUser.id}` : '/auth/login'
+                        )
+                      }
+                      bgColor="bg-emerald-300"
+                      textColor="text-emerald-900"
+                      borderColor="border-emerald-300"
+                      hoverTextColor="hover:text-emerald-300"
+                      hoverShadow="hover:shadow-[0_0_25px_rgba(16,185,129,0.5)]"
+                      borderRadius="rounded-md"
+                    >
+                      Try Workshop
+                    </AnimatedStarButton>
+                  </div>
+                </div>
+              </ScrollStackItem>
+              
+              <ScrollStackItem itemClassName="bg-gradient-to-br from-orange-600 to-red-700">
+                <div className="max-w-lg">
+                  <h2
+                    className="font-bruno text-left text-balance text-2xl md:text-3xl lg:text-4xl font-semibold tracking-[-0.015em] text-white"
+                  >
+                    Learn, Share, and Grow Together
+                  </h2>
+                  <p className="mt-4 text-left text-base/6 text-neutral-200">
+                    Join a vibrant global community of coders inside Sklassics-ai Platform.
+                    Engage in real-time discussions, exchange ideas, ask
+                    questions. Learn from others, share your insights, and grow
+                    as a developer together.
+                  </p>
+                  <div className="mt-6">
+                    <AnimatedStarButton
+                      onClick={() => handleNavigation('/community')}
+                      bgColor="bg-orange-300"
+                      textColor="text-orange-900"
+                      borderColor="border-orange-300"
+                      hoverTextColor="hover:text-orange-300"
+                      hoverShadow="hover:shadow-[0_0_25px_rgba(249,115,22,0.5)]"
+                      borderRadius="rounded-xl"
+                    >
+                      Browse Sheets
+                    </AnimatedStarButton>
+                  </div>
+                </div>
+              </ScrollStackItem>
+              <ScrollStackItem itemClassName="bg-gradient-to-br from-violet-600 via-purple-600 to-blue-600">
+                <div className="max-w-lg">
+                  <h2
+                    className="font-bruno text-left text-balance text-2xl md:text-3xl lg:text-4xl font-semibold tracking-[-0.015em] text-white"
+                  >
+                    AI Singing Voice Synthesis.
+                  </h2>
+                  <p className="mt-4 text-left text-base/6 text-neutral-200">
+                    Create personalized, studio-quality songs using advanced AI singing voice synthesis. Craft unique tracks with AI-generated lyrics, custom melodies, and realistic vocals that match your chosen style, mood, or language. Whether you're a music producer, content creator, or just looking to surprise someone with a custom tune, this technology brings your musical ideas to life—no vocal training or recording equipment needed.
+                  </p>
+                  <div className="mt-6">
+                    {/* <AnimatedStarButton
+                      onClick={() => handleNavigation('/community')}
+                      bgColor="bg-orange-300"
+                      textColor="text-orange-900"
+                      borderColor="border-orange-300"
+                      hoverTextColor="hover:text-orange-300"
+                      hoverShadow="hover:shadow-[0_0_25px_rgba(249,115,22,0.5)]"
+                      borderRadius="rounded-xl"
+                    >
+                      Browse Sheets
+                    </AnimatedStarButton> */}
+                  </div>
+                </div>
+              </ScrollStackItem>
+              
