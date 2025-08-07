@@ -393,6 +393,7 @@ const LandingPage = () => {
       <div className="hidden md:block">
         <VerticalBinaryRain />
       </div>
+      {/* Navbar */}
       <div className='fixed top-0 left-0 w-full z-50'>
         <Navbar />
       </div>
@@ -954,7 +955,7 @@ const LandingPage = () => {
         </div>
       </section>
       <Faqs />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

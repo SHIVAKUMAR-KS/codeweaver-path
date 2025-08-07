@@ -9,13 +9,15 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
     proxy: {
-      // Proxy all /api requests to your backend URL
-      "/api": {
+      "/api/bookdemo": {
         target: "https://sklassics-ai.com",
         changeOrigin: true,
-        secure: true, // set false if your backend uses self-signed certs
-        // Optional: rewrite path if needed, e.g.
-        // rewrite: (path) => path.replace(/^\/api/, "/api"),
+        secure: true, // Set to false only if using self-signed SSL
+      },
+      "/api/bookdemo/verify": {
+        target: "https://sklassics-ai.com",
+        changeOrigin: true,
+        secure: true,
       },
     },
   },
