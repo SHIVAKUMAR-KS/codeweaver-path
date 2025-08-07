@@ -624,7 +624,7 @@ const LandingPage = () => {
       {/* Advanced Features Section with ScrollStack */}
       <section className="w-full px-4  bg-gradient-to-br from-background via-background to-accent/5 ">
         {/* ScrollStack Features Section */}
-        <section className="hidden lg:block w-full px-4">
+        <section className="hidden lg:block w-full px-4 mt-2 ">
         
          
          <div className="mx-auto max-w-7xl font-bruno font-bold">
@@ -637,7 +637,7 @@ const LandingPage = () => {
   </div>
   
   {/* Our Features Label */}
-  <div className="inline-flex items-center px-4 py-1 mx-8 rounded-full bg-[#f5b210]/10 text-[#f5ac01] text-lg font-bold whitespace-nowrap shadow">
+  <div className="inline-flex items-center px-4 py-1 mx-6 rounded-full bg-[#f5b210]/10 text-[#f5ac01] text-lg font-bold whitespace-nowrap shadow">
     Our Features
   </div>
   
@@ -656,7 +656,7 @@ const LandingPage = () => {
   </div>
 
   {/* ScrollStack Cards immediately below the sticky title */}
-  <ScrollStack itemDistance={300} className="min-h-[40vh] ">
+  <ScrollStack itemDistance={300} className="min-h-[40vh] mt-6">
     <ScrollStackItem itemClassName="bg-transparent shadow-none border-none">
       <div className="text-center">
         {/* Title section handled above */}
@@ -814,7 +814,7 @@ const LandingPage = () => {
         </section>
         <section className="block lg:hidden w-full px-1 max-w-lg mx-auto">
           {/* Card carousel header */}
-          <div className="text-center mb-6">
+          <div className="text-center mb-4 mt-2">
             <div className="flex items-center justify-center mb-4">
               <div className="relative w-full max-w-[60px] h-px bg-gradient-to-r from-transparent via-[#f5ac01]/30 to-[#f5ac01]"></div>
               <div className="inline-flex items-center px-2 py-0.5 mx-2 rounded-full bg-[#f5b210]/10 text-[#f5ac01] text-xs font-bold">Our Features</div>
@@ -955,7 +955,7 @@ const LandingPage = () => {
         </div>
       </section>
       <Faqs />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

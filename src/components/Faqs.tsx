@@ -52,9 +52,9 @@ const FAQ: React.FC = () => {
   };
 
   return (
-    <div className="relative bg-[#181E29] min-h-[80vh] py-16 px-6 md:px-16 overflow-hidden">
-      {/* SVG full background grid */}
-      <div className="absolute inset-0 w-full h-full z-0 pointer-events-none pw-4">
+    <div className="relative bg-[#181E29] min-h-[80vh] py-16 px-4 sm:px-8 md:px-12 lg:px-20 xl:px-28 overflow-hidden">
+      {/* SVG background grid */}
+      <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
         <svg width="100%" height="100%">
           <defs>
             <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -65,7 +65,7 @@ const FAQ: React.FC = () => {
         </svg>
       </div>
 
-      {/* Centered FAQ Title at top */}
+      {/* Title */}
       <div className="relative z-10 mb-16 flex justify-center">
         <div className="text-3xl font-bold font-bruno text-[#f5ac01]">
           <div className="flex items-center justify-center mb-6">
@@ -82,98 +82,88 @@ const FAQ: React.FC = () => {
         </div>
       </div>
 
-      {/* 2-column layout below the title */}
-     <div className="relative z-10 max-w-7xl w-full flex flex-col md:flex-row gap-10 md:gap-16 items-start">
-
-  {/* Left side: Animation area */}
-  <div className="flex-1 flex justify-center items-center select-none mt-6 
-                  md:mt-0 
-                  max-w-full 
-                  md:max-w-[400px]">
-
-    <svg
-      width="100%"   // make svg fill the container width responsively
-      height="auto"  // height adjusts proportionally
-      viewBox="0 0 200 200"
-      xmlns="http://www.w3.org/2000/svg"
-      className="animate-pulse max-w-[400px]"  // constrain max width on larger screens
-      style={{ filter: "drop-shadow(0 0 5px #f5ac01)" }}
-      preserveAspectRatio="xMidYMid meet"  // maintain aspect ratio scaling
-    >
-      <circle cx="100" cy="100" r="90" stroke="#f5ac01" strokeWidth="3" fill="none" />
-      <circle
-        cx="100"
-        cy="100"
-        r="60"
-        stroke="#f5ac01"
-        strokeWidth="2"
-        fill="none"
-        strokeDasharray="283"
-        strokeDashoffset="0"
-        className="stroke-animation"
-      />
-      <circle
-        cx="100"
-        cy="100"
-        r="30"
-        stroke="#f5ac01"
-        strokeWidth="1.5"
-        fill="none"
-        strokeDasharray="188"
-        strokeDashoffset="188"
-        className="stroke-animation delay-1000"
-      />
-      <circle cx="100" cy="100" r="10" fill="#f5ac01" opacity="0.6" className="animate-bounce" />
-    </svg>
-  </div>
-
-  {/* Right side: FAQ content */}
-  <div className="flex-1 w-full max-w-full md:max-w-xl px-2">
-    <div className="w-full bg-transparent">
-      {/* FAQ items mapping */}
-      {faqData.map((item, idx) => (
-        <div key={idx} className="border-b border-gray-700">
-          <button
-            className={`w-full text-left py-5 px-2 flex justify-between items-center transition-colors duration-300 ease-in-out ${
-              openIndex === idx ? "text-cyan-400" : "text-gray-200 hover:text-cyan-300"
-            } focus:outline-none`}
-            onClick={() => handleToggle(idx)}
-            aria-expanded={openIndex === idx}
-            aria-controls={`faq-answer-${idx}`}
-            id={`faq-question-${idx}`}
+      {/* Main Layout */}
+      <div className="relative z-10 max-w-7xl w-full mx-auto flex flex-col lg:flex-row items-start gap-12 lg:gap-24">
+        {/* Left: SVG animation */}
+        <div className="w-full lg:w-1/2 flex justify-center items-center">
+          <svg
+            viewBox="0 0 200 200"
+            xmlns="http://www.w3.org/2000/svg"
+            className="animate-pulse w-[250px] sm:w-[300px] md:w-[350px] lg:w-[420px] xl:w-[480px]"
+            style={{ filter: "drop-shadow(0 0 6px #f5ac01)" }}
           >
-            <span className={`text-base ${openIndex === idx ? "font-extrabold" : "font-semibold"}`}>
-              {item.question}
-            </span>
-            <svg
-              className={`w-5 h-5 ml-2 transition-transform duration-300 ease-in-out ${
-                openIndex === idx ? "rotate-180 stroke-cyan-400" : "stroke-gray-400"
-              }`}
+            <circle cx="100" cy="100" r="90" stroke="#f5ac01" strokeWidth="3" fill="none" />
+            <circle
+              cx="100"
+              cy="100"
+              r="60"
+              stroke="#f5ac01"
+              strokeWidth="2"
               fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          {openIndex === idx && (
-            <div
-              id={`faq-answer-${idx}`}
-              role="region"
-              aria-labelledby={`faq-question-${idx}`}
-              className="px-2 pb-5 text-yellow-300 font-semibold text-sm"
-            >
-              {item.answer}
-            </div>
-          )}
+              strokeDasharray="283"
+              strokeDashoffset="0"
+              className="stroke-animation"
+            />
+            <circle
+              cx="100"
+              cy="100"
+              r="30"
+              stroke="#f5ac01"
+              strokeWidth="1.5"
+              fill="none"
+              strokeDasharray="188"
+              strokeDashoffset="188"
+              className="stroke-animation delay-1000"
+            />
+            <circle cx="100" cy="100" r="10" fill="#f5ac01" opacity="0.6" className="animate-bounce" />
+          </svg>
         </div>
-      ))}
-    </div>
-  </div>
-</div>
 
+        {/* Right: FAQ List */}
+        <div className="w-full lg:w-1/2 max-w-2xl">
+          <div className="w-full bg-transparent">
+            {faqData.map((item, idx) => (
+              <div key={idx} className="border-b border-gray-700">
+                <button
+                  className={`w-full text-left py-5 px-2 flex justify-between items-center transition-colors duration-300 ease-in-out ${
+                    openIndex === idx ? "text-cyan-400" : "text-gray-200 hover:text-cyan-300"
+                  } focus:outline-none`}
+                  onClick={() => handleToggle(idx)}
+                  aria-expanded={openIndex === idx}
+                  aria-controls={`faq-answer-${idx}`}
+                  id={`faq-question-${idx}`}
+                >
+                  <span className={`text-base ${openIndex === idx ? "font-extrabold" : "font-semibold"}`}>
+                    {item.question}
+                  </span>
+                  <svg
+                    className={`w-5 h-5 ml-2 transition-transform duration-300 ease-in-out ${
+                      openIndex === idx ? "rotate-180 stroke-cyan-400" : "stroke-gray-400"
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {openIndex === idx && (
+                  <div
+                    id={`faq-answer-${idx}`}
+                    role="region"
+                    aria-labelledby={`faq-question-${idx}`}
+                    className="px-2 pb-5 text-yellow-300 font-semibold text-sm"
+                  >
+                    {item.answer}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
-      {/* Extra CSS for stroke animation */}
+      {/* Animation CSS */}
       <style>{`
         .stroke-animation {
           animation: dashoffset 4s linear infinite;

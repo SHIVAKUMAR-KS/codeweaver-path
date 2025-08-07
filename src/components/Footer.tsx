@@ -11,8 +11,8 @@ interface QuickLink {
 }
 
 const quickLinks: QuickLink[] = [
-  { name: "Problems", href: "/problems" },
-  { name: "Report an Issue", href: "https://forms.gle/Jvta7unWR5Q4ZhQS6", external: true },
+
+  { name: "Report an Issue", href: "google form links", external: true },
   { name: "Community", href: "/community" },
 ];
 
@@ -49,7 +49,7 @@ const Footer: React.FC = () => {
         {/* Contact + Product Hunt */}
         <div className="col-span-1 flex flex-col gap-3">
           <h4 className="text-lg font-semibold mb-3">Contact</h4>
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <a
               href="https://www.producthunt.com/products/dsatrek?launch=dsatrek"
               target="_blank"
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
                 className="h-[40px] w-auto"
               />
             </a>
-          </div>
+          </div> */}
           <div className="flex items-center gap-2 text-sm text-neutral-400">
             <Mail className="w-4 h-4 text-amber-400" />
             <a href="mailto:wagh1.2.3.002@gmail.com" className="hover:underline">
