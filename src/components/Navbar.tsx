@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Trophy, Menu, X,HousePlugIcon,Layers2Icon,NotebookPenIcon } from "lucide-react";
+import { Trophy, Menu, X, HousePlugIcon, Layers2Icon, NotebookPenIcon } from "lucide-react";
 import logo from "../../public/logo1.png";
 
 const navLinks = [
@@ -19,9 +19,6 @@ const Navbar: React.FC = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <img src={logo} alt="Skassics" className="w-26 h-12 mt-2" />
-             {/* <span className="text-2xl text-amber-400 font-semibold tracking-tight group-hover:text-white transition">
-            AI-Interview
-          </span> */}
         </Link>
 
         {/* Desktop NavLinks */}
@@ -47,7 +44,10 @@ const Navbar: React.FC = () => {
           <button className="bg-amber-400 text-black px-4 py-1 rounded-md font-bold hover:bg-amber-300 transition">
             SUBSCRIBE
           </button>
-          <button className="border border-neutral-500 text-green-400 px-4 py-1 rounded hover:bg-neutral-800 transition">
+          <button
+            onClick={() => (window.location.href = "https://sklassics-ai.com/login")}
+            className="border border-neutral-500 text-green-400 px-4 py-1 rounded hover:bg-neutral-800 transition"
+          >
             Login
           </button>
         </div>
@@ -74,7 +74,7 @@ const Navbar: React.FC = () => {
                 onClick={() => setMobileMenuOpen(false)}
                 className={`px-3 py-2 rounded text-sm font-medium ${
                   location.pathname.startsWith(link.path)
-                    ? "text-neutral-200 text-neutral-200"
+                    ? "text-neutral-200"
                     : "text-neutral-200 hover:text-amber-400"
                 }`}
               >
@@ -85,7 +85,10 @@ const Navbar: React.FC = () => {
             <button className="bg-amber-400 text-black px-3 py-2 rounded font-bold text-sm">
               SUBSCRIBE
             </button>
-            <button className="border border-neutral-500 text-green-400 px-3 py-2 rounded hover:bg-neutral-800 text-sm">
+            <button
+              onClick={() => (window.location.href = "https://sklassics-ai.com/login")}
+              className="border border-neutral-500 text-green-400 px-3 py-2 rounded hover:bg-neutral-800 text-sm"
+            >
               Login
             </button>
           </div>
