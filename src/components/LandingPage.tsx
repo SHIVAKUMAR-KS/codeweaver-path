@@ -470,7 +470,7 @@ const LandingPage = () => {
                   className="my-6"
                 >
                   <SparklesText
-                    colors={{ first: '#FFFFFF', second: '#808080' }} // magenta to reddish-pink
+                    colors={{ first: '#FFFFFF', second: '#FFFFFF' }} // magenta to reddish-pink
                     className="text-5xl font-bold md:text-8xl font-akashi"
                   >
                     Empower Your Future With AI
@@ -637,7 +637,7 @@ const LandingPage = () => {
   </div>
   
   {/* Our Features Label */}
-  <div className="inline-flex items-center px-4 py-1 mx-6 rounded-full bg-[#f5b210]/10 text-[#f5ac01] text-lg font-bold whitespace-nowrap shadow">
+  <div className="inline-flex items-center px-4 py-1 mx-8 rounded-full bg-[#f5b210]/10 text-[#f5ac01] text-lg font-bold whitespace-nowrap shadow">
     Our Features
   </div>
   
@@ -656,7 +656,7 @@ const LandingPage = () => {
   </div>
 
   {/* ScrollStack Cards immediately below the sticky title */}
-  <ScrollStack itemDistance={300} className="min-h-[40vh] mt-6">
+  <ScrollStack itemDistance={300} className="min-h-[40vh] ">
     <ScrollStackItem itemClassName="bg-transparent shadow-none border-none">
       <div className="text-center">
         {/* Title section handled above */}
