@@ -71,14 +71,15 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center">
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-neutral-200"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+<div className="md:hidden w-full flex justify-center">
+  <button
+    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+    className="text-neutral-200"
+  >
+    {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+  </button>
+</div>
+
       </div>
 
       {/* Mobile Menu Dropdown */}
