@@ -532,14 +532,15 @@ const LandingPage = () => {
 
       {/* Desktop interactive hover button */}
       <div className="hidden lg:block lg:h-12 mt-4">
-        <InteractiveHoverButton
-          onClick={() => handleNavigation('/auth/register')}
-          className="h-full"
+        
+        <HoverBorderGradient
+          containerClassName="rounded-full h-full"
+          className="flex items-center justify-center text-base bg-background text-primary h-full w-full sm:w-auto px-5 py-2"
+          onClick={() => handleNavigation('/problems')}
         >
-          <span className="flex items-center justify-center gap-2 h-full">
-            Start Your Journey
-          </span>
-        </InteractiveHoverButton>
+          <Play className="w-5 h-5 mr-2" />
+          Start Your Journey
+        </HoverBorderGradient>
       </div>
 
       {/* Common button (Explore Problems) */}

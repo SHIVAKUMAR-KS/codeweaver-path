@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
+import {HoverBorderGradient} from '@/components/ui/hover-border-gradient'
+import { IoMdArrowBack } from "react-icons/io";
+
 
 interface BlogPost {
   id: number;
@@ -75,25 +78,17 @@ const Blog: React.FC = () => {
       }}
     >
       <div className="max-w-5xl mx-auto px-4 py-10">
-        <button
+         <HoverBorderGradient
+          containerClassName="rounded-full h-10 w-max"                    // Lower height and tighter width
+          className="flex items-center justify-center text-sm bg-background text-primary h-10 px-3 py-1" // Smaller text & padding
           onClick={() => navigate("/")}
-          style={{
-            background: "rgba(255,255,255,0.03)",
-            border: "1.5px solid #FBBF24",
-            color: "#FBBF24",
-            borderRadius: "9999px",
-            padding: "0.5rem 1.25rem",
-            fontWeight: "bold",
-            letterSpacing: "0.05em",
-            marginBottom: "2.5rem",
-            cursor: "pointer",
-            boxShadow: "0 1px 6px 0 rgba(0,0,0,0.14)",
-            transition: "border 0.2s, color 0.2s",
-          }}
+          style={{ cursor: "pointer" }}
         >
-          ← Back to Home
-        </button>
-        <h1 className="text-4xl font-bold mb-7" style={{ color: "#FBBF24" }}>
+          <IoMdArrowBack  className="w-4 h-4 mr-1" />   {/* Smaller icon */}
+          Back to Home
+        </HoverBorderGradient>
+
+        <h1 className="text-4xl font-bold mb-7 mt-4" style={{ color: "#FBBF24" }}>
           AI Interview Insights
         </h1>
         <div className="grid gap-7">
