@@ -29,7 +29,7 @@ export const HoverBorderGradient: React.FC<HoverBorderGradientProps> = ({
           background: 'conic-gradient(from 0deg, #4079ff, #40ffaa, #8b5cf6, #4079ff)',
         }}
         animate={{
-          rotate: isHovered ? 360 : 0
+          rotate: isHovered ? 0 : 0
         }}
         transition={{
           duration: 2,
