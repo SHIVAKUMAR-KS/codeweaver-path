@@ -63,32 +63,156 @@ const ScrollStack = ({ children, className = '', itemDistance = 1000 }) => {
   const scrollTriggersRef = useRef([]);
 
   // Setup GSAP ScrollTrigger for card stacking
+  // const setupScrollTriggers = useCallback(() => {
+  //   if (typeof window === 'undefined' || !containerRef.current) return;
+
+  //   const container = containerRef.current;
+  //   const cards = Array.from(container.querySelectorAll('.scroll-stack-card'));
+  //   cardsRef.current = cards;
+
+  //   // Clear any existing scroll triggers
+  //   scrollTriggersRef.current.forEach(trigger => trigger.kill());
+  //   scrollTriggersRef.current = [];
+
+  //   // Create a timeline for stacking cards
+  //   const timeline = gsap.timeline({
+  //     scrollTrigger: {
+  //       trigger: container,
+  //       start: 'center center',
+  //       end: `+=${cards.length * itemDistance + 1000}`,
+  //       pin: true,
+  //       scrub: 0.5,
+  //       anticipatePin: 1, // Smoother pinning
+  //     },
+  //   });
+
+  //   scrollTriggersRef.current.push(timeline.scrollTrigger);
+
+  //   // Set initial state for all cards
+  //   cards.forEach((card, i) => {
+  //     gsap.set(card as gsap.TweenTarget, {
+  //       position: 'absolute',
+  //       top: '50%',
+  //       left: 0,
+  //       right: 0,
+  //       y: i === 0 ? '-50%' : '100%',
+  //       zIndex: i + 1,
+  //       opacity: i === 0 ? 1 : 0,
+  //     });
+
+  //     // Find 3D model in card and increase its z-index
+  //     const model = (card as Element).querySelector('.w-32.h-32') as HTMLElement;
+  //     if (model) {
+  //       model.style.zIndex = '100';
+  //     }
+  //   });
+
+  //   // First card is already visible in the middle
+
+  //   // Make first card more visible with responsive positioning
+  //   timeline.to(
+  //     cards[0] as gsap.TweenTarget,
+  //     {
+  //       y: () => {
+  //         // Set different y values based on screen width
+  //         if (window.innerWidth < 340) return '-60%'; // mobile
+  //         if (window.innerWidth < 440) return '-60%';
+  //         if (window.innerWidth < 650) return '-70%'; // mobile
+  //         if (window.innerWidth < 770) return '-90%'; // tablet/medium
+  //         return '-95%'; // desktop
+  //       },
+  //       ease: 'power2.inOut',
+  //     },
+  //     0
+  //   );
+
+  //   // Sequential stacking - each card waits for previous to finish
+  //   for (let i = 1; i < cards.length; i++) {
+  //     const yPosition = -40 + i * 10;
+
+  //     timeline.to(
+  //       cards[i] as gsap.TweenTarget,
+  //       {
+  //         y: `${yPosition}%`,
+  //         opacity: 1,
+  //         ease: 'power2.inOut',
+  //         duration: 1,
+  //       },
+  //       i * 1
+  //     );
+  //   }
+
+  //   return () => {
+  //     scrollTriggersRef.current.forEach(trigger => trigger.kill());
+  //     scrollTriggersRef.current = [];
+  //   };
+  // }, [itemDistance]);
   const setupScrollTriggers = useCallback(() => {
-    if (typeof window === 'undefined' || !containerRef.current) return;
+  if (typeof window === 'undefined' || !containerRef.current) return;
 
-    const container = containerRef.current;
-    const cards = Array.from(container.querySelectorAll('.scroll-stack-card'));
-    cardsRef.current = cards;
+  const isDesktop = window.innerWidth >= 1024;
+  const container = containerRef.current;
+  const cards = Array.from(container.querySelectorAll('.scroll-stack-card'));
+  cardsRef.current = cards;
 
-    // Clear any existing scroll triggers
-    scrollTriggersRef.current.forEach(trigger => trigger.kill());
-    scrollTriggersRef.current = [];
+  scrollTriggersRef.current.forEach(trigger => trigger.kill());
+  scrollTriggersRef.current = [];
 
-    // Create a timeline for stacking cards
-    const timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: container,
-        start: 'center center',
-        end: `+=${cards.length * itemDistance + 1000}`,
-        pin: true,
-        scrub: 0.5,
-        anticipatePin: 1, // Smoother pinning
-      },
+  const timeline = gsap.timeline({
+    scrollTrigger: {
+      trigger: container,
+      start: 'center center',
+      end: `+=${cards.length * itemDistance + 1000}`,
+      pin: true,
+      scrub: 0.5,
+      anticipatePin: 1,
+    },
+  });
+
+  scrollTriggersRef.current.push(timeline.scrollTrigger);
+
+  if (isDesktop) {
+    // Desktop: Full overlap, only one card visible at a time
+    cards.forEach((card, i) => {
+      gsap.set(card as gsap.TweenTarget, {
+        position: 'absolute',
+        top: '50%',
+        left: 0,
+        right: 0,
+        y: '100%',
+        zIndex: cards.length - i,
+        opacity: 0,
+      });
+
+      const model = (card as Element).querySelector('.w-32.h-32') as HTMLElement;
+      if (model) {
+        model.style.zIndex = '100';
+      }
     });
 
-    scrollTriggersRef.current.push(timeline.scrollTrigger);
+    for (let i = 0; i < cards.length; i++) {
+      const card = cards[i];
+      const prevCard = cards[i - 1];
 
-    // Set initial state for all cards
+      if (prevCard) {
+        // Fade out previous card
+        timeline.to(prevCard as gsap.TweenTarget, {
+          opacity: 0,
+          duration: 0.3,
+          ease: 'power2.out',
+        }, i);
+      }
+
+      // Fade in current card
+      timeline.to(card as gsap.TweenTarget, {
+        y: '-50%',
+        opacity: 1,
+        duration: 0.5,
+        ease: 'power2.inOut',
+      }, i);
+    }
+  } else {
+    // Mobile: Keep original stacked effect
     cards.forEach((card, i) => {
       gsap.set(card as gsap.TweenTarget, {
         position: 'absolute',
@@ -96,37 +220,31 @@ const ScrollStack = ({ children, className = '', itemDistance = 1000 }) => {
         left: 0,
         right: 0,
         y: i === 0 ? '-50%' : '100%',
-        zIndex: i + 1,
+        zIndex: cards.length - i,
         opacity: i === 0 ? 1 : 0,
       });
 
-      // Find 3D model in card and increase its z-index
       const model = (card as Element).querySelector('.w-32.h-32') as HTMLElement;
       if (model) {
         model.style.zIndex = '100';
       }
     });
 
-    // First card is already visible in the middle
-
-    // Make first card more visible with responsive positioning
     timeline.to(
       cards[0] as gsap.TweenTarget,
       {
         y: () => {
-          // Set different y values based on screen width
-          if (window.innerWidth < 340) return '-60%'; // mobile
+          if (window.innerWidth < 340) return '-60%';
           if (window.innerWidth < 440) return '-60%';
-          if (window.innerWidth < 650) return '-70%'; // mobile
-          if (window.innerWidth < 770) return '-90%'; // tablet/medium
-          return '-95%'; // desktop
+          if (window.innerWidth < 650) return '-70%';
+          if (window.innerWidth < 770) return '-90%';
+          return '-95%';
         },
         ease: 'power2.inOut',
       },
       0
     );
 
-    // Sequential stacking - each card waits for previous to finish
     for (let i = 1; i < cards.length; i++) {
       const yPosition = -40 + i * 10;
 
@@ -141,12 +259,14 @@ const ScrollStack = ({ children, className = '', itemDistance = 1000 }) => {
         i * 1
       );
     }
+  }
 
-    return () => {
-      scrollTriggersRef.current.forEach(trigger => trigger.kill());
-      scrollTriggersRef.current = [];
-    };
-  }, [itemDistance]);
+  return () => {
+    scrollTriggersRef.current.forEach(trigger => trigger.kill());
+    scrollTriggersRef.current = [];
+  };
+}, [itemDistance]);
+
 
   // its updated code for scroll triggers for cards stacking
 //   const setupScrollTriggers = useCallback(() => {
