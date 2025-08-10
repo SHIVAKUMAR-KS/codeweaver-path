@@ -78,7 +78,7 @@ const BookDemo: React.FC = () => {
       <div className="book-demo-wrapper">
         <div className="book-demo-info">
           <HoverBorderGradient
-            containerClassName="rounded-full h-10 w-max"
+            containerClassName="rounded-full h-15 w-max"
             className="flex items-center justify-center text-sm bg-background text-primary h-10 px-3 py-1"
             onClick={() => navigate("/")}
             style={{ cursor: "pointer" }}
@@ -115,7 +115,7 @@ const BookDemo: React.FC = () => {
               {/* Center the Verify OTP button */}
               <div className="flex justify-center">
                 <HoverBorderGradient
-                  containerClassName="rounded-full h-10 w-max"
+                  containerClassName="rounded-full"
                   className={`flex items-center justify-center text-sm bg-background text-primary h-10 px-5 py-1 font-semibold ${
                     loading ? "pointer-events-none opacity-50" : ""
                   }`}
@@ -209,7 +209,7 @@ const BookDemo: React.FC = () => {
               {/* Center the Book Demo button */}
               <div className="flex justify-center">
                 <HoverBorderGradient
-                  containerClassName="rounded-full h-10 w-max"
+                  containerClassName="rounded-full h-15 w-max"
                   className={`flex items-center justify-center text-sm bg-background text-primary h-10 px-5 py-1 font-semibold ${
                     loading ? "pointer-events-none opacity-50" : ""
                   }`}

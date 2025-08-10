@@ -79,7 +79,7 @@ const Blog: React.FC = () => {
     >
       <div className="max-w-5xl mx-auto px-4 py-10">
          <HoverBorderGradient
-          containerClassName="rounded-full h-10 w-max"                    // Lower height and tighter width
+          containerClassName="rounded-full h-15 w-max"                    // Lower height and tighter width
           className="flex items-center justify-center text-sm bg-background text-primary h-10 px-3 py-1" // Smaller text & padding
           onClick={() => navigate("/")}
           style={{ cursor: "pointer" }}
