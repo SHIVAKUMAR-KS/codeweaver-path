@@ -633,7 +633,7 @@ const LandingPage = () => {
       />
 
       {/* Why Choose Sklassics-ai Section - Improve overflow handling for VelocityScroll */}
-      <section className="w-full px-4 sm:py-32 sm:mt-16   bg-gradient-to-br from-background via-background to-accent/5 ">
+      <section className="w-full px-4 sm:py-32 sm:mt-5   bg-gradient-to-br from-background via-background to-accent/5 mt-4">
         <div className="mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -63,84 +63,156 @@ const ScrollStack = ({ children, className = '', itemDistance = 1000 }) => {
   const scrollTriggersRef = useRef([]);
 
   // Setup GSAP ScrollTrigger for card stacking
-const setupScrollTriggers = useCallback(() => {
-  if (typeof window === 'undefined' || !containerRef.current) return;
+  const setupScrollTriggers = useCallback(() => {
+    if (typeof window === 'undefined' || !containerRef.current) return;
 
-  const container = containerRef.current;
-  const cards = Array.from(container.querySelectorAll('.scroll-stack-card'));
-  cardsRef.current = cards;
+    const container = containerRef.current;
+    const cards = Array.from(container.querySelectorAll('.scroll-stack-card'));
+    cardsRef.current = cards;
 
-  // Kill old triggers
-  scrollTriggersRef.current.forEach(trigger => trigger.kill());
-  scrollTriggersRef.current = [];
+    // Clear any existing scroll triggers
+    scrollTriggersRef.current.forEach(trigger => trigger.kill());
+    scrollTriggersRef.current = [];
 
-  // Setup timeline
-  const timeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: container,
-      start: 'center center',
-      end: `+=${cards.length * itemDistance + 1000}`,
-      pin: true,
-      scrub: 0.5,
-      anticipatePin: 1,
-    },
-  });
+    // Create a timeline for stacking cards
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: 'center bottom',
+        end: `+=${cards.length * itemDistance + 1000}`,
+        pin: true,
+        scrub: 0.5,
+        anticipatePin: 1, // Smoother pinning
+      },
+    });
 
-  scrollTriggersRef.current.push(timeline.scrollTrigger);
+    scrollTriggersRef.current.push(timeline.scrollTrigger);
 
-  // --- Initial State ---
+    // Set initial state for all cards
   cards.forEach((card, i) => {
+  if (i === 0) {
+    // First card stays fixed at the center
+    gsap.set(card, {
+      position: 'fixed',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      zIndex: cards.length, // Always on top
+      opacity: 1,
+      pointerEvents: 'auto'
+    });
+  } else {
+    // Other cards are movable
     gsap.set(card, {
       position: 'absolute',
       top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
       zIndex: cards.length - i,
-      opacity: i === 0 ? 1 : 0,
-      y: i === 0 ? '0%' : '100%', // 0 is center, 100% is below
-      pointerEvents: i === 0 ? 'auto' : 'none',
+      opacity: 0, // Initially hidden
+      pointerEvents: 'none',
+      y: '50%' // Stacked vertically
     });
-  });
+  }
+});
 
-  // --- Animate cards from bottom into center one after another ---
-  for (let i = 0; i < cards.length; i++) {
-    const card = cards[i];
-    const prevCard = cards[i - 1];
 
-    // Fade out & move previous card further up (if any)
-    if (prevCard) {
-      timeline.to(
-        prevCard,
-        {
-          opacity: 0,
-          pointerEvents: 'none',
-          y: '-100%',     // Move it up further as next slides in
-          duration: 0.5,
-          ease: 'power2.inOut',
-        },
-        i
-      );
-    }
-    // Animate in current card from bottom
+for (let i = 0; i < cards.length; i++) {
+  const card = cards[i];
+  const prevCard = cards[i - 1];
+
+  // Fade out previous card only
+  if (prevCard) {
+    timeline.to(prevCard, {
+      opacity: 0,
+      pointerEvents: 'none',
+      duration: 0.4,
+      ease: 'power1.in',
+    }, i);
+  }
+
+  // Fade in current card only
+  timeline.to(card, {
+    opacity: 1,
+    pointerEvents: 'auto',
+    duration: 0.6,
+    ease: 'power2.out',
+  }, i);
+}
+
+
+// For each card, fade in ONLY that one, fade out previous
+for (let i = 0; i < cards.length; i++) {
+  const card = cards[i];
+  const prevCard = cards[i - 1];
+
+  // Fade out previous card
+  if (prevCard) {
     timeline.to(
-      card,
+      prevCard,
       {
-        y: '0%', // Move into center
-        opacity: 1,
-        pointerEvents: 'auto',
-        duration: 0.8,
-        ease: 'power2.out',
+        opacity: 0,
+        pointerEvents: 'none',
+        duration: 0.4,
+        ease: 'power1.in',
       },
-      i     // At same scroll position as previous .to
+      i
     );
   }
 
-  return () => {
-    scrollTriggersRef.current.forEach(trigger => trigger.kill());
-    scrollTriggersRef.current = [];
-  };
-}, [itemDistance]);
+  // Fade in current card, center
+  timeline.to(
+    card,
+    {
+      opacity: 1,
+      pointerEvents: 'auto',
+      duration: 0.6,
+      ease: 'power2.out',
+    },
+    i
+  );
+}
 
+    // First card is already visible in the middle
+
+    // Make first card more visible with responsive positioning
+    timeline.to(
+      cards[0] as gsap.TweenTarget,
+      {
+        y: () => {
+          // Set different y values based on screen width
+          if (window.innerWidth < 340) return '-60%'; // mobile
+          if (window.innerWidth < 440) return '-60%';
+          if (window.innerWidth < 650) return '-70%'; // mobile
+          if (window.innerWidth < 770) return '-90%'; // tablet/medium
+          return '-95%'; // desktop
+        },
+        ease: 'power2.inOut',
+      },
+      0
+    );
+
+    // Sequential stacking - each card waits for previous to finish
+    for (let i = 1; i < cards.length; i++) {
+      const yPosition = -40 + i * 10;
+
+      timeline.to(
+        cards[i] as gsap.TweenTarget,
+        {
+          y: `${yPosition}%`,
+          opacity: 1,
+          ease: 'power2.inOut',
+          duration: 1,
+        },
+        i * 1
+      );
+    }
+
+    return () => {
+      scrollTriggersRef.current.forEach(trigger => trigger.kill());
+      scrollTriggersRef.current = [];
+    };
+  }, [itemDistance]);
 
   // its updated code for scroll triggers for cards stacking
 //   const setupScrollTriggers = useCallback(() => {

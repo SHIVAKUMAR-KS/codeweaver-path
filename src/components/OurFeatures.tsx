@@ -1,11 +1,58 @@
 import React, { useRef, useEffect } from "react";
-import ScrollStack, { ScrollStackItem } from './ui/ScrollStack';
-import AnimatedStarButton from '@/components/ui/animated-star-button';
-import SplineModel from "./SplineModel";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import AnimatedStarButton from "@/components/ui/animated-star-button";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// --- Card Component, now supports ref for hover ---
+const FeatureCard = React.forwardRef<HTMLDivElement, any>(
+  (
+    {
+      title,
+      description,
+      buttonText,
+      buttonAction,
+      buttonColor,
+      bgGradient,
+    },
+    ref
+  ) => {
+    const colorMap = {
+      indigo: { bg: "bg-indigo-300", text: "text-indigo-900", border: "border-indigo-300" },
+      emerald: { bg: "bg-emerald-300", text: "text-emerald-900", border: "border-emerald-300" },
+      orange: { bg: "bg-orange-300", text: "text-orange-900", border: "border-orange-300" },
+    };
+    return (
+      <div
+        ref={ref}
+        className={`feature-card w-full max-w-[1250px] rounded-3xl min-h-[120px] md:min-h-[400px] p-8 py-12 ${bgGradient}
+        border border-white/10 shadow-xl transition-all transform-gpu flex flex-col justify-center mx-auto`}
+        style={{ willChange: "transform" }}
+      >
+        <h2 className="font-bruno text-2xl md:text-3xl lg:text-4xl font-semibold text-white">
+          {title}
+        </h2>
+        <p className="mt-6 text-lg text-neutral-200 flex-1">{description}</p>
+        <div className="mt-8">
+          <AnimatedStarButton
+            onClick={buttonAction}
+            bgColor={colorMap[buttonColor].bg}
+            textColor={colorMap[buttonColor].text}
+            borderColor={colorMap[buttonColor].border}
+            hoverTextColor={`hover:${colorMap[buttonColor].bg.replace("bg-", "text-")}`}
+            hoverShadow="hover:shadow-[0_0_25px_rgba(255,255,255,0.5)]"
+            borderRadius="rounded-full"
+          >
+            {buttonText}
+          </AnimatedStarButton>
+        </div>
+      </div>
+    );
+  }
+);
+
+FeatureCard.displayName = "FeatureCard";
 
 interface AdvancedFeaturesSectionProps {
   featureCards: React.ReactNode[];
@@ -23,229 +70,286 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
   authUser,
 }) => {
   const headerRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const hoverRefs = useRef<Array<HTMLDivElement | null>>([]);
 
+  // Scroll shuffle/entrance
   useEffect(() => {
     if (typeof window === "undefined" || window.innerWidth < 1024) return;
 
-    const header = headerRef.current;
-    const triggerEl = document.querySelector(".scroll-stack-card"); // first card
-
-    if (header && triggerEl) {
-      gsap.fromTo(
-        header,
-        { opacity: 1, y: 0 },
-        {
-          opacity: 0,
-          y: -80,
-          pointerEvents: "none",
-          scrollTrigger: {
-            trigger: triggerEl,
-            start: "top center",  // when cards start coming in
-            end: "top top",       // when first card reaches top
-            scrub: true
+    const ctx = gsap.context(() => {
+      if (headerRef.current && cardRefs.current[0]) {
+        gsap.fromTo(
+          headerRef.current,
+          { opacity: 1, y: 0 },
+          {
+            opacity: 0,
+            y: -80,
+            pointerEvents: "none",
+            scrollTrigger: {
+              trigger: cardRefs.current[0],
+              start: "top center",
+              end: "+=100",
+              scrub: true,
+            },
           }
+        );
+      }
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "+=" + 440 * featureCards.length,
+          scrub: 0.5,
+          pin: true,
+        },
+      });
+
+      cardRefs.current.forEach((card, i) => {
+        if (!card) return;
+        gsap.set(card, {
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          zIndex: featureCards.length - i,
+          opacity: i === 0 ? 1 : 0,
+          pointerEvents: i === 0 ? "auto" : "none",
+          y: i === 0 ? "0%" : "100%",
+          scale: i === 0 ? 1 : 0.96,
+        });
+      });
+
+      cardRefs.current.forEach((card, i) => {
+        if (i > 0 && card) {
+          tl.to(
+            card,
+            {
+              opacity: 1,
+              y: "0%",
+              scale: 1,
+              pointerEvents: "auto",
+              duration: 0.75,
+              ease: "power3.out",
+            },
+            i
+          );
+          tl.to(
+            cardRefs.current[i - 1],
+            {
+              opacity: 0,
+              pointerEvents: "none",
+              scale: 0.96,
+              duration: 0.6,
+              ease: "power2.in",
+            },
+            i
+          );
         }
-      );
-    }
-  }, []);
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [featureCards.length]);
+
+  // Hover animation (desktop only)
+  useEffect(() => {
+    if (typeof window === "undefined" || window.innerWidth < 1024) return;
+
+    // Remove previous listeners!
+    hoverRefs.current.forEach((el) => {
+      if (!el) return;
+      el.onmousemove = null;
+      el.onmouseleave = null;
+    });
+
+    hoverRefs.current.forEach((el) => {
+      if (!el) return;
+
+      el.onmousemove = (e: MouseEvent) => {
+        const bounds = el.getBoundingClientRect();
+        const x = e.clientX - bounds.left;
+        const y = e.clientY - bounds.top;
+        const rotateY = gsap.utils.mapRange(0, bounds.width, -10, 10, x);
+        const rotateX = gsap.utils.mapRange(0, bounds.height, 8, -8, y);
+
+        gsap.to(el, {
+          rotateY,
+          rotateX,
+          scale: 1.03,
+          boxShadow: "0 0 48px 0 #fff9  ,0 10px 24px rgba(0,0,0,0.4)",
+          filter: "drop-shadow(0 0 40px rgba(255,255,255,0.08))",
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      };
+
+      el.onmouseleave = () => {
+        gsap.to(el, {
+          rotateY: 0,
+          rotateX: 0,
+          scale: 1,
+          boxShadow: "0 8px 24px rgba(0,0,0,0.24)",
+          filter: "none",
+          duration: 0.7,
+          ease: "elastic.out(1,0.4)",
+        });
+      };
+    });
+    // Clean up
+    return () => {
+      hoverRefs.current.forEach((el) => {
+        if (!el) return;
+        el.onmousemove = null;
+        el.onmouseleave = null;
+      });
+    };
+  }, [featureCards.length]);
+
+  // Cards
+  const cardsToRender = [
+    <FeatureCard
+      ref={(el) => {
+        hoverRefs.current[0] = el;
+      }}
+      key="film"
+      title="AI Film Making"
+      description="Create stunning cinematic videos and compelling ads effortlessly with AI-powered filmmaking and dubbing..."
+      buttonText="Try Workspace"
+      buttonAction={() => handleNavigation("/problems")}
+      buttonColor="indigo"
+      bgGradient="bg-gradient-to-br from-indigo-900 via-purple-800 to-indigo-700"
+    />,
+    <FeatureCard
+      ref={(el) => {
+        hoverRefs.current[1] = el;
+      }}
+      key="report"
+      title="Report Gen-AI"
+      description="Generate insightful, data-driven reports effortlessly with AI tailored to your data stack..."
+      buttonText="View Dashboard"
+      buttonAction={() =>
+        handleNavigation(authUser ? `/profile/${authUser.id}` : "/auth/login")
+      }
+      buttonColor="emerald"
+      bgGradient="bg-gradient-to-br from-emerald-900 via-green-700 to-teal-800"
+    />,
+    <FeatureCard
+      ref={(el) => {
+        hoverRefs.current[2] = el;
+      }}
+      key="ctr"
+      title="Alpha CTR"
+      description="Produce engaging short-form videos at scale with AI-driven editing, smart captions..."
+      buttonText="Try Workshop"
+      buttonAction={() =>
+        handleNavigation(authUser ? `/profile/${authUser.id}` : "/auth/login")
+      }
+      buttonColor="orange"
+      bgGradient="bg-gradient-to-br from-orange-700 via-red-600 to-pink-600"
+    />,
+    <FeatureCard
+      ref={(el) => {
+        hoverRefs.current[3] = el;
+      }}
+      key="learn"
+      title="Learn, Share, and Grow Together"
+      description="Join a vibrant global community of coders inside Sklassics-ai Platform. Engage in real-time discussions, exchange ideas, ask questions. Learn from others, share your insights, and grow as a developer together."
+      buttonText="Browse Sheets"
+      buttonAction={() =>
+        handleNavigation(authUser ? `/profile/${authUser.id}` : "/auth/login")
+      }
+      buttonColor="orange"
+      bgGradient="bg-gradient-to-br from-pink-600 via-red-600 to-orange-600"
+    />,
+    <FeatureCard
+      ref={(el) => {
+        hoverRefs.current[4] = el;
+      }}
+      key="singing"
+      title="AI Singing Voice Synthesis."
+      description="Create personalized, studio-quality songs using advanced AI singing voice synthesis. Craft unique tracks with AI-generated lyrics, custom melodies, and realistic vocals that match your chosen style, mood, or language."
+      buttonText="Browse Sheets"
+      buttonAction={() =>
+        handleNavigation(authUser ? `/profile/${authUser.id}` : "/auth/login")
+      }
+      buttonColor="orange"
+      bgGradient="bg-gradient-to-br from-purple-700 via-red-600 to-blue-600"
+    />,
+    <FeatureCard
+      ref={(el) => {
+        hoverRefs.current[5] = el;
+      }}
+      key="interview"
+      title="AI Interview Assistant."
+      description="Experience realistic Mock interviews & Assessments with AI-powered feedback and comprehensive performance analysis."
+      buttonText="Start Interview"
+      buttonAction={() =>
+        handleNavigation(authUser ? `/profile/${authUser.id}` : "/auth/login")
+      }
+      buttonColor="orange"
+      bgGradient="bg-gradient-to-br from-gray-900 via-red-600 to-black"
+    />,
+  ];
 
   return (
-    <section className="w-full px-4 bg-gradient-to-br from-background via-background to-accent/5">
-      
-      {/* Desktop (ScrollStack) */}
-      <section className="hidden lg:block w-full px-4 mt-2">
-        <div className="mx-auto max-w-7xl font-bruno font-bold">
+    <section className="relative w-full overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-black text-white">
+      {/* Background blobs */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-purple-700/30 blur-[150px]" />
+        <div className="absolute top-1/3 -right-20 h-72 w-72 rounded-full bg-indigo-500/30 blur-[100px]" />
+        <div className="absolute bottom-0 left-1/4 h-80 w-80 rounded-full bg-amber-500/20 blur-[120px]" />
+      </div>
 
-          {/* This entire header will fade/move up on scroll */}
-          <div 
+      {/* Desktop */}
+      <section className="hidden lg:block w-full px-0 pt-16 relative z-10">
+        <div className="mx-auto max-w-none font-bruno font-bold">
+          {/* HEADER with "Our Features" */}
+          <div
             ref={headerRef}
-            className="sticky top-0 left-0 right-0 z-20 bg-background py-2 border-b border-accent/20"
+            className="sticky top-0 left-0 right-0 z-20 backdrop-blur-lg bg-white/5 border-b border-white/10 rounded-xl shadow-lg py-6 transition-transform"
           >
-            <div className="flex items-center justify-center w-full mb-2 text-center mt-2">
+            <div className="flex items-center justify-center w-full mb-4 mt-2">
               {/* Left arrow */}
-              <div className="relative w-[120px] h-px bg-gradient-to-r from-transparent via-[#f5ac01]/30 to-[#f5ac01]">
-                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-[#f5ac01] rounded-full" />
+              <div className="relative w-[120px] h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-yellow-400">
+                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-yellow-400 rounded-full" />
               </div>
-
-              {/* Our Features Label */}
-              <div className="inline-flex items-center px-4 py-1 mx-6 rounded-full bg-[#f5b210]/10 text-[#f5ac01] text-lg font-bold whitespace-nowrap shadow">
+              {/* Our Features */}
+              <div className="inline-flex items-center px-4 py-1 mx-6 rounded-full bg-cyan-400/10 text-yellow-500 text-lg font-bold whitespace-nowrap shadow">
                 Our Features
               </div>
-
               {/* Right arrow */}
-              <div className="relative w-[120px] h-px bg-gradient-to-l from-transparent via-[#f5ac01]/30 to-[#f5ac01]">
-                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-[#f5ac01] rounded-full" />
+              <div className="relative w-[120px] h-px bg-gradient-to-l from-transparent via-cyan-400/30 to-yellow-500">
+                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full" />
               </div>
             </div>
-
-            <h2 className="mb-2 text-4xl font-bold md:text-6xl font-akashi text-center">
+            <h2 className="mb-2 text-5xl md:text-7xl font-akashi text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 text-center">
               Engineered for Excellence
             </h2>
-            <p className="font-bruno text-xl max-w-3xl mx-auto leading-relaxed text-[#f5ac01] text-center">
-              Ace Every Interview with Confidence Conduct seamless, automated interviews which save time and ensure quality.
+            <p className="font-bruno text-xl max-w-4xl mx-auto leading-relaxed text-cyan-400/80 text-center">
+              Ace every interview with confidence. Conduct seamless, automated interviews which save time and ensure quality.
             </p>
           </div>
 
-          {/* ScrollStack Cards */}
-          <ScrollStack itemDistance={300} className="h-screen flex items-center justify-center mt-0">
-            <ScrollStackItem itemClassName="bg-transparent shadow-none border-none">
-              <div className="text-center">{/* Title in sticky above */}</div>
-            </ScrollStackItem>
-             <ScrollStackItem itemClassName="bg-gradient-to-br from-indigo-900 via-purple-800 to-indigo-700">
-              <div className="max-w-lg">
-                <h2 className="font-bruno text-left text-xl md:text-2xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-                  AI Film Making
-                </h2>
-                <p className="mt-4 text-left text-base/6 text-neutral-200">
-                  Create stunning cinematic videos and compelling ads effortlessly with AI-powered filmmaking and dubbing...
-                </p>
-                <div className="mt-6">
-                  <AnimatedStarButton
-                    onClick={() => handleNavigation("/problems")}
-                    bgColor="bg-indigo-300"
-                    textColor="text-indigo-900"
-                    borderColor="border-indigo-300"
-                    hoverTextColor="hover:text-indigo-300"
-                    hoverShadow="hover:shadow-[0_0_25px_rgba(99,102,241,0.5)]"
-                    borderRadius="rounded-full"
-                  >
-                    Try Workspace
-                  </AnimatedStarButton>
-                </div>
-              </div>
-            </ScrollStackItem>
-
-            
-
-            
-          <ScrollStackItem itemClassName="bg-gradient-to-br from-emerald-900 via-emerald-700 to-teal-800">
-            <div className="max-w-lg">
-              <h2 className="font-bruno text-left text-balance text-xl md:text-2xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-                Report Gen-AI
-              </h2>
-              <p className="mt-4 text-left text-base/6 text-neutral-200">
-                Generate insightful, data-driven reports effortlessly with AI tailored to your specific data stack. Whether you're working with spreadsheets, databases, cloud warehouses, or business intelligence tools, AI-powered report generation helps you uncover key trends, visualize metrics, and deliver actionable insights in seconds.
-              </p>
-              <div className="mt-6">
-                <AnimatedStarButton
-                  onClick={() =>
-                    handleNavigation(
-                      authUser ? `/profile/${authUser.id}` : '/auth/login'
-                    )
-                  }
-                  bgColor="bg-emerald-300"
-                  textColor="text-emerald-900"
-                  borderColor="border-emerald-300"
-                  hoverTextColor="hover:text-emerald-300"
-                  hoverShadow="hover:shadow-[0_0_25px_rgba(16,185,129,0.5)]"
-                  borderRadius="rounded-md"
-                >
-                  View Dashboard
-                </AnimatedStarButton>
-              </div>
-            </div>
-          </ScrollStackItem>
-
-          <ScrollStackItem itemClassName="bg-gradient-to-br from-[#1a1a1a] via-[#6e40c9] via-[#ff8c00] to-[#ff206e]">
-            <div className="max-w-lg">
-              <h2 className="font-bruno text-left text-balance text-xl md:text-2xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-                Alpha CTR
-              </h2>
-              <p className="mt-4 text-left text-base/6 text-neutral-200">
-                Produce engaging short-form videos at scale with AI-driven editing, smart captions, and high-converting thumbnails optimized for maximum Alpha CTR. Leverage AI to analyze audience behavior, auto-generate attention-grabbing visuals, and craft content that stops the scroll.
-              </p>
-              <div className="mt-6">
-                <AnimatedStarButton
-                  onClick={() =>
-                    handleNavigation(
-                      authUser ? `/profile/${authUser.id}` : '/auth/login'
-                    )
-                  }
-                  bgColor="bg-emerald-300"
-                  textColor="text-emerald-900"
-                  borderColor="border-emerald-300"
-                  hoverTextColor="hover:text-emerald-300"
-                  hoverShadow="hover:shadow-[0_0_25px_rgba(16,185,129,0.5)]"
-                  borderRadius="rounded-md"
-                >
-                  Try Workshop
-                </AnimatedStarButton>
-              </div>
-            </div>
-          </ScrollStackItem>
-    
-        <ScrollStackItem itemClassName="bg-gradient-to-br from-orange-600 to-red-700">
-          <div className="max-w-lg">
-            <h2 className="font-bruno text-left text-balance text-2xl md:text-3xl lg:text-4xl font-semibold tracking-[-0.015em] text-white">
-              Learn, Share, and Grow Together
-            </h2>
-            <p className="mt-4 text-left text-base/6 text-neutral-200">
-              Join a vibrant global community of coders inside Sklassics-ai Platform. Engage in real-time discussions, exchange ideas, ask questions. Learn from others, share your insights, and grow as a developer together.
-            </p>
-            <div className="mt-6">
-              <AnimatedStarButton
-                onClick={() => handleNavigation('/community')}
-                bgColor="bg-orange-300"
-                textColor="text-orange-900"
-                borderColor="border-orange-300"
-                hoverTextColor="hover:text-orange-300"
-                hoverShadow="hover:shadow-[0_0_25px_rgba(249,115,22,0.5)]"
-                borderRadius="rounded-xl"
+          {/* Card animation container */}
+          <div ref={containerRef} className="relative w-full max-w-none px-0 mt-1 mb-2" style={{ minHeight: 600 }}>
+            {cardsToRender.map((node, idx) => (
+              <div
+                key={idx}
+                ref={(el) => (cardRefs.current[idx] = el)}
+                className="scroll-stack-card w-full"
+                style={{ perspective: 1200 }}
               >
-                Browse Sheets
-              </AnimatedStarButton>
-            </div>
-          </div>
-        </ScrollStackItem>
-        <ScrollStackItem itemClassName="bg-gradient-to-br from-violet-600 via-purple-600 to-blue-600">
-          <div className="max-w-lg">
-            <h2 className="font-bruno text-left text-balance text-2xl md:text-3xl lg:text-4xl font-semibold tracking-[-0.015em] text-white">
-              AI Singing Voice Synthesis.
-            </h2>
-            <p className="mt-4 text-left text-base/6 text-neutral-200">
-              Create personalized, studio-quality songs using advanced AI singing voice synthesis. Craft unique tracks with AI-generated lyrics, custom melodies, and realistic vocals that match your chosen style, mood, or language. Whether you're a music producer, content creator, or just looking to surprise someone with a custom tune, this technology brings your musical ideas to life—no vocal training or recording equipment needed.
-            </p>
-            <div className="mt-6">{/* Optionally, CTA button here */}</div>
-          </div>
-        </ScrollStackItem>
-
-            <ScrollStackItem itemClassName="bg-gradient-to-br from-black via-black to-black">
-              <div className="max-w-lg">
-                <h2 className="font-bruno text-left text-2xl md:text-3xl lg:text-4xl font-semibold tracking-[-0.015em] text-white">
-                  AI Interview Assistant
-                </h2>
-                <p className="mt-4 text-left text-base/6 text-neutral-200">
-                  Experience realistic Mock interviews & Assessments with AI-powered feedback and comprehensive performance analysis.
-                </p>
-                <div className="mt-6">
-                  <AnimatedStarButton
-                    onClick={() => handleNavigation("/interview")}
-                    bgColor="bg-gray-300"
-                    textColor="text-gray-900"
-                    borderColor="border-gray-300"
-                    hoverTextColor="hover:text-gray-300"
-                    hoverShadow="hover:shadow-[0_0_25px_rgba(107,114,128,0.5)]"
-                    borderRadius="rounded-sm"
-                  >
-                    Start Interview
-                  </AnimatedStarButton>
-                </div>
+                {node}
               </div>
-              <div className="absolute right-10 bottom-10 w-32 h-32 flex items-center justify-center z-50">
-                <SplineModel />
-              </div>
-            </ScrollStackItem>
-          </ScrollStack>
-
-            {/* ALL your normal feature ScrollStackItem cards here, unchanged */}
-            {/* ... */}
-            
-          
-          
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Mobile view unchanged */}
+      {/* Mobile carousel unchanged */}
       <section className="block lg:hidden w-full px-1 max-w-lg mx-auto">
         {/* Header */}
         <div className="text-center mb-4 mt-2">
