@@ -424,7 +424,7 @@ const LandingPage = () => {
         {/* Replace AnimatedGridBackground with GridBackground */}
         <GridBackground>
           {/* Hero Content */}
-          <div className="relative z-10 flex items-center w-full px-4 mx-auto max-w-7xl">
+          <div className="relative z-10 flex items-center w-full px-4 mt-8 mx-auto max-w-7xl">
             <div className="grid items-center lg:grid-cols-2">
               <div className="mt-6">
                 {/* New Feature Badge */}
@@ -633,7 +633,7 @@ const LandingPage = () => {
       />
 
       {/* Why Choose Sklassics-ai Section - Improve overflow handling for VelocityScroll */}
-      <section className="w-full px-4 sm:py-32 sm:mt-5   bg-gradient-to-br from-background via-background to-accent/5 mt-4">
+      <section className="w-full px-4 sm:py-32 sm:mt-5   bg-gradient-to-br from-background via-background to-accent/5">
         <div className="mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -651,16 +651,12 @@ const LandingPage = () => {
                       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-[#f5ac01] rotate-45 rounded-sm"></div>
                     </div>
                     <div className="inline-flex items-center px-2 py-1 mx-2 rounded-full bg-[#f5b210]/10 text-[#f5ac01] text-sm md:text-lg lg:text-xl font-bold">
-  {/* <!-- For mobile, show only "Trusted by" --> */}
-  <span className="block sm:inline md:hidden">Trusted by</span>
+                        {/* <!-- For mobile, show only "Trusted by" --> */}
+                        <span className="block sm:inline md:hidden">Trusted by</span>
 
-  {/* <!-- For desktop and larger, show the full sentence --> */}
-  <span className="hidden md:inline">Trusted by developers at top companies worldwide</span>
-</div>
-
-
-
-
+                        {/* <!-- For desktop and larger, show the full sentence --> */}
+                        <span className="hidden md:inline">Trusted by developers at top companies worldwide</span>
+                      </div>
 
                     <div className="relative w-full max-w-[200px] h-px bg-gradient-to-l from-transparent via-[#f5ac01]/30 to-[#f5ac01]">
                       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-[#f5ac01] rotate-45 rounded-sm"></div>
