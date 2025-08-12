@@ -472,12 +472,13 @@ const LandingPage = () => {
                 >
                   <SparklesText
                       colors={{ first: '#FFFFFF', second: '#FFFFFF' }}
-                      className="text-5xl font-bold md:text-7xl font-akashi leading-relaxed mt-4"
+                      className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold md:text-7xl font-akashi leading-relaxed mt-4 text-center md:text-left"
                     >
                       Crack Interviews 
                       <br />With 
                       AI-Powered Precision
-                  </SparklesText>
+                   </SparklesText>
+
 
                 </motion.div>
 
