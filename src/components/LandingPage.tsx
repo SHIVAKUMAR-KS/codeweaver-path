@@ -412,7 +412,7 @@ const LandingPage = () => {
         onMouseLeave={() => setShowCursor(false)}
       >
         {/* CircularText in top-right */}
-        <div className="absolute z-20 hidden top-20 right-14 lg:block">
+        <div className="absolute z-20 hidden top-20 right-20 lg:block">
           <CircularText
             text="Attempt → Adapt → Advance → Ace → "
             onHover="speedUp"
@@ -426,7 +426,7 @@ const LandingPage = () => {
           {/* Hero Content */}
           <div className="relative z-10 flex items-center w-full px-4 mt-8 mx-auto max-w-7xl">
             <div className="grid items-center lg:grid-cols-2">
-              <div className="mt-6">
+              <div className="mt-20">
                 {/* New Feature Badge */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -471,11 +471,14 @@ const LandingPage = () => {
                   className="my-6"
                 >
                   <SparklesText
-                    colors={{ first: '#FFFFFF', second: '#FFFFFF' }} // magenta to reddish-pink
-                    className="text-5xl font-bold md:text-8xl font-akashi"
-                  >
-                    Empower Your Future With AI
+                      colors={{ first: '#FFFFFF', second: '#FFFFFF' }}
+                      className="text-5xl font-bold md:text-7xl font-akashi leading-relaxed mt-4"
+                    >
+                      Crack Interviews 
+                      <br />With 
+                      AI-Powered Precision
                   </SparklesText>
+
                 </motion.div>
 
 
@@ -486,8 +489,9 @@ const LandingPage = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                    <span className="block max-w-2xl text-xl leading-relaxed text-yellow-500 md:text-2xl">
-                      Revolutionize your workflow with cutting-edge AI technology. Take your interview preparation to the next level. Our AI-powered mock interview platform simulates real-world interview scenarios, giving you the chance to practice and refine your responses.
+                    <span className="block max-w-2xl text-xl leading-relaxed text-yellow-500 md:text-2xl mt-2">
+                      Practice, prepare, and perform with AI-powered mock interviews. Simulate real-world scenarios, get instant feedback, and sharpen your skills for success.
+
                     </span>
 
                 </motion.div>
@@ -532,7 +536,7 @@ const LandingPage = () => {
       </span>
 
       {/* Desktop interactive hover button */}
-      <div className="hidden lg:block lg:h-12 mt-4">
+      <div className="hidden lg:block lg:h-12 mt-8">
         <InteractiveHoverButton
           onClick={() => handleNavigation('/auth/register')}
           className="h-full"
@@ -544,7 +548,7 @@ const LandingPage = () => {
       </div>
 
       {/* Common button (Explore Problems) */}
-      <div className="lg:h-12 w-full sm:w-auto mt-4">
+      <div className="lg:h-12 w-full sm:w-auto mt-8">
   <HoverBorderGradient
     containerClassName="rounded-full h-full"
     className="flex items-center justify-center text-base bg-background text-primary h-full w-full sm:w-auto px-5 py-2"

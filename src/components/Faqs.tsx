@@ -7,40 +7,45 @@ type FAQItem = {
 
 const faqData: FAQItem[] = [
   {
-    question: "How does AI Platform work?",
-    answer: "Our platform uses advanced algorithms to analyze data and provide insights.",
+    question: "What is AI Interview?",
+    answer: "AI Interview is a smart platform that helps job seekers prepare for interviews using artificial intelligence. It simulates real interview scenarios and provides instant feedback on performance.",
   },
   {
-    question: "Can I customize my dashboard?",
-    answer: "Yes, you can customize your dashboard to fit your needs.",
+    question: "How accurate is the feedback?",
+    answer: "Our AI models are trained on thousands of interview patterns and recruiter insights, making feedback highly relevant and actionable",
   },
   {
-    question: "Is my data secure?",
-    answer: "We prioritize data security and use encryption to protect your information.",
+    question: " What kind of feedback do I get after the interview?",
+    answer: "You will receive a technical accuracy score for each question, along with a grammar and communication score. Additionally, you'll get an overall interview performance score. All your answers will also be available for download and review.",
   },
   {
     question: "What support do you offer?",
     answer: "We offer 24/7 customer support to assist you with any inquiries.",
   },
   {
-    question: "How long does a typical AI interview or assessment take?",
+    question: "What is a Resume-Based Interview?",
     answer:
-      "Our AI sessions typically run between 15 and 30 minutes. Whether it's a screening interview or a training/skill assessment, candidates can complete the session at a time that suits them—making the process both efficient and convenient.",
+      "The AI will read your resume and job description, then create a custom interview session with questions directly relevant to your experience and the target job.",
   },
   {
-    question: "Is it fair to evaluate candidates using AI?",
+    question: "How does the coin system work?",
     answer:
-      "Absolutely. Our AI enhances fairness by asking every candidate the same structured questions and evaluating them in a consistent manner. This minimizes unconscious bias while ensuring that your team makes the final decision based on objective, data-driven insights.",
+      "You buy coins, and each interview costs 100 coins. You can purchase coins anytime, and they are instantly credited to your account.",
   },
   {
-    question: "What types of roles can benefit from this system?",
+    question: " Can recruiters use this platform?",
     answer:
-      "Our AI solution is versatile and effective across a wide range of roles—from sales and customer service to campus recruitment, blue-collar positions, and technical roles. It also adapts seamlessly for training and skill assessments by customizing questions and evaluation criteria to suit your industry and job requirements.",
+      "Absolutely. Recruiters can use AI Interview to create customized interview assessments and screen candidates efficiently.",
   },
   {
-    question: "What support do candidates receive during the process?",
+    question: "Do coins expire?",
     answer:
-      "Candidates receive clear instructions from start to finish. The interface is intuitive and user-friendly, and we provide technical support if needed. Most candidates report finding the experience professional and comfortable.",
+      "No, your coins never expire.",
+  },
+  {
+    question: "How accurate is the resume score?",
+    answer:
+      "Our AI uses job description parsing and keyword matching to give you an accurate relevance score.",
   },
 ];
 

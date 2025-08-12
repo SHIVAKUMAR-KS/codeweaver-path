@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
-import {HoverBorderGradient} from '@/components/ui/hover-border-gradient'
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { IoMdArrowBack } from "react-icons/io";
-
 
 interface BlogPost {
   id: number;
@@ -18,21 +17,21 @@ const blogPosts: BlogPost[] = [
     title: "Panel Interview",
     excerpt: "What Is a Panel Interview? Advantages, Challenges, and Best Practices",
     content:
-      "Discover what a panel interview is, its benefits, challenges, and best practices to streamline hiring and ensure fair evaluation.",
+      "Explore the ins and outs of panel interviews—what they are, how they work, and why organizations use them. Uncover their key benefits, potential challenges, and expert-backed tips to ensure a structured, fair, and efficient hiring process.",
   },
   {
     id: 2,
     title: "Interview Scorecard",
     excerpt: "The Ultimate Guide to Interview Scorecards (With Free Template)",
     content:
-      "Learn how interview scorecards improve hiring by ensuring fair, consistent, and data-driven candidate evaluations. Free template!",
+      "Master the art of structured interviewing with our comprehensive guide to interview scorecards. Learn how they drive consistency, eliminate bias, and support data-driven hiring decisions. Includes a downloadable template to help you get started right away.",
   },
   {
     id: 3,
     title: "Recruitment ROI",
     excerpt: "How to Measure and Improve Your Recruitment ROI",
     content:
-      "Learn how to measure and improve recruitment ROI with key metrics, calculation methods, and strategies for better hiring results.",
+      "Unlock the secrets to maximizing the return on your recruitment investment. This guide walks you through essential metrics, how to calculate recruitment ROI, and actionable strategies to reduce costs and improve hiring outcomes.",
   },
   {
     id: 4,
@@ -55,6 +54,28 @@ const blogPosts: BlogPost[] = [
     content:
       "Advanced AI assistants like Interview Sidekick and Ninjafy analyze responses in real time, giving targeted feedback on your pace, content, and confidence. Now, every practice session is a learning opportunity, as the AI gets to know your style and weaknesses, providing ever-sharper feedback with each attempt.",
   },
+  // ---- Additional Static Content ----
+  {
+    id: 7,
+    title: "Future of AI in Recruitment",
+    excerpt: "How artificial intelligence is revolutionizing hiring processes in 2025.",
+    content:
+      "AI is streamlining recruitment with automated resume screening, skill-matching algorithms, and predictive analytics. By reducing human bias and improving candidate matching, organizations are filling roles faster while ensuring higher quality hires. In the coming years, AI will evolve to provide even more accurate cultural fit predictions and engagement scoring.",
+  },
+  {
+    id: 8,
+    title: "Soft Skills Assessment with AI",
+    excerpt: "Why AI-driven soft skills evaluation is becoming a game-changer for employers.",
+    content:
+      "Beyond technical abilities, AI can now evaluate communication, adaptability, emotional intelligence, and leadership qualities. Using tone analysis, scenario-based simulations, and sentiment scoring, platforms can give recruiters a 360-degree understanding of a candidate’s soft skills — enabling better hiring decisions.",
+  },
+  {
+    id: 9,
+    title: "AI Video Interview Tips",
+    excerpt: "Practical tips to ace your AI-powered interview video calls.",
+    content:
+      "With AI now analyzing facial expressions, eye movement, speech clarity, and even confidence levels, candidates must prepare differently. Ensure proper lighting, maintain eye contact with the camera, and speak clearly. Practice with AI mock interview tools to adjust pacing and tone for maximum impact.",
+  }
 ];
 
 const Blog: React.FC = () => {
@@ -78,19 +99,19 @@ const Blog: React.FC = () => {
       }}
     >
       <div className="max-w-5xl mx-auto px-4 py-10">
-         <HoverBorderGradient
-          containerClassName="rounded-full h-15 w-max"                    // Lower height and tighter width
-          className="flex items-center justify-center text-sm bg-background text-primary h-10 px-3 py-1" // Smaller text & padding
+        <HoverBorderGradient
+          containerClassName="rounded-full h-15 w-max"
+          className="flex items-center justify-center text-sm bg-background text-primary h-10 px-3 py-1"
           onClick={() => navigate("/")}
           style={{ cursor: "pointer" }}
         >
-          <IoMdArrowBack  className="w-4 h-4 mr-1" />   {/* Smaller icon */}
-          Back to Home
+          <IoMdArrowBack className="w-4 h-4 mr-1" /> Back to Home
         </HoverBorderGradient>
 
         <h1 className="text-4xl font-bold mb-7 mt-4" style={{ color: "#FBBF24" }}>
           AI Interview Insights
         </h1>
+
         <div className="grid gap-7">
           {blogPosts.map((post) => {
             const isExpanded = expandedPosts.includes(post.id);
@@ -135,11 +156,22 @@ const Blog: React.FC = () => {
             );
           })}
         </div>
-      </div>
-      <Footer/>
-    </div>
 
-    
+        {/* ---- More Blogs Button ---- */}
+        <div className="flex justify-center mt-10">
+          <HoverBorderGradient
+            containerClassName="rounded-full h-15 w-max"
+            className="flex items-center justify-center text-sm bg-background text-primary h-10 px-5 py-2"
+            onClick={() => (window.location.href = "https://sklassics.com/blog/")}
+            style={{ cursor: "pointer" }}
+          >
+            Explore More Blogs →
+          </HoverBorderGradient>
+        </div>
+      </div>
+
+      <Footer />
+    </div>
   );
 };
 
