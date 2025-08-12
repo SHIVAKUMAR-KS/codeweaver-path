@@ -105,9 +105,9 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
         if (!card) return;
         gsap.set(card, {
           position: "absolute",
-          top: "10%", // top alignment fix ✅
+          top: "10%", // top alignment
           left: "50%",
-          transform: "translateX(-50%)", // only horizontal centering
+          transform: "translateX(-50%)",
           zIndex: featureCards.length - i,
           opacity: i === 0 ? 1 : 0,
           pointerEvents: i === 0 ? "auto" : "none",
@@ -202,7 +202,8 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
     };
   }, [featureCards.length]);
 
-  // Cards with extra paragraph
+  // Cards with intro paragraph + list
+ // Cards with extra paragraph
  const cardsToRender = [
   <FeatureCard
     ref={(el) => {
@@ -355,11 +356,38 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
       {/* Desktop */}
       <section className="hidden lg:block w-full px-0 pt-16 relative z-10">
         <div className="mx-auto max-w-none font-bruno font-bold">
-          {/* Cards Animation Container */}
+          {/* HEADER with "Our Features" */}
+          <div
+            ref={headerRef}
+            className="sticky top-0 left-0 right-0 z-20 backdrop-blur-lg bg-white/5 border-b border-white/10 rounded-xl shadow-lg py-6 transition-transform"
+          >
+            <div className="flex items-center justify-center w-full mb-4 mt-2">
+              {/* Left arrow */}
+              <div className="relative w-[120px] h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-yellow-400">
+                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-yellow-400 rounded-full" />
+              </div>
+              {/* Our Features */}
+              <div className="inline-flex items-center px-4 py-1 mx-6 rounded-full bg-cyan-400/10 text-yellow-500 text-lg font-bold whitespace-nowrap shadow">
+                Our Features
+              </div>
+              {/* Right arrow */}
+              <div className="relative w-[120px] h-px bg-gradient-to-l from-transparent via-cyan-400/30 to-yellow-500">
+                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full" />
+              </div>
+            </div>
+            <h2 className="mb-2 text-5xl md:text-7xl font-akashi text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 text-center">
+              Engineered for Excellence
+            </h2>
+            <p className="font-bruno text-xl max-w-4xl mx-auto leading-relaxed text-cyan-400/80 text-center">
+              Ace every interview with confidence. Conduct seamless, automated interviews which save time and ensure quality.
+            </p>
+          </div>
+
+          {/* Card animation container */}
           <div
             ref={containerRef}
             className="relative w-full max-w-none px-0 mt-1 mb-2"
-            style={{ minHeight: 750 }} // height increased so all fit
+            style={{ minHeight: 750 }}
           >
             {cardsToRender.map((node, idx) => (
               <div
@@ -375,8 +403,8 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
         </div>
       </section>
 
-      {/* Mobile view */}
-       <section className="block lg:hidden w-full px-1 max-w-lg mx-auto">
+      {/* Mobile carousel */}
+      <section className="block lg:hidden w-full px-1 max-w-lg mx-auto">
         {/* Header */}
         <div className="text-center mb-4 mt-2">
           <div className="flex items-center justify-center mb-4">
@@ -420,8 +448,6 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
         </div>
       </section>
     </section>
-
-  
   );
 };
 
