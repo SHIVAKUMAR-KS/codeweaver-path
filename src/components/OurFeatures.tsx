@@ -379,7 +379,7 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
               Engineered for Excellence
             </h2>
             <p className="font-bruno text-xl max-w-4xl mx-auto leading-relaxed text-cyan-400/80 text-center">
-              Ace every interview with confidence. Conduct seamless, automated interviews which save time and ensure quality.
+              In today’s job market, being ready for anything is key. Our AI-powered interview coach lets you practice with realistic simulations, get instant feedback, and quickly improve your skills. Whether you’re preparing for your dream role or hiring top talent, we help you walk into any interview with confidence.
             </p>
           </div>
 
@@ -391,11 +391,12 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
           >
             {cardsToRender.map((node, idx) => (
               <div
-                key={idx}
-                ref={(el) => (cardRefs.current[idx] = el)}
-                className="scroll-stack-card w-full"
-                style={{ perspective: 1200 }}
+              key={idx}
+              ref={(el) => (cardRefs.current[idx] = el)}
+              className="scroll-stack-card w-full"
+              style={{ perspective: 1200 }}
               >
+                <div className="mb-2 text-5xl md:text-7xl font-akashi text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 text-center">How It Works</div>
                 {node}
               </div>
             ))}
@@ -408,9 +409,20 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
         {/* Header */}
         <div className="text-center mb-4 mt-2">
           <div className="flex items-center justify-center mb-4">
-            <div className="relative w-full max-w-[60px] h-px bg-gradient-to-r from-transparent via-[#f5ac01]/30 to-[#f5ac01]" />
-            <div className="inline-flex items-center px-2 py-0.5 mx-2 rounded-full bg-[#f5b210]/10 text-[#f5ac01] text-xs font-bold">Our Features</div>
-            <div className="relative w-full max-w-[60px] h-px bg-gradient-to-l from-transparent via-[#f5ac01]/30 to-[#f5ac01]" />
+            <div className="flex items-center justify-center w-full mb-4 mt-2">
+              {/* Left arrow */}
+              <div className="relative w-[120px] h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-yellow-400">
+                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-yellow-400 rounded-full" />
+              </div>
+              {/* Our Features */}
+              <div className="inline-flex items-center px-4 py-1 mx-2 rounded-full bg-cyan-400/10 text-yellow-500 text-lg font-bold whitespace-nowrap shadow">
+                Our Features
+              </div>
+              {/* Right arrow */}
+              <div className="relative w-[120px] h-px bg-gradient-to-l from-transparent via-cyan-400/30 to-yellow-500">
+                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full" />
+              </div>
+            </div>
           </div>
           <h2 className="mb-2 text-2xl font-bold font-akashi tracking-wide">
             Engineered for Excellence
@@ -419,6 +431,9 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
             Ace Every Interview with Confidence. Conduct seamless, automated interviews which save time and ensure quality.
           </p>
         </div>
+          <div className="mb-2 text-2xl md:text-7xl font-akashi text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 text-center">How It Works</div>
+
+
 
         {/* Carousel */}
         <div className="relative w-full">

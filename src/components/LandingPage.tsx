@@ -28,6 +28,7 @@ import Navbar from './Navbar';
 import logo1 from '../../public/logo1.png'
 import Faqs from './Faqs';
 import AdvancedFeaturesSection from './OurFeatures';
+import AboutUs from './AboutUs';
 
 const slugs = [
   'typescript',
@@ -727,6 +728,7 @@ const LandingPage = () => {
           </motion.div>
         </div>
       </section>
+      <AboutUs/>
       <Faqs />
       <Footer />
     </div>
