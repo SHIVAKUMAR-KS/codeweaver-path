@@ -99,12 +99,6 @@ const LandingPage = () => {
   <div className="mt-6">
     <AnimatedStarButton
       onClick={() => handleNavigation('/problems')}
-      bgColor="bg-indigo-300"
-      textColor="text-indigo-900"
-      borderColor="border-indigo-300"
-      hoverTextColor="hover:text-indigo-300"
-      hoverShadow="hover:shadow-[0_0_25px_rgba(99,102,241,0.5)]"
-      borderRadius="rounded-full"
     >
       Try Workspace
     </AnimatedStarButton>
