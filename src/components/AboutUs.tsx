@@ -2,7 +2,7 @@ import React from "react";
 
 const AboutUs: React.FC = () => {
   return (
-    <section className="relative w-full bg-gradient-to-br from-slate-950 via-slate-900 to-black text-white py-20 px-6 overflow-hidden">
+    <section className="relative w-full bg-gradient-to-br from-slate-950 via-slate-900 to-black text-white py-20 px-6 overflow-hidden mt-12">
       {/* Background Blobs / Futuristic Glow */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-20 -left-20 h-96 w-96 rounded-full bg-purple-700/20 blur-[180px]" />

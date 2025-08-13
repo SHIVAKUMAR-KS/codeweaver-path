@@ -19,8 +19,8 @@ const faqData: FAQItem[] = [
     answer: "You will receive a technical accuracy score for each question, along with a grammar and communication score. Additionally, you'll get an overall interview performance score. All your answers will also be available for download and review.",
   },
   {
-    question: "What support do you offer?",
-    answer: "We offer 24/7 customer support to assist you with any inquiries.",
+    question: "Do I need special software to use it?",
+    answer: "No. AI Interview runs directly in your browser and works on desktop, tablet, and mobile devices.",
   },
   {
     question: "What is a Resume-Based Interview?",

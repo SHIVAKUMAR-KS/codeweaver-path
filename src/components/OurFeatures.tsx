@@ -332,7 +332,67 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
           </div>
         </div>
       </section>
+        {/* Mobile carousel */}
+      <section className="block lg:hidden w-full px-1 max-w-lg mx-auto">
+        {/* Header */}
+        <div className="text-center mb-4 mt-2">
+          <div className="flex items-center justify-center mb-4">
+            <div className="flex items-center justify-center w-full mb-4 mt-2">
+              {/* Left arrow */}
+              <div className="relative w-[120px] h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-yellow-400">
+                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-yellow-400 rounded-full" />
+              </div>
+              {/* Our Features */}
+              <div className="inline-flex items-center px-4 py-1 mx-2 rounded-full bg-cyan-400/10 text-yellow-500 text-lg font-bold whitespace-nowrap shadow">
+                Our Features
+              </div>
+              {/* Right arrow */}
+              <div className="relative w-[120px] h-px bg-gradient-to-l from-transparent via-cyan-400/30 to-yellow-500">
+                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full" />
+              </div>
+            </div>
+          </div>
+          <h2 className="mb-2 text-2xl font-bold font-akashi tracking-wide">
+            Engineered for Excellence
+          </h2>
+          <p className="font-bruno text-sm max-w-xs mx-auto leading-normal text-[#f5ac01]">
+            Ace Every Interview with Confidence. Conduct seamless, automated interviews which save time and ensure quality.
+          </p>
+        </div>
+          <div className="mb-2 text-2xl md:text-7xl font-akashi text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 text-center">How It Works</div>
+
+
+
+        {/* Carousel */}
+        <div className="relative w-full">
+          {featureCards[featureIdx]}
+          <div className="flex items-center justify-center gap-6 mt-4">
+            <button
+              aria-label="Previous"
+              className="rounded-full bg-gray-700/80 hover:bg-gray-400 text-white w-10 h-10 flex items-center justify-center shadow"
+              onClick={() => setFeatureIdx(idx => idx === 0 ? featureCards.length - 1 : idx - 1)}
+            >
+              <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6" /></svg>
+            </button>
+            <button
+              aria-label="Next"
+              className="rounded-full bg-gray-700/80 hover:bg-gray-400 text-white w-10 h-10 flex items-center justify-center shadow"
+              onClick={() => setFeatureIdx(idx => (idx + 1) % featureCards.length)}
+            >
+              <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 6l6 6-6 6" /></svg>
+            </button>
+          </div>
+          {/* Dots */}
+          <div className="flex items-center justify-center mt-4 gap-1">
+            {featureCards.map((_, idx) => (
+              <span key={idx} className={`inline-block w-2 h-2 rounded-full transition ${featureIdx === idx ? 'bg-[#f5ac01]' : 'bg-gray-400'}`} />
+            ))}
+          </div>
+        </div>
+      </section>
     </section>
+
+    
   );
 };
 

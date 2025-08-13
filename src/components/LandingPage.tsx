@@ -639,7 +639,7 @@ const LandingPage = () => {
       />
 
       {/* Why Choose Sklassics-ai Section - Improve overflow handling for VelocityScroll */}
-      <section className="w-full px-4 sm:pb-10 sm:mt-5   bg-gradient-to-br from-background via-background to-accent/5">
+      <section className="w-full px-4 sm:pb-10 sm:mt-1   bg-gradient-to-br from-background via-background to-accent/5 ">
         <div className="mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -651,8 +651,8 @@ const LandingPage = () => {
             {/* <p className="mt-20 mb-8 text-2xl text-muted-foreground font-bold  ">
               Trusted by developers at top companies worldwide
             </p> */}
-            <div className="text-center font-bruno text-2xl mb-8 mt-20 text-xl">
-                  <div className="flex items-center justify-center mb-6">
+            <div className="text-center font-bruno text-2xl mb-8 mt-4 sm:mt-0.5 text-xl">
+                  <div className="flex items-center justify-center mb-10">
                     <div className="relative w-full max-w-[200px] h-px bg-gradient-to-r from-transparent via-[#f5ac01]/30 to-[#f5ac01]">
                       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-[#f5ac01] rotate-45 rounded-sm"></div>
                     </div>
