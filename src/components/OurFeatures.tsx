@@ -19,7 +19,7 @@ const FeatureCard = React.forwardRef<HTMLDivElement, any>(
     return (
       <div
         ref={ref}
-        className={`feature-card w-full max-w-[1250px] rounded-3xl min-h-[120px] md:min-h-[400px] p-8 py-12 ${bgGradient}
+        className={`feature-card w-full max-w-[1250px] rounded-none min-h-[120px] md:min-h-[400px] p-8 py-12 ${bgGradient}
         border border-white/10 shadow-xl transition-all transform-gpu flex flex-col justify-center mx-auto`}
         style={{ willChange: "transform" }}
       >
@@ -65,7 +65,6 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
   const headerRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const hoverRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   // Scroll shuffle/entrance
   useEffect(() => {
@@ -149,217 +148,142 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
     return () => ctx.revert();
   }, [featureCards.length]);
 
-  // Hover animation (desktop only)
-  useEffect(() => {
-    if (typeof window === "undefined" || window.innerWidth < 1024) return;
-
-    hoverRefs.current.forEach((el) => {
-      if (!el) return;
-      el.onmousemove = null;
-      el.onmouseleave = null;
-    });
-
-    hoverRefs.current.forEach((el) => {
-      if (!el) return;
-
-      el.onmousemove = (e: MouseEvent) => {
-        const bounds = el.getBoundingClientRect();
-        const x = e.clientX - bounds.left;
-        const y = e.clientY - bounds.top;
-        const rotateY = gsap.utils.mapRange(0, bounds.width, -10, 10, x);
-        const rotateX = gsap.utils.mapRange(0, bounds.height, 8, -8, y);
-
-        gsap.to(el, {
-          rotateY,
-          rotateX,
-          scale: 1.03,
-          boxShadow: "0 0 48px 0 #fff9 ,0 10px 24px rgba(0,0,0,0.4)",
-          filter: "drop-shadow(0 0 40px rgba(255,255,255,0.08))",
-          duration: 0.3,
-          ease: "power2.out",
-        });
-      };
-
-      el.onmouseleave = () => {
-        gsap.to(el, {
-          rotateY: 0,
-          rotateX: 0,
-          scale: 1,
-          boxShadow: "0 8px 24px rgba(0,0,0,0.24)",
-          filter: "none",
-          duration: 0.7,
-          ease: "elastic.out(1,0.4)",
-        });
-      };
-    });
-
-    return () => {
-      hoverRefs.current.forEach((el) => {
-        if (!el) return;
-        el.onmousemove = null;
-        el.onmouseleave = null;
-      });
-    };
-  }, [featureCards.length]);
-
   // Cards with intro paragraph + list
- // Cards with extra paragraph
- const cardsToRender = [
-  <FeatureCard
-    ref={(el) => {
-      hoverRefs.current[0] = el;
-    }}
-    key="free-coins"
-    title="Login & Get Free Coins"
-    description={
-      <div>
-        <p className="mb-2">Get rewarded instantly when you join.</p>
-        <ul className="list-disc pl-5 space-y-2">
-          <li>Sign up and start practicing right away — no strings attached.</li>
-          <li>Free coins the moment you join.</li>
-          <li>No payment needed to get started.</li>
-          <li>Try out the platform before buying more coins.</li>
-        </ul>
-      </div>
-    }
-    buttonText="Get Started"
-    buttonAction={() => handleNavigation("/auth/login")}
-    buttonColor="indigo"
-    bgGradient="bg-gradient-to-br from-indigo-900 via-purple-800 to-indigo-700"
-  />,
-  <FeatureCard
-    ref={(el) => {
-      hoverRefs.current[1] = el;
-    }}
-    key="choose-domain"
-    title="Choose Your Domain & Level"
-    description={
-      <div>
-        <p className="mb-2">Pick your field, set your level, and let’s get to work.</p>
-        <ul className="list-disc pl-5 space-y-2">
-          <li>Domains like Python, Java, NLP, ML, DL, CV, and more.</li>
-          <li>3 skill levels — Beginner, Moderate, High.</li>
-          <li>Each level has 5 stages that get trickier as you go.</li>
-          <li>5 AI-powered questions in every stage.</li>
-          <li>Progress at your own pace, one stage at a time.</li>
-        </ul>
-      </div>
-    }
-    buttonText="Select Domain"
-    buttonAction={() =>
-      handleNavigation(authUser ? `/profile/${authUser.id}` : "/auth/login")
-    }
-    buttonColor="emerald"
-    bgGradient="bg-gradient-to-br from-emerald-900 via-green-700 to-teal-800"
-  />,
-  <FeatureCard
-    ref={(el) => {
-      hoverRefs.current[2] = el;
-    }}
-    key="resume-interview"
-    title="Resume-Based & Job Description-Based Interviews"
-    description={
-      <div>
-        <p className="mb-2">Upload your resume and job description to get interview questions tailored to your skills and target role.</p>
-        <ul className="list-disc pl-5 space-y-2">
-          <li>AI scans your resume for your skills and projects.</li>
-          <li>Reads the job description to see what the role needs.</li>
-          <li>Generates relevant, tailored questions for your profile.</li>
-          <li>Feels like a real interview for the job you’re targeting.</li>
-        </ul>
-      </div>
-    }
-    buttonText="Start Interview"
-    buttonAction={() =>
-      handleNavigation(authUser ? `/profile/${authUser.id}` : "/auth/login")
-    }
-    buttonColor="orange"
-    bgGradient="bg-gradient-to-br from-orange-700 via-red-600 to-pink-600"
-  />,
-  <FeatureCard
-    ref={(el) => {
-      hoverRefs.current[3] = el;
-    }}
-    key="resume-score"
-    title="Resume Score Checker"
-    description={
-      <div>
-        <p className="mb-2">See how your resume stacks up for a specific job — instantly.</p>
-        <ul className="list-disc pl-5 space-y-2">
-          <li>Upload your resume and the job description.</li>
-          <li>Get a match score and keyword alignment.</li>
-          <li>See exactly where you can improve.</li>
-          <li>Make your resume more ATS and recruiter-friendly.</li>
-        </ul>
-      </div>
-    }
-    buttonText="Check Resume"
-    buttonAction={() =>
-      handleNavigation(authUser ? `/profile/${authUser.id}` : "/auth/login")
-    }
-    buttonColor="orange"
-    bgGradient="bg-gradient-to-br from-pink-600 via-red-600 to-orange-600"
-  />,
-  <FeatureCard
-    ref={(el) => {
-      hoverRefs.current[4] = el;
-    }}
-    key="performance-insights"
-    title="Detailed Performance Insights"
-    description={
-      <div>
-        <p className="mb-2">See exactly how you did — and how to get even better.</p>
-        <ul className="list-disc pl-5 space-y-2">
-          <li>Technical score so you know how solid your answers were.</li>
-          <li>Grammar & communication score to help you sound clear and confident.</li>
-          <li>Download your answers to review anytime.</li>
-          <li>Track your progress and watch yourself improve with every session.</li>
-        </ul>
-      </div>
-    }
-    buttonText="View Insights"
-    buttonAction={() =>
-      handleNavigation(authUser ? `/profile/${authUser.id}` : "/auth/login")
-    }
-    buttonColor="orange"
-    bgGradient="bg-gradient-to-br from-purple-700 via-red-600 to-blue-600"
-  />,
-  // <FeatureCard
-  //   ref={(el) => {
-  //     hoverRefs.current[5] = el;
-  //   }}
-  //   key="interview-assistant"
-  //   title="AI Interview Assistant"
-  //   description={
-  //     <div>
-  //       <p className="mb-2">Simulate real interviews with AI guidance.</p>
-  //       <ul className="list-disc pl-5 space-y-2">
-  //         <li>Experience realistic mock interviews & assessments.</li>
-  //         <li>Receive AI-powered feedback on all your answers.</li>
-  //         <li>Access comprehensive performance analysis instantly.</li>
-  //         <li>Improve with tailored, actionable insights.</li>
-  //       </ul>
-  //     </div>
-  //   }
-  //   buttonText="Start Interview"
-  //   buttonAction={() =>
-  //     handleNavigation(authUser ? `/profile/${authUser.id}` : "/auth/login")
-  //   }
-  //   buttonColor="orange"
-  //   bgGradient="bg-gradient-to-br from-gray-900 via-red-600 to-black"
-  // />,
-];
+  const cardsToRender = [
+    <FeatureCard
+      ref={(el) => {
+        cardRefs.current[0] = el;
+      }}
+      key="free-coins"
+      title="Login & Get Free Coins"
+      description={
+        <div>
+          <p className="mb-2">Get rewarded instantly when you join.</p>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>Sign up and start practicing right away — no strings attached.</li>
+            <li>Free coins the moment you join.</li>
+            <li>No payment needed to get started.</li>
+            <li>Try out the platform before buying more coins.</li>
+          </ul>
+        </div>
+      }
+      buttonText="Get Started"
+      buttonAction={() => handleNavigation("/auth/login")}
+      buttonColor="indigo"
+      bgGradient="bg-gradient-to-br from-background via-background to-accent/5"
 
+    />,
+    <FeatureCard
+      ref={(el) => {
+        cardRefs.current[1] = el;
+      }}
+      key="choose-domain"
+      title="Choose Your Domain & Level"
+      description={
+        <div>
+          <p className="mb-2">Pick your field, set your level, and let’s get to work.</p>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>Domains like Python, Java, NLP, ML, DL, CV, and more.</li>
+            <li>3 skill levels — Beginner, Moderate, High.</li>
+            <li>Each level has 5 stages that get trickier as you go.</li>
+            <li>5 AI-powered questions in every stage.</li>
+            <li>Progress at your own pace, one stage at a time.</li>
+          </ul>
+        </div>
+      }
+      buttonText="Select Domain"
+      buttonAction={() =>
+        handleNavigation(authUser ? `/profile/${authUser.id}` : "/auth/login")
+      }
+      buttonColor="emerald"
+      bgGradient="bg-gradient-to-br from-background via-background to-accent/5"
+    />,
+    <FeatureCard
+      ref={(el) => {
+        cardRefs.current[2] = el;
+      }}
+      key="resume-interview"
+      title="Resume-Based & Job Description-Based Interviews"
+      description={
+        <div>
+          <p className="mb-2">
+            Upload your resume and job description to get interview questions tailored to your
+            skills and target role.
+          </p>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>AI scans your resume for your skills and projects.</li>
+            <li>Reads the job description to see what the role needs.</li>
+            <li>Generates relevant, tailored questions for your profile.</li>
+            <li>Feels like a real interview for the job you’re targeting.</li>
+          </ul>
+        </div>
+      }
+      buttonText="Start Interview"
+      buttonAction={() =>
+        handleNavigation(authUser ? `/profile/${authUser.id}` : "/auth/login")
+      }
+      buttonColor="orange"
+      bgGradient="bg-gradient-to-br from-background via-background to-accent/5"
+    />,
+    <FeatureCard
+      ref={(el) => {
+        cardRefs.current[3] = el;
+      }}
+      key="resume-score"
+      title="Resume Score Checker"
+      description={
+        <div>
+          <p className="mb-2">See how your resume stacks up for a specific job — instantly.</p>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>Upload your resume and the job description.</li>
+            <li>Get a match score and keyword alignment.</li>
+            <li>See exactly where you can improve.</li>
+            <li>Make your resume more ATS and recruiter-friendly.</li>
+          </ul>
+        </div>
+      }
+      buttonText="Check Resume"
+      buttonAction={() =>
+        handleNavigation(authUser ? `/profile/${authUser.id}` : "/auth/login")
+      }
+      buttonColor="orange"
+      bgGradient="bg-gradient-to-br from-background via-background to-accent/5"
+    />,
+    <FeatureCard
+      ref={(el) => {
+        cardRefs.current[4] = el;
+      }}
+      key="performance-insights"
+      title="Detailed Performance Insights"
+      description={
+        <div>
+          <p className="mb-2">See exactly how you did — and how to get even better.</p>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>Technical score so you know how solid your answers were.</li>
+            <li>Grammar & communication score to help you sound clear and confident.</li>
+            <li>Download your answers to review anytime.</li>
+            <li>Track your progress and watch yourself improve with every session.</li>
+          </ul>
+        </div>
+      }
+      buttonText="View Insights"
+      buttonAction={() =>
+        handleNavigation(authUser ? `/profile/${authUser.id}` : "/auth/login")
+      }
+      buttonColor="orange"
+      bgGradient="bg-gradient-to-br from-background via-background to-accent/5"
+    />,
+  ];
 
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-black text-white">
+    <section className="relative w-full overflow-hidden bg-gradient-to-br from-background via-background to-accent/5 text-white">
       {/* Desktop */}
       <section className="hidden lg:block w-full px-0 pt-16 relative z-10">
         <div className="mx-auto max-w-none font-bruno font-bold">
           {/* HEADER with "Our Features" */}
           <div
             ref={headerRef}
-            className="sticky top-0 left-0 right-0 z-20 backdrop-blur-lg bg-white/5 border-b border-white/10 rounded-xl shadow-lg py-6 transition-transform"
+            className="sticky top-0 left-0 right-0 z-20 backdrop-blur-lgbg-gradient-to-br from-background via-background to-accent/5 rounded-xl shadow-lg py-6 transition-transform"
           >
             <div className="flex items-center justify-center w-full mb-4 mt-2">
               {/* Left arrow */}
@@ -379,7 +303,10 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
               Engineered for Excellence
             </h2>
             <p className="font-bruno text-xl max-w-4xl mx-auto leading-relaxed text-cyan-400/80 text-center">
-              In today’s job market, being ready for anything is key. Our AI-powered interview coach lets you practice with realistic simulations, get instant feedback, and quickly improve your skills. Whether you’re preparing for your dream role or hiring top talent, we help you walk into any interview with confidence.
+              In today’s job market, being ready for anything is key. Our AI-powered interview
+              coach lets you practice with realistic simulations, get instant feedback, and
+              quickly improve your skills. Whether you’re preparing for your dream role or hiring
+              top talent, we help you walk into any interview with confidence.
             </p>
           </div>
 
@@ -391,73 +318,16 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
           >
             {cardsToRender.map((node, idx) => (
               <div
-              key={idx}
-              ref={(el) => (cardRefs.current[idx] = el)}
-              className="scroll-stack-card w-full"
-              style={{ perspective: 1200 }}
+                key={idx}
+                ref={(el) => (cardRefs.current[idx] = el)}
+                className="scroll-stack-card w-full"
+                style={{ perspective: 1200 }}
               >
-                <div className="mb-2 text-5xl md:text-7xl font-akashi text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 text-center">How It Works</div>
+                <div className="mb-2 text-5xl md:text-5xl font-akashi text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 text-center">
+                  How It Works
+                </div>
                 {node}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Mobile carousel */}
-      <section className="block lg:hidden w-full px-1 max-w-lg mx-auto">
-        {/* Header */}
-        <div className="text-center mb-4 mt-2">
-          <div className="flex items-center justify-center mb-4">
-            <div className="flex items-center justify-center w-full mb-4 mt-2">
-              {/* Left arrow */}
-              <div className="relative w-[120px] h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-yellow-400">
-                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-yellow-400 rounded-full" />
-              </div>
-              {/* Our Features */}
-              <div className="inline-flex items-center px-4 py-1 mx-2 rounded-full bg-cyan-400/10 text-yellow-500 text-lg font-bold whitespace-nowrap shadow">
-                Our Features
-              </div>
-              {/* Right arrow */}
-              <div className="relative w-[120px] h-px bg-gradient-to-l from-transparent via-cyan-400/30 to-yellow-500">
-                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-yellow-500 rounded-full" />
-              </div>
-            </div>
-          </div>
-          <h2 className="mb-2 text-2xl font-bold font-akashi tracking-wide">
-            Engineered for Excellence
-          </h2>
-          <p className="font-bruno text-sm max-w-xs mx-auto leading-normal text-[#f5ac01]">
-            Ace Every Interview with Confidence. Conduct seamless, automated interviews which save time and ensure quality.
-          </p>
-        </div>
-          <div className="mb-2 text-2xl md:text-7xl font-akashi text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 text-center">How It Works</div>
-
-
-
-        {/* Carousel */}
-        <div className="relative w-full">
-          {featureCards[featureIdx]}
-          <div className="flex items-center justify-center gap-6 mt-4">
-            <button
-              aria-label="Previous"
-              className="rounded-full bg-gray-700/80 hover:bg-gray-400 text-white w-10 h-10 flex items-center justify-center shadow"
-              onClick={() => setFeatureIdx(idx => idx === 0 ? featureCards.length - 1 : idx - 1)}
-            >
-              <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6" /></svg>
-            </button>
-            <button
-              aria-label="Next"
-              className="rounded-full bg-gray-700/80 hover:bg-gray-400 text-white w-10 h-10 flex items-center justify-center shadow"
-              onClick={() => setFeatureIdx(idx => (idx + 1) % featureCards.length)}
-            >
-              <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 6l6 6-6 6" /></svg>
-            </button>
-          </div>
-          {/* Dots */}
-          <div className="flex items-center justify-center mt-4 gap-1">
-            {featureCards.map((_, idx) => (
-              <span key={idx} className={`inline-block w-2 h-2 rounded-full transition ${featureIdx === idx ? 'bg-[#f5ac01]' : 'bg-gray-400'}`} />
             ))}
           </div>
         </div>
