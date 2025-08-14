@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
 
 
   <a
-    href="https://chat.whatsapp.com/YOUR_COMMUNITY_INVITE_LINK"
+    href="https://chat.whatsapp.com/JRiiUT1s4qfCA7tKxyuCEE"
     target="_blank"
     rel="noopener noreferrer"
     className="bg-amber-400 text-black hover:bg-green-700 px-3 py-2 rounded font-bold text-sm flex items-center gap-2"
