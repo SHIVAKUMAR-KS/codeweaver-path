@@ -29,6 +29,7 @@ import logo1 from '../../public/logo1.png'
 import Faqs from './Faqs';
 import AdvancedFeaturesSection from './OurFeatures';
 import AboutUs from './AboutUs';
+import newimg from '../../public/sklassic-removebg-preview.png'
 
 const slugs = [
   'typescript',
@@ -317,13 +318,13 @@ const LandingPage = () => {
       name: 'sklassicstech.com',
       src: logo1,
       width: 100,
-      height: 36,
+      height: 136,
     },
     {
       name: 'sklassicsacademy.com',
-      src: logo1,
+      src:logo1,
       width: 140,
-      height: 32,
+      height: 152,
     },
     {
       name: 'sklassics-lms.com',

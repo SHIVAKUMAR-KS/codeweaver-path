@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AnimatedStarButton from "@/components/ui/animated-star-button";
+import SplineModel from "./SplineModel";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,8 +20,8 @@ const FeatureCard = React.forwardRef<HTMLDivElement, any>(
     return (
       <div
         ref={ref}
-        className={`feature-card w-full max-w-[1250px] rounded-none min-h-[120px] md:min-h-[400px] p-8 py-12 ${bgGradient}
-        border border-white/10 shadow-xl transition-all transform-gpu flex flex-col justify-center mx-auto`}
+        className={` feature-card w-full max-w-[1250px] rounded-none min-h-[120px] md:min-h-[400px] p-8 py-12 ${bgGradient}
+         border border-white/10 shadow-xl transition-all transform-gpu flex flex-col justify-center mx-auto`}
         style={{ willChange: "transform" }}
       >
         <h2 className="font-bruno text-2xl md:text-3xl lg:text-4xl font-semibold text-white">
@@ -325,9 +326,13 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
               >
                 <div className="mb-2 text-5xl md:text-5xl font-akashi text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 text-center">
                   How It Works
+                   <div className="absolute right-16 bottom-10 w-30 h-32 flex items-center justify-center z-50">
+                  <SplineModel />
+                </div>
                 </div>
                 {node}
               </div>
+              
             ))}
           </div>
         </div>
