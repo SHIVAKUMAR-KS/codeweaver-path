@@ -21,7 +21,7 @@ const FeatureCard = React.forwardRef<HTMLDivElement, any>(
       <div
         ref={ref}
         className={` feature-card w-full max-w-[1250px] rounded-none min-h-[120px] md:min-h-[400px] p-8 py-12 ${bgGradient}
-         border border-white/10 shadow-xl transition-all transform-gpu flex flex-col justify-center mx-auto`}
+         shadow-xl transition-all transform-gpu flex flex-col justify-center mx-auto`}
         style={{ willChange: "transform" }}
       >
         <h2 className="font-bruno text-2xl md:text-3xl lg:text-4xl font-semibold text-white">
