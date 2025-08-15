@@ -22,7 +22,7 @@ const AIVsHuman: React.FC = () => {
         {/* Title */}
         <h1
           className="text-5xl font-extrabold mt-8 mb-6"
-          style={{ color: "#FBBF24", textShadow: "0 0 8px #FBBF24" }}
+          style={{ color: "#FBBF24", textShadow: "0 0 2px #FBBF24" }}
         >
           AI vs. Human Interviewers — What’s the Difference?
         </h1>
@@ -40,7 +40,7 @@ const AIVsHuman: React.FC = () => {
           <p className="text-lg">
             If you’ve ever practiced with an AI mock interviewer and thought,{" "}
             <em>“But will this really prepare me for a human panel?”</em>, you’re not alone.
-            Both AI and human interviewers have unique strengths — and knowing the differences
+            Both AI and human interviewers have unique strengths - and knowing the differences
             can help you prepare more effectively.
           </p>
         </section>
@@ -70,7 +70,7 @@ const AIVsHuman: React.FC = () => {
           </p>
           <p>
             <strong>Human:</strong> Provides context, emotional insights, and
-            industry-specific advice — but may be biased.
+            industry-specific advice - but may be biased.
           </p>
         </section>
 

@@ -23,24 +23,24 @@ const PersonalisedFeedback: React.FC = () => {
         {/* Heading */}
         <h1
           className="text-5xl font-extrabold mt-8 mb-6"
-          style={{ color: "#FBBF24", textShadow: "0 0 8px #FBBF24" }}
+          style={{ color: "#FBBF24", textShadow: "0 0 2px #FBBF24" }}
         >
           Get Personalized Feedback with AI Assistants: The Smart Way to Prepare for Interviews
         </h1>
 
         {/* Subtitle */}
         <p className="italic text-lg mb-8 text-gray-300">
-          Practice alone can only take you so far — here’s how AI feedback transforms your preparation.
+          Practice alone can only take you so far - here’s how AI feedback transforms your preparation.
         </p>
 
         {/* Introduction */}
         <section className="mb-10 max-w-4xl">
           <h2 className="text-2xl font-semibold mb-3" style={{ color: "#FBBF24" }}>Introduction</h2>
           <p>
-            Preparing for an interview is like rehearsing for a performance — you can practice endlessly,
+            Preparing for an interview is like rehearsing for a performance - you can practice endlessly,
             but without a coach to point out what’s working and what isn’t, you risk repeating the same
             mistakes. For years, candidates relied on friends, mentors, or gut instinct for feedback.
-            Now, AI-powered assistants are changing the game — giving you clear, data-backed, real-time
+            Now, AI-powered assistants are changing the game - giving you clear, data-backed, real-time
             insights so you know exactly what to fix before the big day.
           </p>
         </section>
@@ -49,7 +49,7 @@ const PersonalisedFeedback: React.FC = () => {
         <section className="mb-10">
           <h2 className="text-2xl font-semibold mb-4" style={{ color: "#FBBF24" }}>How AI Feedback Works</h2>
           <p className="mb-4">
-            AI interview assistants like Interview Sidekick and Ninjafy don’t just “listen” to your answers —
+            AI interview assistants like Interview Sidekick and Ninjafy don’t just “listen” to your answers -
             they analyze your delivery from multiple angles:
           </p>
 
@@ -85,7 +85,7 @@ const PersonalisedFeedback: React.FC = () => {
             <li>Is your word choice strong and decisive?</li>
           </ul>
           <p>
-            Confidence isn’t just in <em>what</em> you say — it’s in <em>how</em> you say it. AI breaks this 
+            Confidence isn’t just in <em>what</em> you say - it’s in <em>how</em> you say it. AI breaks this 
             down with metrics and actionable advice.
           </p>
         </section>
@@ -101,7 +101,7 @@ const PersonalisedFeedback: React.FC = () => {
             <li>Concrete, actionable recommendations for next time.</li>
           </ul>
           <p className="mt-3">
-            Your second practice session is already stronger than your first — and improvements compound over time.
+            Your second practice session is already stronger than your first - and improvements compound over time.
           </p>
         </section>
 
@@ -109,12 +109,12 @@ const PersonalisedFeedback: React.FC = () => {
         <section className="mb-10">
           <h2 className="text-2xl font-semibold mb-3" style={{ color: "#FBBF24" }}>Personalized Over Time</h2>
           <p>
-            The real magic happens with consistent practice — AI learns your speaking patterns,
+            The real magic happens with consistent practice - AI learns your speaking patterns,
             common mistakes, and improvement curve. Over time, its feedback becomes sharper and
             tailored uniquely to you.
           </p>
           <p className="italic mt-2">
-            Example: Instead of “sound more confident,” you might get — “Pause for two seconds before
+            Example: Instead of “sound more confident,” you might get - “Pause for two seconds before
             answering challenging questions to sound more composed.”
           </p>
         </section>
@@ -129,7 +129,7 @@ const PersonalisedFeedback: React.FC = () => {
           </ul>
           <p>
             When you can apply changes immediately and see results in your next practice session,
-            progress feels motivating — and fast.
+            progress feels motivating - and fast.
           </p>
         </section>
 
@@ -139,11 +139,11 @@ const PersonalisedFeedback: React.FC = () => {
           <ul className="list-disc list-inside space-y-1">
             <li>Sharper, more relevant, and better-structured answers.</li>
             <li>Confident, engaging delivery.</li>
-            <li>Real interviews feel less like a test — more like a conversation.</li>
+            <li>Real interviews feel less like a test - more like a conversation.</li>
           </ul>
           <p className="mt-3">
             💡 <strong>Pro Tip:</strong> Combine AI feedback with human mock interviews for the best
-            results — AI gives you objective insights; humans provide emotional and cultural context.
+            results - AI gives you objective insights; humans provide emotional and cultural context.
           </p>
         </section>
 

@@ -21,14 +21,14 @@ const RevolutionizingPrep: React.FC = () => {
 
         <h1
           className="text-5xl font-extrabold mt-8 mb-8"
-          style={{ color: "#FBBF24", textShadow: "0 0 8px #FBBF24" }}
+          style={{ color: "#FBBF24", textShadow: "0 0 2px #FBBF24" }}
         >
           How AI Is Revolutionizing Interview Preparation
         </h1>
 
         <p className="text-lg max-w-3xl mb-8">
           In the competitive job market, preparing for an interview is no longer just about rehearsing answers.
-          Today, technology — especially Artificial Intelligence — is transforming the way candidates prepare and how recruiters assess talent.
+          Today, technology - especially Artificial Intelligence - is transforming the way candidates prepare and how recruiters assess talent.
         </p>
 
         <section className="mb-10 max-w-4xl">
@@ -67,7 +67,7 @@ const RevolutionizingPrep: React.FC = () => {
             Beyond Practice - Building Confidence
           </h2>
           <p className="text-lg">
-            The real value of AI interview prep isn’t just improving answers — it’s building confidence.
+            The real value of AI interview prep isn’t just improving answers - it’s building confidence.
             When you know what to expect and have trained under realistic conditions, walking into an interview feels less intimidating and more like a conversation you’ve already mastered.
           </p>
         </section>
@@ -78,7 +78,7 @@ const RevolutionizingPrep: React.FC = () => {
           </h2>
           <p className="text-lg mb-4">
             As AI tools become more sophisticated, recruiters may use them not only for screening but also for training candidates internally.
-            This means AI-based interview prep isn’t just a trend — it’s becoming an essential skill-building tool for professionals at every career stage.
+            This means AI-based interview prep isn’t just a trend - it’s becoming an essential skill-building tool for professionals at every career stage.
           </p>
           <p className="text-lg font-semibold flex items-center" style={{ color: "#FBBF24" }}>
             💡 Takeaway: Whether you’re a student, job seeker, or hiring manager, AI interview practice can save time, reduce stress, and give you a competitive edge.

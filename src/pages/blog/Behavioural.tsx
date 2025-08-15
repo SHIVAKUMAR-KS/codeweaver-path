@@ -22,7 +22,7 @@ const Behavioural: React.FC = () => {
         {/* Title */}
         <h1
           className="text-5xl font-extrabold mt-8 mb-6"
-          style={{ color: "#FBBF24", textShadow: "0 0 8px #FBBF24" }}
+          style={{ color: "#FBBF24", textShadow: "0 0 2px #FBBF24" }}
         >
           Mastering Behavioral Interview Questions with AI
         </h1>
@@ -42,7 +42,7 @@ const Behavioural: React.FC = () => {
           </h2>
           <p className="text-lg">
             Behavioral interview questions can make even confident candidates nervous.
-            They require not just an answer, but a compelling <em>story</em> — one that shows your
+            They require not just an answer, but a compelling <em>story</em> - one that shows your
             skills in action. AI can help you refine these stories until they’re natural
             and persuasive.
           </p>
@@ -121,7 +121,7 @@ const Behavioural: React.FC = () => {
             By practicing with AI, you’ll naturally begin to structure all your responses this way.
           </p>
           <p className="italic mt-2">
-            💡 <strong>Pro Tip:</strong> Keep your STAR answers between 1–2 minutes and focus heavily on <strong>Results</strong> — that’s what sticks in the interviewer’s mind.
+            💡 <strong>Pro Tip:</strong> Keep your STAR answers between 1–2 minutes and focus heavily on <strong>Results</strong> - that’s what sticks in the interviewer’s mind.
           </p>
         </section>
       </div>

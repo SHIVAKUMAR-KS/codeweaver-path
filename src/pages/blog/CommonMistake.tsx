@@ -22,14 +22,14 @@ const CommonMistake: React.FC = () => {
         {/* Title */}
         <h1
           className="text-5xl font-extrabold mt-8 mb-6"
-          style={{ color: "#FBBF24", textShadow: "0 0 8px #FBBF24" }}
+          style={{ color: "#FBBF24", textShadow: "0 0 2px #FBBF24" }}
         >
           5 Common Interview Mistakes and How AI Can Help You Avoid Them
         </h1>
 
         {/* Intro */}
         <p className="italic text-lg mb-6 text-gray-300">
-          Your dream job could be just one interview away — but are you unknowingly sabotaging your chances?
+          Your dream job could be just one interview away - but are you unknowingly sabotaging your chances?
         </p>
         <section className="mb-10 max-w-4xl">
           <h2 className="text-2xl font-semibold mb-3" style={{ color: "#FBBF24" }}>Introduction</h2>
@@ -39,7 +39,7 @@ const CommonMistake: React.FC = () => {
             you walk away feeling like something went wrong.
           </p>
           <p className="text-lg">
-            This is the reality for many job seekers — small, subtle mistakes can overshadow even the strongest skills.
+            This is the reality for many job seekers - small, subtle mistakes can overshadow even the strongest skills.
             Luckily, AI interview coaching is changing the game, helping candidates identify
             and fix these errors <strong>before</strong> they cost you the job offer.
           </p>
@@ -83,7 +83,7 @@ const CommonMistake: React.FC = () => {
           <br />Giving vague statements like “I’m good at managing teams” without real scenarios.</p>
           <br />
           <p><strong>Why It Hurts You:</strong> 
-          <br />Employers want proof — vague answers lack impact.</p>
+          <br />Employers want proof - vague answers lack impact.</p>
           <br />
           <p><strong>AI Fix:</strong> 
           <br />AI guides you in using the <strong>STAR Method</strong> 
@@ -124,7 +124,7 @@ const CommonMistake: React.FC = () => {
             Key Takeaway:
           </p>
           <p>
-            AI doesn’t just highlight mistakes — it coaches you to fix them.
+            AI doesn’t just highlight mistakes  - it coaches you to fix them.
             With the right tools, you can replace nervous habits with confident communication
             and walk into your next interview fully prepared.
           </p>
