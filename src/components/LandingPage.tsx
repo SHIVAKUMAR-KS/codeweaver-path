@@ -29,7 +29,7 @@ import logo1 from '../../public/logo1.png'
 import Faqs from './Faqs';
 import AdvancedFeaturesSection from './OurFeatures';
 import AboutUs from './AboutUs';
-import newimg from '../../public/sklassic-removebg-preview.png'
+import com from '../../public/com.png'
 
 const slugs = [
   'typescript',
