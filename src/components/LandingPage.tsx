@@ -30,6 +30,8 @@ import Faqs from './Faqs';
 import AdvancedFeaturesSection from './OurFeatures';
 import AboutUs from './AboutUs';
 import com from '../../public/com.png'
+import Movinglogo from './Movinglogo';
+import { MorphingTextBlock } from './MorphingBlock';
 
 const slugs = [
   'typescript',
@@ -668,61 +670,22 @@ const LandingPage = () => {
 
             {/* Enhanced VelocityScroll with Company Logos */}
             {/* Logo scroller */}
-      <div className="relative w-full overflow-x-auto py-2">
-        <VelocityScroll
-          defaultVelocity={2}
-          numRows={2}
-          className="py-8"
-          rowClassName="py-6"
-          delay={0.5}
-        >
-          {[
-            ...companyLogos,
-            ...companyLogos,
-            ...companyLogos,
-            ...companyLogos,
-          ].map((company, index) => (
-            <div
-              key={`logo-${company.name}-${index}`}
-              className="inline-flex items-center justify-center mr-10 sm:mr-20"
-            >
-              <img
-                src={company.src}
-                alt={company.name}
-                width={company.width}
-                height={company.height}
-                className="transition-opacity duration-300 opacity-80 hover:opacity-100 w-20 sm:w-28 md:w-32 object-contain"
-                style={{
-                  maxWidth: "8rem",
-                  height: "auto",
-                }}
-                loading="lazy"
-              />
-            </div>
-          ))}
-        </VelocityScroll>
-
-        {/* Gradient overlays */}
-        <div className="absolute inset-y-0 left-0 z-10 w-16 sm:w-32 pointer-events-none bg-gradient-to-r from-background via-background/80 to-transparent"></div>
-        <div className="absolute inset-y-0 right-0 z-10 w-16 sm:w-32 pointer-events-none bg-gradient-to-l from-background via-background/80 to-transparent"></div>
-      </div>
+      
             {/* MorphingText in bottom-left - Fix positioning */}
-            <motion.div
-              className="absolute z-20 hidden w-full px-4 center-1/2 mt-0 transform -translate-x-1/2 lg:block max-w-7xl
-"
-              initial={{ opacity: 0, scale: 0.3, z: -100 }}
-              whileInView={{ opacity: 1, scale: 1, z: 0 }}
-              transition={{ duration: 1.2, ease: 'easeOut' }}
-              viewport={{ once: true, margin: '-100px' }}
-            >
-              <MorphingText
-                texts={morphWords}
-                className="text-[100pt] xl:text-[80pt] h-12"
-              />
-            </motion.div>
+            
           </motion.div>
         </div>
       </section>
+      
+      <Movinglogo/>
+      
+      <MorphingTextBlock 
+        texts={['Dominate', 'Interview', 'With', 'Sklassics-ai']} 
+        className="text-[clamp(2rem,6vw,5rem)]  text-purple-800"
+      />
+
+
+
       <AboutUs/>
       <Faqs />
       <Footer />

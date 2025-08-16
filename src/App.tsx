@@ -15,6 +15,7 @@ import Behavioural from "./pages/blog/Behavioural";
 import FutureHiring from "./pages/blog/FutureHiring";
 import PersonalisedFeedback from "./pages/blog/PersonalisedFeedback";
 import { HashRouter } from "react-router-dom"; // <-- Changed BrowserRouter to HashRouter
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
         <Sonner />
         {/* <BrowserRouter> */}
         <HashRouter>
+            <ScrollToTop />  
           <Routes>
             <Route path="/" element={<Index />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

@@ -210,6 +210,7 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
         <div>
           <p className="mb-2">
             Upload your resume and job description to get interview questions tailored to your
+            <br />
             skills and target role.
           </p>
           <ul className="list-disc pl-5 space-y-2">
