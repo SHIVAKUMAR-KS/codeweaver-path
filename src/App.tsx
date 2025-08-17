@@ -25,8 +25,8 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        {/* <BrowserRouter> */}
-        <HashRouter>
+        <BrowserRouter>
+        {/* <HashRouter> */}
             <ScrollToTop />  
           <Routes>
             <Route path="/" element={<Index />} />
@@ -41,8 +41,8 @@ const App = () => (
              <Route path="/Personalised-Feedback" element={<PersonalisedFeedback />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        {/* </BrowserRouter> */}
-        </HashRouter>
+        </BrowserRouter>
+        {/* </HashRouter> */}
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>
