@@ -14,13 +14,14 @@ const initialForm = {
   source: "",
 };
 
+const WEB3FORMS_URL = "https://api.web3forms.com/submit";
+const WEB3FORMS_KEY = "6c55b960-9434-4d60-aa94-646dda04d083";
+
 const BookDemo: React.FC = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState(initialForm);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [otp, setOtp] = useState("");
-  const [otpVerified, setOtpVerified] = useState(false);
   const [error, setError] = useState("");
 
   const handleChange = (
@@ -29,46 +30,39 @@ const BookDemo: React.FC = () => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  // Web3Forms submission handler
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
     try {
-      const response = await fetch("/api/bookdemo", {
+      // Compose payload
+      const payload = {
+        access_key: WEB3FORMS_KEY,
+        subject: "AI Interview Demo Booking",
+        full_name: form.full_name,
+        email: form.email,
+        company: form.company,
+        job_title: form.job_title,
+        phone: form.phone,
+        source: form.source,
+      };
+
+      const response = await fetch(WEB3FORMS_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
+
       const result = await response.json();
-      if (response.ok) {
+
+      if (response.ok && result.success) {
         setSubmitted(true);
       } else {
         setError(result.message || "Failed to send booking request.");
       }
     } catch (err) {
       setError("Something went wrong. Please try again later.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleVerifyOtp = async () => {
-    setLoading(true);
-    setError("");
-    try {
-      const response = await fetch("/api/bookdemo/verify", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: form.email, otp }),
-      });
-      const result = await response.json();
-      if (response.ok) {
-        setOtpVerified(true);
-      } else {
-        setError(result.message || "OTP verification failed.");
-      }
-    } catch (err) {
-      setError("OTP verification error. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -96,41 +90,11 @@ const BookDemo: React.FC = () => {
         </div>
 
         <div className="book-demo-formwrap ml-2 max-h-[calc(100vh-64px)] overflow-y-auto">
-          {otpVerified ? (
+          {submitted ? (
             <div className="book-demo-success">
               <h2>Thank you!</h2>
               <p>Your demo is confirmed. We’ll connect with you soon.</p>
             </div>
-          ) : submitted ? (
-            // OTP Verification Form
-            <form onSubmit={(e) => e.preventDefault()} className="book-demo-form">
-              <label htmlFor="otp">Enter OTP sent to your email</label>
-              <input
-                id="otp"
-                name="otp"
-                type="text"
-                placeholder="Enter OTP"
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
-                required
-              />
-              {error && <div className="book-demo-error">{error}</div>}
-              {/* Center the Verify OTP button */}
-              <div className="flex justify-center">
-                <HoverBorderGradient
-                  containerClassName="rounded-full"
-                  className={`flex items-center justify-center text-sm bg-background text-primary h-10 px-5 py-1 font-semibold ${
-                    loading ? "pointer-events-none opacity-50" : ""
-                  }`}
-                  onClick={handleVerifyOtp}
-                  style={{ cursor: "pointer" }}
-                >
-                  <span className="flex items-center justify-center gap-2 h-full">
-                    {loading ? "Verifying..." : "Verify OTP"}
-                  </span>
-                </HoverBorderGradient>
-              </div>
-            </form>
           ) : (
             <form
               onSubmit={handleSubmit}

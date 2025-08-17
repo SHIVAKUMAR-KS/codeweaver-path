@@ -142,7 +142,7 @@ const PersonalisedFeedback: React.FC = () => {
             <li>Real interviews feel less like a test - more like a conversation.</li>
           </ul>
           <p className="mt-3">
-            💡 <strong>Pro Tip:</strong> Combine AI feedback with human mock interviews for the best
+             <strong>Pro Tip:</strong> Combine AI feedback with human mock interviews for the best
             results - AI gives you objective insights; humans provide emotional and cultural context.
           </p>
         </section>

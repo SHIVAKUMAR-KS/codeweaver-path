@@ -121,7 +121,7 @@ const Behavioural: React.FC = () => {
             By practicing with AI, you’ll naturally begin to structure all your responses this way.
           </p>
           <p className="italic mt-2">
-            💡 <strong>Pro Tip:</strong> Keep your STAR answers between 1–2 minutes and focus heavily on <strong>Results</strong> - that’s what sticks in the interviewer’s mind.
+             <strong>Pro Tip:</strong> Keep your STAR answers between 1–2 minutes and focus heavily on <strong>Results</strong> - that’s what sticks in the interviewer’s mind.
           </p>
         </section>
       </div>

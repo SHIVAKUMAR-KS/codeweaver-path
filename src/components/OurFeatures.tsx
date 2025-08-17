@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 // --- Card Component ---
 const FeatureCard = React.forwardRef<HTMLDivElement, any>(
   (
-    { title, description, buttonText, buttonAction, buttonColor, bgGradient },
+    { title, description, buttonText, buttonAction, buttonColor, bgGradient,titleColor  },
     ref
   ) => {
     const colorMap = {
@@ -18,11 +18,12 @@ const FeatureCard = React.forwardRef<HTMLDivElement, any>(
     return (
       <div
         ref={ref}
-        className={` feature-card w-full max-w-[1250px] rounded-none min-h-[120px] md:min-h-[400px] p-8 py-12 ${bgGradient}
-         shadow-xl transition-all transform-gpu flex flex-col justify-center mx-auto`}
+        className={` feature-card w-full max-w-[1250px] rounded-2xl min-h-[120px] md:min-h-[400px] p-8 py-12 border-purple-500 border-2  shadow-xl transition-all transform-gpu flex flex-col justify-center mx-auto`}
         style={{ willChange: "transform" }}
       >
-        <h2 className="font-bruno text-2xl md:text-3xl lg:text-4xl font-semibold text-white">
+        <h2
+          className={`font-bruno text-2xl md:text-3xl lg:text-4xl font-semibold ${titleColor || "text-white"}`}
+        >
           {title}
         </h2>
         <div className="mt-6 text-lg text-neutral-200 flex-1">{description}</div>
@@ -91,7 +92,7 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
           trigger: containerRef.current,
           start: "top top",
           end: "+=" + CARD_SCROLL_DIST * featureCards.length,
-          scrub: 0.5,
+          scrub: 2.5,
           pin: true,
           snap: {
             snapTo: 1 / (featureCards.length - 1),
@@ -159,6 +160,7 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
       }}
       key="free-coins"
       title="Login & Get Free Coins"
+      titleColor="text-yellow-400"
       description={
         <div>
           <p className="mb-2">Get rewarded instantly when you join.</p>
@@ -181,6 +183,7 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
       }}
       key="choose-domain"
       title="Choose Your Domain & Level"
+      titleColor="text-yellow-400"
       description={
         <div>
           <p className="mb-2">Pick your field, set your level, and let’s get to work.</p>
@@ -206,6 +209,7 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
       }}
       key="resume-interview"
       title="Resume-Based & Job Description-Based Interviews"
+       titleColor="text-yellow-400"
       description={
         <div>
           <p className="mb-2">
@@ -234,6 +238,7 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
       }}
       key="resume-score"
       title="Resume Score Checker"
+       titleColor="text-yellow-400"
       description={
         <div>
           <p className="mb-2">See how your resume stacks up for a specific job — instantly.</p>
@@ -258,6 +263,7 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
       }}
       key="performance-insights"
       title="Detailed Performance Insights"
+       titleColor="text-yellow-400"
       description={
         <div>
           <p className="mb-2">See exactly how you did — and how to get even better.</p>
@@ -317,6 +323,9 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
             className="relative w-full max-w-none px-0 mt-1 mb-2"
             style={{ minHeight: 750 }}
           >
+             <div className="absolute right-16 bottom-20 w-30 h-32 flex items-center justify-center z-50 mb-40">
+                    <SplineModel />
+              </div>
             {cardsToRender.map((node, idx) => (
               <div
                 key={idx}
@@ -326,14 +335,15 @@ const AdvancedFeaturesSection: React.FC<AdvancedFeaturesSectionProps> = ({
               >
                 <div className="mb-2 text-5xl md:text-5xl font-akashi text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 text-center">
                   How It Works
-                  <div className="absolute right-16 bottom-10 w-30 h-32 flex items-center justify-center z-50">
+                  {/* <div className="absolute right-16 bottom-10 w-30 h-32 flex items-center justify-center z-50">
                     <SplineModel />
-                  </div>
+                  </div> */}
                 </div>
                 {node}
               </div>
             ))}
           </div>
+          
         </div>
       </section>
       {/* Mobile carousel */}

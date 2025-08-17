@@ -81,7 +81,7 @@ const RevolutionizingPrep: React.FC = () => {
             This means AI-based interview prep isn’t just a trend - it’s becoming an essential skill-building tool for professionals at every career stage.
           </p>
           <p className="text-lg font-semibold flex items-center" style={{ color: "#FBBF24" }}>
-            💡 Takeaway: Whether you’re a student, job seeker, or hiring manager, AI interview practice can save time, reduce stress, and give you a competitive edge.
+             Takeaway: Whether you’re a student, job seeker, or hiring manager, AI interview practice can save time, reduce stress, and give you a competitive edge.
           </p>
         </section>
       </div>
