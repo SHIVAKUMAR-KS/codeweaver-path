@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { IoMdArrowBack } from "react-icons/io";
-import bookDemoing from '../../public/bookDemoimg.png'
+import bookDemoing from '../../public/bookdemo1.jpg'
 
 const initialForm = {
   full_name: "",
@@ -88,9 +88,9 @@ const BookDemo: React.FC = () => {
             Back to Home
           </HoverBorderGradient>
           <h1>Book a Demo</h1>
-          <img src={bookDemoing} alt="" className="w94 h-74 rounded-full" />
+          <img src={bookDemoing} alt="" className="w104 h-94 " />
 
-          <p className="ml-6">
+          <p className="ml-2">
             Schedule a personalized walk-through and discover how our AI Interview platform can streamline hiring, provide instant feedback, and boost your candidate experience.
           </p>
         </div>
